@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace Yucca.Models
+namespace Yucca.ViewModels
 {
     public class ExternalLoginConfirmationViewModel
     {

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EFSecondLevelCache, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\EFSecondLevelCache.1.1.5.0\lib\net45\EFSecondLevelCache.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -170,12 +174,42 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Data\Configuration\Common\SettingConfig.cs" />
+    <Compile Include="Data\Configuration\Orders\OrderConfig.cs" />
+    <Compile Include="Data\Configuration\Orders\OrderItemConfig.cs" />
+    <Compile Include="Data\Configuration\Orders\OrderNoteConfig.cs" />
+    <Compile Include="Data\Configuration\Orders\ShoppingCartConfig.cs" />
+    <Compile Include="Data\Configuration\Products\AttributeOptionConfig.cs" />
+    <Compile Include="Data\Configuration\Products\CategoryConfig.cs" />
+    <Compile Include="Data\Configuration\Products\CategorySlideConfig.cs" />
+    <Compile Include="Data\Configuration\Products\ProductConfig.cs" />
+    <Compile Include="Data\Configuration\Products\ProductPictureConfig.cs" />
+    <Compile Include="Data\Configuration\Products\SpecificAttributeConfig.cs" />
+    <Compile Include="Data\Configuration\User\AddressConfig.cs" />
+    <Compile Include="Data\Configuration\User\UserConfig.cs" />
+    <Compile Include="Data\DbContext\YuccaDbContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\AccountViewModels.cs" />
-    <Compile Include="Models\IdentityModels.cs" />
-    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Common\BaseEntity.cs" />
+    <Compile Include="Models\Common\Setting.cs" />
+    <Compile Include="Models\Orders\Order.cs" />
+    <Compile Include="Models\Orders\OrderItem.cs" />
+    <Compile Include="Models\Orders\OrderNote.cs" />
+    <Compile Include="Models\Orders\OrderStatus.cs" />
+    <Compile Include="Models\Orders\PaymentType.cs" />
+    <Compile Include="Models\Orders\ShoppingCart.cs" />
+    <Compile Include="Models\Products\AttributeOption.cs" />
+    <Compile Include="Models\Products\Category.cs" />
+    <Compile Include="Models\Products\CategorySlide.cs" />
+    <Compile Include="Models\Products\Product.cs" />
+    <Compile Include="Models\Products\ProductPicture.cs" />
+    <Compile Include="Models\Products\SpecificAttribute.cs" />
+    <Compile Include="Models\User\Address.cs" />
+    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="Models\User\User.cs" />
+    <Compile Include="ViewModels\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -186,6 +220,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="readme.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
