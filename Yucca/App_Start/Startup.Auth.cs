@@ -7,7 +7,7 @@ using Microsoft.Owin.Security.Google;
 using Owin;
 using Yucca.Data.DbContext;
 using Yucca.Models;
-using Yucca.Models.User;
+using Yucca.Models.IdentityModels;
 
 namespace Yucca
 {
@@ -18,8 +18,8 @@ namespace Yucca
         {
             // Configure the db context, user manager and signin manager to use a single instance per request
             app.CreatePerOwinContext(YuccaDbContext.Create);
-            app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
-            app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext<YuccaUserManager>(YuccaUserManager.Create);
+            app.CreatePerOwinContext<YuccaSignInManager>(YuccaSignInManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -32,10 +32,10 @@ namespace Yucca
                 {
                     // Enables the application to validate the security stamp when the user logs in.
                     // This is a security feature which is used when you change a password or add an external login to your account.  
-                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<ApplicationUserManager, User,long>(
+                    OnValidateIdentity = SecurityStampValidator.OnValidateIdentity<YuccaUserManager, YuccaUser,long>(
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentityCallback: (manager, user) => user.GenerateUserIdentityAsync(manager),
-                         getUserIdCallback: ((claimsIdentity) => claimsIdentity.GetUserId<long>()))
+                         getUserIdCallback: ((claimsIdentity) => Convert.ToInt64(claimsIdentity.GetUserId())))
                 }
             });            
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);

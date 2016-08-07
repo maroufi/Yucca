@@ -13,13 +13,14 @@ using Yucca.Data.Configuration.User;
 using Yucca.Models.Common;
 using Yucca.Models.Orders;
 using Yucca.Models.Products;
-using Yucca.Models.User;
 using System.Data.Entity.Core.Objects;
+using System.Web.Mvc.Routing.Constraints;
+using Yucca.Models.IdentityModels;
 
 namespace Yucca.Data.DbContext
 {
     public class YuccaDbContext: 
-        IdentityDbContext<User, IdentityRole<long, IdentityUserRole<long>>, long, IdentityUserLogin<long>, IdentityUserRole<long>, IdentityUserClaim<long>>
+        IdentityDbContext<YuccaUser,YuccaRole,long,YuccaUserLogin,YuccaUserRole,YuccaUserClaim>
     {
         public YuccaDbContext()
             : base("YuccaConnection")

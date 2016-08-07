@@ -12,7 +12,7 @@ using Microsoft.Owin;
 using Microsoft.Owin.Security;
 using Yucca.Data.DbContext;
 using Yucca.Models;
-using Yucca.Models.User;
+using Yucca.Models.IdentityModels;
 
 namespace Yucca
 {
@@ -35,18 +35,18 @@ namespace Yucca
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class ApplicationUserManager : UserManager<User,long>
+    public class YuccaUserManager : UserManager<YuccaUser,long>
     {
-        public ApplicationUserManager(IUserStore<User,long> store)
+        public YuccaUserManager(IUserStore<YuccaUser,long> store)
             : base(store)
         {
         }
 
-        public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 
+        public static YuccaUserManager Create(IdentityFactoryOptions<YuccaUserManager> options, IOwinContext context) 
         {
-            var manager = new ApplicationUserManager(new UserStore<User,IdentityRole<long,IdentityUserRole<long>>,long,IdentityUserLogin<long>,IdentityUserRole<long>,IdentityUserClaim<long>>(context.Get<YuccaDbContext>()));
+            var manager = new YuccaUserManager(new YuccaUserStore(context.Get<YuccaDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<User,long>(manager)
+            manager.UserValidator = new UserValidator<YuccaUser,long>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -69,11 +69,11 @@ namespace Yucca
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<User,long>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<YuccaUser,long>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<User,long>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<YuccaUser,long>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -84,28 +84,45 @@ namespace Yucca
             if (dataProtectionProvider != null)
             {
                 manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<User,long>(dataProtectionProvider.Create("ASP.NET Identity"));
+                    new DataProtectorTokenProvider<YuccaUser,long>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
     }
+    // PASS CUSTOM APPLICATION ROLE AND INT AS TYPE ARGUMENTS TO BASE:
+    public class YuccaRoleManager : RoleManager<YuccaRole, long>
+    {
+        // PASS CUSTOM APPLICATION ROLE AND INT AS TYPE ARGUMENTS TO CONSTRUCTOR:
+        public YuccaRoleManager(IRoleStore<YuccaRole, long> roleStore)
+            : base(roleStore)
+        {
+        }
+
+        // PASS CUSTOM APPLICATION ROLE AS TYPE ARGUMENT:
+        public static YuccaRoleManager Create(
+            IdentityFactoryOptions<YuccaRoleManager> options, IOwinContext context)
+        {
+            return new YuccaRoleManager(
+                new YuccaRoleStore(context.Get<YuccaDbContext>()));
+        }
+    }
 
     // Configure the application sign-in manager which is used in this application.
-    public class ApplicationSignInManager : SignInManager<User,long>
+    public class YuccaSignInManager : SignInManager<YuccaUser,long>
     {
-        public ApplicationSignInManager(ApplicationUserManager userManager, IAuthenticationManager authenticationManager)
+        public YuccaSignInManager(YuccaUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)
         {
         }
 
-        public override Task<ClaimsIdentity> CreateUserIdentityAsync(User user)
+        public override Task<ClaimsIdentity> CreateUserIdentityAsync(YuccaUser user)
         {
-            return user.GenerateUserIdentityAsync((ApplicationUserManager)UserManager);
+            return user.GenerateUserIdentityAsync((YuccaUserManager)UserManager);
         }
 
-        public static ApplicationSignInManager Create(IdentityFactoryOptions<ApplicationSignInManager> options, IOwinContext context)
+        public static YuccaSignInManager Create(IdentityFactoryOptions<YuccaSignInManager> options, IOwinContext context)
         {
-            return new ApplicationSignInManager(context.GetUserManager<ApplicationUserManager>(), context.Authentication);
+            return new YuccaSignInManager(context.GetUserManager<YuccaUserManager>(), context.Authentication);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Yucca.Models.Products;
+﻿using Yucca.Models.IdentityModels;
+using Yucca.Models.Products;
 
 namespace Yucca.Models.Orders
 {
@@ -17,7 +18,7 @@ namespace Yucca.Models.Orders
         #region Navigation Properties
 
         public virtual long UserId { get; set; }
-        public virtual Models.User.User User { get; set; }
+        public virtual YuccaUser User { get; set; }
         public virtual long ProductId { get; set; }
         public virtual Product Product { get; set; }
         #endregion

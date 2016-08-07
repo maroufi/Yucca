@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Yucca.Models;
-using Yucca.Models.User;
+using Yucca.Models.IdentityModels;
 using Yucca.ViewModels;
 
 namespace Yucca.Controllers
@@ -17,24 +17,24 @@ namespace Yucca.Controllers
     [Authorize]
     public class AccountController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private YuccaSignInManager _signInManager;
+        private YuccaUserManager _userManager;
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(YuccaUserManager userManager, YuccaSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
+        public YuccaSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? HttpContext.GetOwinContext().Get<YuccaSignInManager>();
             }
             private set 
             { 
@@ -42,11 +42,11 @@ namespace Yucca.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public YuccaUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<YuccaUserManager>();
             }
             private set
             {
@@ -153,7 +153,7 @@ namespace Yucca.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new YuccaUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
@@ -369,7 +369,7 @@ namespace Yucca.Controllers
                 {
                     return View("ExternalLoginFailure");
                 }
-                var user = new User { UserName = model.Email, Email = model.Email };
+                var user = new YuccaUser { UserName = model.Email, Email = model.Email };
                 var result = await UserManager.CreateAsync(user);
                 if (result.Succeeded)
                 {

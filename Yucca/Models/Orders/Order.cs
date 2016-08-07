@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Yucca.Models.Common;
-using Yucca.Models.User;
+using Yucca.Models.IdentityModels;
 
 namespace Yucca.Models.Orders
 {
@@ -25,7 +25,7 @@ namespace Yucca.Models.Orders
         #region Navigation Properties
 
         public virtual long BuyerId { get; set; }
-        public virtual Models.User.User Buyer { get; set; }
+        public virtual YuccaUser Buyer { get; set; }
         public virtual long AddressId { get; set; }
         public virtual Address Address { get; set; }
         public virtual ICollection<OrderNote> OrderNotes { get; set; }

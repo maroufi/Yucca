@@ -1,5 +1,5 @@
 ﻿using System.Data.Entity.ModelConfiguration;
-using Yucca.Models.User;
+using Yucca.Models.IdentityModels;
 
 namespace Yucca.Data.Configuration.User
 {

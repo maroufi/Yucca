@@ -1,8 +1,9 @@
 ﻿using System.Data.Entity.ModelConfiguration;
+using Yucca.Models.IdentityModels;
 
 namespace Yucca.Data.Configuration.User
 {
-    public class UserConfig:EntityTypeConfiguration<Models.User.User>
+    public class UserConfig:EntityTypeConfiguration<YuccaUser>
     {
         public UserConfig()
         {

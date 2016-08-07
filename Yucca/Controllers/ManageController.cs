@@ -14,24 +14,24 @@ namespace Yucca.Controllers
     [Authorize]
     public class ManageController : Controller
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
+        private YuccaSignInManager _signInManager;
+        private YuccaUserManager _userManager;
 
         public ManageController()
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(YuccaUserManager userManager, YuccaSignInManager signInManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
 
-        public ApplicationSignInManager SignInManager
+        public YuccaSignInManager SignInManager
         {
             get
             {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
+                return _signInManager ?? HttpContext.GetOwinContext().Get<YuccaSignInManager>();
             }
             private set 
             { 
@@ -39,11 +39,11 @@ namespace Yucca.Controllers
             }
         }
 
-        public ApplicationUserManager UserManager
+        public YuccaUserManager UserManager
         {
             get
             {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<YuccaUserManager>();
             }
             private set
             {
