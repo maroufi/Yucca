@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
-namespace Yucca.ViewModels
+namespace Yucca.ViewModels.Identity
 {
     public class RoleViewModel
     {
@@ -13,7 +10,7 @@ namespace Yucca.ViewModels
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "RoleName")]
+        [Display(Name = "وظیفه و نقش")]
         public string Name { get; set; }
     }
 
@@ -23,7 +20,7 @@ namespace Yucca.ViewModels
         public int Id { get; set; }
 
         [Required(AllowEmptyStrings = false)]
-        [Display(Name = "Email")]
+        [Display(Name = "ایمیل")]
         [EmailAddress]
         public string Email { get; set; }
 

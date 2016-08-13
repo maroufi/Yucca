@@ -1,0 +1,38 @@
+﻿
+@model IEnumerable<Yucca.Areas.Admin.ViewModels.Category.CategoryViewModel>
+@Html.AntiForgeryToken()
+<div class="row">
+    <div class="table-responsive col-lg-12">
+        <table class="table table-hover table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-left">
+                        @Html.ActionLink("ویرایش", "Edit", "Category", new { id = item.Id }, new { @class = "btn btn-md btn-default" })
+                        @Html.ActionLink("حذف", "Delete", "Category", new { id = item.Id }, new { @class = "btn btn-md btn-default" })
+                        @Html.ActionLink("افزودن خصوصیات", "Add", "Attribute", new { categoryId = item.Id }, new { @class = "btn btn-md btn-default" })
+                        @Html.ActionLink("خصوصیات", "Index", "Attribute", new { categoryId = item.Id }, new { @class = "btn btn-md btn-default" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+<script>
+    Public.Routin();
+</script>
+
+
+
+
+
+

@@ -9,12 +9,12 @@ using Microsoft.AspNet.Identity.EntityFramework;
 using Yucca.Data.Configuration.Common;
 using Yucca.Data.Configuration.Orders;
 using Yucca.Data.Configuration.Products;
-using Yucca.Data.Configuration.User;
 using Yucca.Models.Common;
 using Yucca.Models.Orders;
 using Yucca.Models.Products;
 using System.Data.Entity.Core.Objects;
 using System.Web.Mvc.Routing.Constraints;
+using Yucca.Data.Configuration.Identity;
 using Yucca.Models.IdentityModels;
 
 namespace Yucca.Data.DbContext

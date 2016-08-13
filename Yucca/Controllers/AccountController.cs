@@ -10,7 +10,9 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Yucca.Models;
 using Yucca.Models.IdentityModels;
+using Yucca.Utility.Security;
 using Yucca.ViewModels;
+using Yucca.ViewModels.Identity;
 
 namespace Yucca.Controllers
 {
@@ -153,7 +155,18 @@ namespace Yucca.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new YuccaUser { UserName = model.Email, Email = model.Email };
+                var user = new YuccaUser
+                {
+                    UserName = model.Email,
+                    Email = model.Email,
+                    BirthDay = model.BirthDayDate,
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    LastLoginDate = DateTime.Now,
+                    PasswordHash = Encryption.EncryptingPassword(model.Password),
+                    AccessFailedCount = 0
+                };
+
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {

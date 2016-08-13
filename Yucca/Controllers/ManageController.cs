@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Yucca.Models;
 using Yucca.ViewModels;
+using Yucca.ViewModels.Identity;
 
 namespace Yucca.Controllers
 {

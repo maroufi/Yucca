@@ -48,6 +48,10 @@
       <HintPath>..\packages\EFSecondLevelCache.1.1.5.0\lib\net45\EFSecondLevelCache.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework.Extended, Version=6.0.0.0, Culture=neutral, PublicKeyToken=05b7e29bdd433584, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -171,6 +175,11 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttributeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Attribute\AttributeViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -191,9 +200,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608071125346_Initial_Migration.cs" />
-    <Compile Include="Migrations\201608071125346_Initial_Migration.Designer.cs">
-      <DependentUpon>201608071125346_Initial_Migration.cs</DependentUpon>
+    <Compile Include="Migrations\201608131637175_Initial.cs" />
+    <Compile Include="Migrations\201608131637175_Initial.Designer.cs">
+      <DependentUpon>201608131637175_Initial.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Common\BaseEntity.cs" />
@@ -214,12 +223,21 @@
     <Compile Include="Models\IdentityModels\YuccaRole.cs" />
     <Compile Include="Models\IdentityModels\YuccaRoleStore.cs" />
     <Compile Include="Models\IdentityModels\YuccaUserStore.cs" />
-    <Compile Include="ViewModels\AccountViewModels.cs" />
+    <Compile Include="Utility\Security\Encryption.cs" />
+    <Compile Include="Utility\Security\SafePassword.cs" />
+    <Compile Include="ViewModels\Identity\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels\YuccaUser.cs" />
-    <Compile Include="ViewModels\AdminViewModel.cs" />
-    <Compile Include="ViewModels\ManageViewModels.cs" />
+    <Compile Include="ViewModels\Identity\AdminViewModel.cs" />
+    <Compile Include="ViewModels\Identity\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Attribute\AddAttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Attribute\DeleteAttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Attribute\EditAttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Category\AddCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Category\DeleteCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Category\EditCategoryViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Category\CategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.css" />
@@ -231,6 +249,17 @@
     <Content Include="readme.txt" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\_ListPartial.cshtml" />
+    <Content Include="Areas\Admin\Views\Category\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Attribute\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Attribute\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Attribute\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -280,6 +309,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\ViewModels\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -290,8 +320,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608071125346_Initial_Migration.resx">
-      <DependentUpon>201608071125346_Initial_Migration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608131637175_Initial.resx">
+      <DependentUpon>201608131637175_Initial.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

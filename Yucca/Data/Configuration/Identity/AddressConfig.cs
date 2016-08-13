@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Yucca.Models.IdentityModels;
 
-namespace Yucca.Data.Configuration.User
+namespace Yucca.Data.Configuration.Identity
 {
     public class AddressConfig:EntityTypeConfiguration<Address>
     {

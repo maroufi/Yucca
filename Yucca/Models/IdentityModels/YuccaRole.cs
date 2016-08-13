@@ -4,9 +4,7 @@ using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Yucca.Models.IdentityModels
 {
-    [NotMapped]
     public class YuccaUserLogin : IdentityUserLogin<long> { }
-    [NotMapped]
     public class YuccaUserClaim : IdentityUserClaim<long> { }
     public class YuccaUserRole : IdentityUserRole<long> { }
 

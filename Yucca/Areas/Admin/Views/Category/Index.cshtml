@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "گروه های محصولات";
+}
+<div class="row">
+    <div class="col-lg-12">
+        @using (Ajax.BeginForm("List", "Category", null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "categoriesList" }, new { @class = "form-horizontal", id = "categoryFilterForm" }))
+        {
+            <div class="row">
+                <div class="well-sm col-md-8">
+                    <div class="col-md-5">
+                        <input name="term" value="" placeholder="جستجو با نام" type="text" class="form-control" />
+                    </div>
+                    <div class="col-md-3">
+                        <input type="submit" value="جست و جو" class="btn btn-md btn-default" />
+                    </div>
+                    <div class="col-md-3">
+                        @Html.ActionLink("افزودن", "Create", "Category", new { @class = "btn btn-md btn-default" })
+                    </div>
+                </div>
+            </div>
+
+        }
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive col-lg-12" id="categoriesList">
+        @{ Html.RenderAction("List", "Category");}
+    </div>
+</div>

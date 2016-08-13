@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Yucca.Areas.Admin.ViewModels.Attribute.AttributeViewModel>
+@{
+    ViewBag.Title = "خصوصیات گروه  [" + ViewBag.CategoryName + "]";
+    var postUrl = Url.Action("Delete", "Attribute");
+
+}
+@Html.AntiForgeryToken()
+<div class="row">
+    <div class="well-sm col-md-8">
+        @Html.ActionLink("افزودن خصوسیات", "Add", "Attribute", new { categoryId = ViewBag.CategoryId }, new { @class = "btn  btn-success" })
+        <a class="btn btn-info" href="@Url.Action("Index","Category")"> لیست گروه ها</a>
+    </div>
+</div>
+<div class="row">
+    <div class="table-responsive col-lg-12">
+        <table class="table table-striped table-hover">
+            <tr>
+                <th>
+                    نام خصوصیت
+                </th>
+                <th></th>
+            </tr>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Name)
+                    </td>
+                    <td class="text-left">
+
+                        @Html.ActionLink("ویرایش", "Edit", "Attribute", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
+                        @Html.ActionLink("حذف", "Delete", "Attribute", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using Yucca.Models.IdentityModels;
 
-namespace Yucca.Data.Configuration.User
+namespace Yucca.Data.Configuration.Identity
 {
     public class UserConfig:EntityTypeConfiguration<YuccaUser>
     {
@@ -21,7 +21,8 @@ namespace Yucca.Data.Configuration.User
             Property(a => a.PhoneNumber).HasMaxLength(20).IsOptional();
             Property(a => a.RowVersion).IsRowVersion();
             Property(a => a.UserName).HasMaxLength(50).IsRequired();
-
+            Property(a => a.BannedDate).IsOptional();
+            Property(a => a.BirthDay).IsOptional();
         }
     }
 }

@@ -1,0 +1,36 @@
+﻿@model Yucca.Areas.Admin.ViewModels.Attribute.EditAttributeViewModel
+@{
+    ViewBag.Title = "ویرایش خصوصیات";
+
+}
+@using (Html.BeginForm("Edit", "Attribute", new { id = Model.Id }, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        @Html.HiddenFor(model => model.Id)
+        @Html.HiddenFor(model => model.CategoryId)
+        <div class="form-group">
+            @Html.LabelFor(model => model.CascadeAddForChildren, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.CascadeAddForChildren)
+                    @Html.ValidationMessageFor(model => model.CascadeAddForChildren, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-5">
+                <input type="submit" value="ذخیره تغییرات" class="btn  btn-success" />
+            </div>
+        </div>
+    </div>
+}
