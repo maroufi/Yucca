@@ -25,13 +25,11 @@ namespace Yucca.Controllers
         public AccountController()
         {
         }
-
         public AccountController(YuccaUserManager userManager, YuccaSignInManager signInManager )
         {
             UserManager = userManager;
             SignInManager = signInManager;
         }
-
         public YuccaSignInManager SignInManager
         {
             get

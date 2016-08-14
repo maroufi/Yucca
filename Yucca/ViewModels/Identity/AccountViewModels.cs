@@ -35,7 +35,7 @@ namespace Yucca.ViewModels.Identity
         public string Code { get; set; }
         public string ReturnUrl { get; set; }
 
-        [Display(Name = "مرور به خاطر بیاورد؟")]
+        [Display(Name = "مرورگر مرا به خاطر بیاورد؟")]
         public bool RememberBrowser { get; set; }
 
         public bool RememberMe { get; set; }
@@ -68,13 +68,12 @@ namespace Yucca.ViewModels.Identity
     {
         [Required]
         [DisplayName("نام")]
-        [MaxLength(50,ErrorMessage = "")]
+        [MaxLength(50,ErrorMessage = "تعداد کاراکتر نام بیش از حد مجاز می باشد")]
         public string FirstName { get; set; }
         [Required]
         [DisplayName("نام خانوادگی")]
-        [MaxLength(50,ErrorMessage = "")]
+        [MaxLength(50,ErrorMessage = "تعداد کاراکتر نام خانوادگی بیش از حد مجاز می باشد")]
         public string LastName { get; set; }
-        [Required]
         [DisplayName("تاریخ تولد")]
         public DateTime BirthDayDate { get; set; }
         [Required]
@@ -83,14 +82,14 @@ namespace Yucca.ViewModels.Identity
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "تعداد کاراکتر کلمه عبور بیش از حد مجاز می باشد", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "کلمه عبور")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "تکرار کلمه عبور")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "کلمه عبور و تکرار آن یکسان نمی باشد")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -102,14 +101,14 @@ namespace Yucca.ViewModels.Identity
         public string Email { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "تعداد کاراکتر کلمه عبور بیش از حد مجاز می باشد", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "کلمه عبور")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "تکرار کلمه عبور")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [Compare("Password", ErrorMessage = "کلمه عبور و تکرار آن یکسان نمی باشد")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

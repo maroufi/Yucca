@@ -47,14 +47,14 @@ namespace Yucca.ViewModels.Identity
         public string OldPassword { get; set; }
 
         [Required]
-        [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [StringLength(100, ErrorMessage = "تعداد کاراکتر کلمه عبور جدید بیش از حد مجاز می باشد", MinimumLength = 6)]
         [DataType(DataType.Password)]
         [Display(Name = "کلمه عبور جدید")]
         public string NewPassword { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "تکرار کلمه عبور جدید")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [Compare("NewPassword", ErrorMessage = "کلمه عبور جدید و تکرار آن یکسان نمی باشد")]
         public string ConfirmPassword { get; set; }
     }
 
