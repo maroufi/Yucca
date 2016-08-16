@@ -1,44 +1,268 @@
-﻿<!DOCTYPE html>
+﻿@*@model Yucca.ViewModels.Identity.RegisterViewModel*@
+@using Yucca.Models
+@using Yucca.ViewModels
+@using Yucca.ViewModels.Identity
+@model Yucca.ViewModels.Identity.LoginViewModel
+@using System
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+    <title>@ViewBag.Title - یوکا</title>
+    @*@Styles.Render("~/Content/css/bootstrap-rtl.css")
+        @Styles.Render("~/Content/css/font-awesome.min")*@
+    @*@RenderSection("css", required:true)*@
+    @Styles.Render("~/Content/bootstrap.css")
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
+
 
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-            </div>
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
-                </ul>
-                @Html.Partial("_LoginPartial")
+
+
+
+    <div class="row">
+        <div class="col-md-4">
+
+            <div class="container">
+                @Html.ActionLink("خانه", "Index", "Home") <span class="glyphicon glyphicon-home"></span>
+
+                <a id="modal-904960" href="#modal-container-904960" @*role="button" class="btn"*@ data-toggle="modal">
+                    وارد شوید
+                </a><span class="glyphicon glyphicon-ok"></span>
+
+                <div class="modal fade" id="modal-container-904960" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <br />
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                    <span class="glyphicon glyphicon-remove-circle"></span>
+                                    @*×*@
+                                </button>
+                                <h4 class="modal-title" id="myModalLabel">
+                                   ورود  <span class="glyphicon glyphicon-user"></span>
+                                </h4>
+                            </div>
+                            <div class="modal-body">
+                                
+                                    <section id="loginForm">
+                                        @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                                            @Html.AntiForgeryToken()
+                                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                                                <div class="col-md-10">
+                                                    @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                                <div class="col-md-10">
+                                                    @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    @*<div class="checkbox">
+                            @Html.CheckBoxFor(m => m.RememberMe)
+                            @Html.LabelFor(m => m.RememberMe)
+                        </div>*@
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-md-offset-2 col-md-10">
+                                                    <input type="submit" value="ورود" class="btn btn-block btn-success" />
+                                                    @*<button type="button" class="btn btn-default" data-dismiss="modal">*@
+                                                        @*خروج
+                                                    </button>*@
+                                                </div>
+                                            </div>
+                                            <p>
+                                                @Html.ActionLink("اگر ثبت نام نکرده اید با این لینک ثبت نام کنید.", "Register")
+                                            </p>
+                                        }
+
+                                    </section>
+                                <div>
+                                    <section id="socialLoginForm">
+                                        @Html.Partial("_LoginPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
+                                    </section>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+
+                @Html.ActionLink("ثبت نام کنید", "Register", "Account") <span class="glyphicon glyphicon-user"></span>
+                @Html.ActionLink("تایید پسورد","VerifyPhoneNumber","Manage")
             </div>
         </div>
+
+
+
+
+        <div class="col-md-4" id="navigation_search">
+            <p>کالای مورد نظر خود را اینجا جستجو کنید</p>
+            <form class="navbar-form" role="search">
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Search">
+                    <button id="searchbtn" type="submit" class="btn btn-success"><span class="glyphicon glyphicon-search"></span></button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-4">
+
+            <img src="~/Content/Images/thumbnail/my.png" height="80" width="280" id="logo" />
+        </div>
     </div>
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
+
+
+
+
+
+
+
+
+    <div id="bodybackground">
+
+        <div class="navbar navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav" id="nav">
+                        @*<li>@Html.ActionLink("Index", "Index", "Home")</li>*@
+
+
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">محصولات   <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">گل های آپارتمانی</a></li>
+                                <li><a href="#">کاکتوس</a></li>
+                                <li><a href="#">سایکولنت</a></li>
+                                <li><a href="#">درختچه های زینتی</a></li>
+                                <li><a href="#">بن سای</a></li>
+
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">بذرها     <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">بذر گل</a></li>
+                                <li><a href="#">بذر گیاه</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">خاک و کود  <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("موبایل", "ShopingPage", "Shop")</li>
+                                <li><a href="#">تبلت</a></li>
+                                <li><a href="#">لب تاپ</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">  آموزش <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="#">آموزش پیوند کاکتوس</a></li>
+                                <li><a href="#">آموزش تعویض خاک گلدان</a></li>
+                                <li><a href="#">نور مناسب برای کاکتوس</a></li>
+                                <li><a href="#">بیماری های گل ها</a></li>
+                                <li><a href="#">طریقه ایجاد بن سای</a></li>
+                            </ul>
+                        </li>
+
+                    </ul>
+
+                    @*@Html.Partial("_LoginPartial")*@
+                </div>
+            </div>
+        </div>
+
+        <div class="container body-content">
+            @RenderBody()
+            <hr />
+        </div>
+
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <div id="FooterId">
+                <div class="row">
+                    <div class="container">
+                        <br />
+
+                        <div class="col-md-5 col-md-offset-1">
+                            <h4 class="g1"><span class="glyphicon glyphicon-info-sign"></span> درباره ما </h4>
+                            <hr />
+                            <p class="g1">مطلبی نداشتم بزارم گفتم یه کمی چرت و پرت بنویسم اینجا خالی نمونه از دور قشنگ دیده بشه آخه مشکل اینجاس نمیدونم برای درباره ما چی بنویسم آخه سخته دیگه کلی جمله بندی کنی واسه تعریف یه وب سایت والا.به نظر کافی هم نمیاد لامصب فک کنم کل خاطرات روزانه ام رو هم بنویسم بازم جا بمونه وایییییی....بسته دیگه اوزون آچیلماسین.</p>
+                        </div>
+
+                        <div class="col-md-5 col-md-offset-1">
+                            <h4 class="g1"><span class="glyphicon glyphicon-envelope"></span> تماس با ما </h4>
+                            <hr />
+                            <p class="g1">برای اطلاع از جدیدترین محصولات و آخرین تخفیف ها در خبرنامه ما عضو شوید.</p>
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="g1">ایمیل</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="email" class="form-control" placeholder="email">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <br />
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <p class="g1">شماره تلفن</p>
+                                </div>
+                                <div class="col-md-8">
+                                    <div class="form-group">
+                                        <input type="tel" class="form-control" placeholder="tel"><br /><br />
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="submit" class="btn btn-success btn-toolbar" id="btnscc"><span class="glyphicon glyphicon-ok-circle"></span> افزودن اطلاعات</button>
+                        </div>
+                    </div> @*end of container*@
+
+                </div>
+            </div>
+            <hr />
+            @*<p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>*@
         </footer>
     </div>
+
+
+
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
 </html>
+
+

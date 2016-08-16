@@ -275,6 +275,8 @@
     <Compile Include="Areas\Admin\ViewModels\Category\CategoryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap-rtl.css" />
@@ -318,6 +320,7 @@
     <Content Include="Areas\Admin\Views\Order\Delete.cshtml" />
     <Content Include="Areas\Admin\Views\CategorySlides\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ProductPicture\Create.cshtml" />
+    <Content Include="Scripts\bootstrap.min.js.map" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\button.js" />
     <Content Include="Scripts\carousel-rtl.js" />

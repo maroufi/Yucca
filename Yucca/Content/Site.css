@@ -22,3 +22,117 @@ select,
 textarea {
     max-width: 280px;
 }
+glyphicon{
+    color:black;
+}
+#bodybackground{
+    background:#eeeff1;
+}
+#BorderDiv{
+    border-left-style:solid;
+    border-left-color:black;
+    border-left-width:1px;
+}
+#RegisterHeader{
+    background:#fafcfc;
+    margin-bottom:15px;
+    height:155px;
+    text-align:center;
+    color:#6d717a;
+    border-radius:5px;
+}
+#RegisterBody{
+    background:#ffffff;
+    /*margin-bottom:15px;*/
+    height:600px;
+    border-radius:5px;
+}
+#FooterId{
+    background:none repeat scroll 0 0 #373737;
+    height:396px;
+    min-width:1170px;
+    overflow:hidden;
+    width:100%;
+}
+#navigation_search{
+    flex:3;
+    position:relative;
+}
+input[type="search"]{
+    border-radius:35px;
+    border:1px solid #eceff5;
+    line-height:3em;
+    display:inline-block;
+    padding:0 10px 0 20px;
+    width: calc(100%-30px);
+}
+#searchbtn{
+    /*flex:3;*/
+    /*position:relative;*/
+    border-radius:35px;
+    /*border:1px solid #eceff5;*/
+    /*line-height:3em;
+    display:inline-block;*/
+
+}
+.g1{
+    color:#b4b4b4;
+}
+/*.tab-pane{
+    border-left:1px solid #949090;
+    border-right:1px solid #949090;
+    border-bottom:1px solid #949090;
+    padding:0.8em;
+}*/
+/*#nav{
+    margin:0;
+    padding:0;
+    list-style:none;
+}
+#nav li {
+        float: right;
+        display: block;
+        position: relative;
+        z-index: 500;
+        margin: 0 1px;
+}
+#nav li a{
+    display:block;
+    padding:8px 5px 0 2px;
+    text-decoration:none;
+    text-align:center;
+}
+#nav li a:hover{
+    color:#fafcfc;
+}*/
+.caption{
+    background:#fafcfc;
+}
+#Layoutheader{
+    background:none repeat scroll 0 0 #373737;
+    height:100px;
+    min-width:1170px;
+    overflow:hidden;
+    width:100%;
+}
+/*#Paneldefault1{
+    background:#e3e4e6;
+}
+#Paneldefault2{
+    background:#e3e4e6;
+}*/
+#amythumbnail{
+    float:left;
+}
+#mythumbnail{
+    text-align:justify;
+}
+#logo{
+    float:left;
+}
+#btnscc{
+    float:left;
+}
+#myModalLabel{
+    text-align:center;
+}
