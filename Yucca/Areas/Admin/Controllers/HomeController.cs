@@ -1,11 +1,16 @@
 ﻿using System.Web.Mvc;
+using Yucca.Filter;
 
 namespace Yucca.Areas.Admin.Controllers
 {
-    public class AdminHomeController : Controller
+
+    [RouteArea("Admin")]
+    [Route("{action}")]
+    [SiteAuthorize(Roles = "admin")]
+    public class HomeController : Controller
     {
-        // GET: AdminHome
-        public ActionResult Index()
+        [Route("Home")]
+        public virtual ActionResult Index()
         {
             return View();
         }

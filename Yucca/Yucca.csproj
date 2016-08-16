@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataAnnotationsExtensions.5.0.1.16\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EFSecondLevelCache, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EFSecondLevelCache.1.1.5.0\lib\net45\EFSecondLevelCache.dll</HintPath>
       <Private>True</Private>
@@ -177,9 +181,37 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttributeOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductPictureController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategorySlidesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Attribute\AttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Order\OrderShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\AddProductAttributesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\AppendAttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\AttributeValueViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\FillProductAttributesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductPicture\AddProductPicturesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductPicture\EditProductPicturesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\AddProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\EditProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\ProductDetailsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\ProductListViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\ProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Setting\EditSettingViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Setting\SettingViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SlideShow\AddSlideShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SlideShow\EditSlideShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\AddUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\DetailsUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\EditUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\UsersListViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,9 +229,12 @@
     <Compile Include="Data\Configuration\Identity\AddressConfig.cs" />
     <Compile Include="Data\Configuration\Identity\UserConfig.cs" />
     <Compile Include="Data\DbContext\YuccaDbContext.cs" />
+    <Compile Include="Filter\AjaxOnlyAttribute.cs" />
+    <Compile Include="Filter\SiteAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\DropDown.cs" />
     <Compile Include="Migrations\201608131637175_Initial.cs" />
     <Compile Include="Migrations\201608131637175_Initial.Designer.cs">
       <DependentUpon>201608131637175_Initial.cs</DependentUpon>
@@ -268,6 +303,21 @@
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AttributeOption\FillAttributes.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductPicture\Add.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategorySlides\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategorySlides\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CategorySlides\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductPicture\Create.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\button.js" />
     <Content Include="Scripts\carousel-rtl.js" />
@@ -327,7 +377,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\ViewModels\Product\" />
+    <Folder Include="Areas\Admin\Views\SlideShow\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -20,7 +20,7 @@ namespace Yucca.Models.Products
         public virtual int NotificationStockMinimum { get; set; }
         public virtual int SellCount { get; set; }
         public virtual int ViewCount { get; set; }
-        public virtual decimal Price { get; set; }
+        public virtual long Price { get; set; }
         public virtual bool Deleted { get; set; }
         #endregion Properties
 

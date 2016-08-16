@@ -31,7 +31,8 @@ namespace Yucca.Models.IdentityModels
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
-
+        public long RoleId { get; set; }
+        public virtual YuccaRole Role { get; set; }
 
         #endregion
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<YuccaUser,long> manager)

@@ -9,7 +9,7 @@ namespace Yucca.Areas.Admin.ViewModels.Attribute
         [DisplayName("نام")]
         [Required(ErrorMessage = "وارد کردن نام خصوصیات ضروریست")]
         [MaxLength(40, ErrorMessage = "تعداد حروف نام خصوصیت غیر مجاز است")]
-        [Remote("EditCheckExistAttributeForCategory", "Category", "Admin", ErrorMessage = "این ویژگی قبلا برای این گروه ثبت شده است", HttpMethod = "POST", AdditionalFields = "CategoryId,Id")]
+        [Remote("EditCheckExistAttributeForCategory", "Attribute", "Admin", ErrorMessage = "این ویژگی قبلا برای این گروه ثبت شده است", HttpMethod = "POST", AdditionalFields = "CategoryId,Id")]
         public string Name { get; set; }
         public long Id { get; set; }
         public long CategoryId { get; set; }
