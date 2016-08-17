@@ -5,6 +5,7 @@ namespace Yucca.Helpers
 {
     public class DropDown
     {
+        /*
         public static SelectList GetUserSearchByList(UserSearchBy userSearchBy)
         {
             var selectedUserSearchBy = new List<SelectListItem>
@@ -79,7 +80,7 @@ namespace Yucca.Helpers
 
             return new SelectList(list, "Value", "Text", productOrderBy);
         }
-
+        */
 
         public static SelectList GetShowTranstionSlide(string showTranstion)
         {
@@ -139,7 +140,7 @@ namespace Yucca.Helpers
 
             return new SelectList(list, "Value", "Text", seleted);
         }
-
+        /*
         public static SelectList GetSearchFilters(PSFilter seleted)
         {
 
@@ -156,6 +157,6 @@ namespace Yucca.Helpers
             };
 
             return new SelectList(list, "Value", "Text", seleted);
-        }
+        }*/
     }
 }

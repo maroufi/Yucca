@@ -10,7 +10,7 @@ using Yucca.Data.DbContext;
 using Yucca.Filter;
 
 namespace Yucca.Areas.Admin.Controllers
-{
+{/*
     [SiteAuthorize(Roles = "admin")]
     [RoutePrefix("ProductPicture")]
     [RouteArea("Admin")]
@@ -73,5 +73,5 @@ namespace Yucca.Areas.Admin.Controllers
             return RedirectToAction(MVC.Admin.Product.ActionNames.Index, MVC.Admin.Product.Name);
         }
         #endregion
-    }
+    }*/
 }

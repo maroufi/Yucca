@@ -5,11 +5,11 @@ namespace Yucca.Areas.Admin.Controllers
 {
 
     [RouteArea("Admin")]
+    [RoutePrefix("Home")]
     [Route("{action}")]
     [SiteAuthorize(Roles = "admin")]
     public class HomeController : Controller
     {
-        [Route("Home")]
         public virtual ActionResult Index()
         {
             return View();
