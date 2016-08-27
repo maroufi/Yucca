@@ -4,34 +4,175 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
-    @Styles.Render("~/Content/css")
+
+    @Styles.Render("~/Content/Site.css")
+    @Styles.Render("~/Content/bootstrap.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
-        <div class="container">
+    <header>
+        <div class="navbar navbar-default navbar-fixed-top " id="AdminNav">
+
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*@Html.ActionLink("پنل مدیریتی", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
+                <div class="navbar-brand" id="AdminBrand">
+                    <p>پنل مدیریتی</p>
+                </div>
             </div>
+
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
+                <ul class="nav navbar-nav" >
+                    <li class="AdminNavali"> @Html.ActionLink("صفحه اصلی", "Index", "AdminHome") </li>
                 </ul>
             </div>
-        </div>
-    </div>
 
-    <div class="container body-content">
-        @RenderBody()
-        <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-        </footer>
-    </div>
+        </div>
+    </header>
+
+    <section id="AdminSection">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="container body-content">
+                    @RenderBody()
+                    <hr />
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <aside id="AdminAside">
+
+        <div class="container">
+            <br />
+            <br />
+
+
+            <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingOne">
+                        <h4 class="panel-title">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                گروه کالا
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+                        <div class="panel-body">
+                            <ul>
+                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category")</li>
+                                
+                                <li>اسلایدشو گروه کالا</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingTwo">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                کالا
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+                        <div class="panel-body">
+                            <ul >
+                                <li>مدیریت کالا</li>
+                                <li>عکس های کالا</li>
+                                <li>@Html.ActionLink("ویژگی کالا", "Index", "Attribute")</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                مدیریت کاربران
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
+                        <div class="panel-body">
+                            <ul>
+                                <li>درج کاربر</li>
+                                <li>حذف کاربر</li>
+                                <li>تغییر کاربر</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </aside>
+
+
+    @*<div class="panel-group" id="accordion">
+            <h4>
+                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseone" aria-expanded="true" aria-controls="collapseone" class="AsideLinks collapsed">
+                    مدیریت محصولات
+                </a>
+            </h4>
+
+            <div id="collapseone" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingone">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="#" class="AsideLinks">افزودن محصول</a></li>
+                        <li><a href="#" class="AsideLinks">حذف محصول</a></li>
+                        <li><a href="#" class="AsideLinks">ویرایش اطلاعات محصول</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <h4>
+                <a class="collapsed AsideLinks" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" aria-expanded="false" aria-controls="collapsetwo">
+                    مدیریت کاربران
+                </a>
+            </h4>
+
+            <div id="collapsetwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingtwo">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="#" class="AsideLinks">افزودن محصول</a></li>
+                        <li><a href="#" class="AsideLinks">حذف محصول</a></li>
+                        <li><a href="#" class="AsideLinks">ویرایش اطلاعات محصول</a></li>
+                    </ul>
+                </div>
+            </div>
+
+
+            <h4>
+                <a class="collapsed AsideLinks" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
+                    مدیریت سفارشات
+                </a>
+            </h4>
+
+            <div id="collapsethree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingthree">
+                <div class="panel-body">
+                    <ul>
+                        <li><a href="#" class="AsideLinks">افزودن محصول</a></li>
+                        <li><a href="#" class="AsideLinks">حذف محصول</a></li>
+                        <li><a href="#" class="AsideLinks">ویرایش اطلاعات محصول</a></li>
+                    </ul>
+                </div>
+            </div>
+
+        </div>
+        <h4>@Html.ActionLink("مشاهده صفحه اول وب سایت", "Index", "Home" ,new { area = "" })</h4>
+        <h4 class="AsideLinks">@Html.ActionLink("مشاهده صفحه اول پنل","Index","AdminHome")</h4>*@
+
+   
+    <footer>
+        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+    </footer>
+
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

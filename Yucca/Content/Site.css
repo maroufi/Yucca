@@ -136,3 +136,63 @@ input[type="search"]{
 #myModalLabel{
     text-align:center;
 }
+#AdminNav{
+    color:#10110f;
+    background:#6eb87a;
+    border-color:#5e8764;
+}
+#AdminAside{
+    background-color:#223223;
+    width:300px;
+    height:700px;
+
+}
+#AdminBrand{
+    background-color:#5e8764;
+    width:300px;
+ 
+}
+#headingOne{
+    background:#223223;
+    color:white;
+    border-color:#223223;
+}
+#headingTwo{
+    background:#223223;
+    color:white;
+    border-color:#223223;
+}
+#headingThree{
+    background:#223223;
+    color:white;
+    border-color:#223223;
+}
+.x{
+    background:#636563;
+    color:white;
+    border-color:#636563;
+}
+.AsideLinks{
+    color:white;
+    text-decoration:none;
+}
+.AsideLinks:hover,
+.AsideLinks:focus{
+    color:#cacaca;
+    text-decoration:none;
+}
+.AsideLinks:focus{
+    outline: none;
+}
+
+#accordion1{
+    width:270px;
+}
+#AdminSection{
+    width:900px;
+    float:left;
+}
+.AdminNavli{
+    float:left;
+}
+
