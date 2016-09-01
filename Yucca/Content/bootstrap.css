@@ -2824,12 +2824,12 @@ select[multiple].input-lg {
 }
 
 .btn-sm,
-.btn-group-sm > .btn {
+/*.btn-group-sm > .btn {
     padding: 5px 10px;
     font-size: 12px;
     line-height: 1.5;
     border-radius: 3px;
-}
+}*/
 
 .btn-xs,
 .btn-group-xs > .btn {
@@ -3882,7 +3882,7 @@ input[type="button"].btn-block {
         .btn-group-vertical > .btn.active {
             z-index: 2;
         }
-
+        
         .btn-group > .btn:focus,
         .btn-group-vertical > .btn:focus {
             outline: none;

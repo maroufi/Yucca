@@ -17,7 +17,8 @@ namespace Yucca.Areas.Admin
             context.MapRoute(
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new {controller="AdminHome", action = "Index", id = UrlParameter.Optional ,area="Admin"},
+               namespaces: new[] {$"{GetType().Namespace}.Controllers"}
             );
         }
     }

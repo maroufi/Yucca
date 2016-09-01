@@ -11,7 +11,7 @@
 </head>
 <body>
     <header>
-        <div class="navbar navbar-default navbar-fixed-top " id="AdminNav">
+        <div class="navbar navbar-default navbar-left navbar-fixed-top" id="AdminNav">
 
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -19,15 +19,19 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @*@Html.ActionLink("پنل مدیریتی", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })*@
-                <div class="navbar-brand" id="AdminBrand">
-                    <p>پنل مدیریتی</p>
+                <div id="AdminBrand">
+                   
+                        @Html.ActionLink("صفحه اصلی پنل", "Index", "AdminHome", new { area = "Admin" })
+                    
                 </div>
+                
+              
             </div>
 
-            <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav" >
-                    <li class="AdminNavali"> @Html.ActionLink("صفحه اصلی", "Index", "AdminHome") </li>
+            <div class="navbar-collapse collapse" id="NavbarLeft">
+                <ul class="nav navbar-nav">
+                    <li><a href="~/"><span class="glyphicon glyphicon-home"></span> صفحه وب سایت </a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-off"></span> خروج </a></li>
                 </ul>
             </div>
 
@@ -39,25 +43,19 @@
             <div class="col-md-12">
                 <div class="container body-content">
                     @RenderBody()
-                    <hr />
                 </div>
             </div>
         </div>
     </section>
-
-
     <aside id="AdminAside">
-
         <div class="container">
             <br />
             <br />
-
-
-            <div class="panel-group" id="accordion1" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
+            <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+                <div class="panel panel-default x">
                     <div class="panel-heading" role="tab" id="headingOne">
                         <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
                                 گروه کالا
                             </a>
                         </h4>
@@ -65,17 +63,16 @@
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category")</li>
-                                
+                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category",new  {@class="Tes" })</li>
                                 <li>اسلایدشو گروه کالا</li>
                             </ul>
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-default x">
                     <div class="panel-heading" role="tab" id="headingTwo">
                         <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
                                 کالا
                             </a>
                         </h4>
@@ -90,10 +87,10 @@
                         </div>
                     </div>
                 </div>
-                <div class="panel panel-default">
+                <div class="panel panel-default x">
                     <div class="panel-heading" role="tab" id="headingThree">
                         <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion1" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
                                 مدیریت کاربران
                             </a>
                         </h4>
@@ -109,7 +106,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </aside>
 
