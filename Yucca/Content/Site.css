@@ -130,9 +130,92 @@ input[type="search"]{
 #logo{
     float:left;
 }
-#btnscc{
-    float:left;
-}
+/*#btnscc{
+    float:;
+}*/
 #myModalLabel{
     text-align:center;
+}
+#AdminNav{
+    color:#ffffff;
+    /*background:#6eb87a;*/
+    background:#76caaf;
+    border-color:#60867a;
+
+}
+#AdminAside{
+    background-color:#434f4b;
+    width:300px;
+    height:700px;
+
+}
+#AdminBrand{
+    background-color:#60867a;
+    width:300px;
+    color:white;
+ 
+}
+#headingOne{
+    background:#76caaf;
+    color:white;
+    border-color:#223223;
+}
+#headingTwo{
+    background:#76caaf;
+    color:white;
+    border-color:#223223;
+}
+#headingThree{
+    background:#76caaf;
+    color:white;
+    border-color:#223223;
+}
+.x{
+    /*background:#636563;
+    color:white;*/
+    border-color:#434f4b;
+}
+.AsideLinks{
+    color:white;
+    text-decoration:none;
+}
+.AsideLinks:hover,
+.AsideLinks:focus{
+    color:#cacaca;
+    text-decoration:none;
+}
+.AsideLinks:focus{
+    outline: none;
+}
+
+#accordion{
+    width:270px;
+}
+#AdminSection{
+    width:900px;
+    float:left;
+}
+.AdminNavli{
+    float:left;
+    color:white;
+    
+}
+.HeadingOne{
+    background:#76caaf;
+}
+#ModalSide{
+    background:#76caaf;
+}
+#NavbarLeft{
+    float:left;
+    color:white;
+}
+#myModal{
+    float:left;
+}
+#ShoppingKart{
+    padding: 0px;
+    font-size: 12px;
+    line-height: 1.5;
+    border-radius: 0px;
 }

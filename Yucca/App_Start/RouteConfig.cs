@@ -17,7 +17,7 @@ namespace Yucca
                 name: "Default",
                 url: "{controller}/{action}/{id}",
                 defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional },
-                namespaces: new[] { "Yucca.Controllers" }
+                namespaces: new[] { $"{typeof(RouteConfig).Namespace}.Controllers" }
             );
         }
     }
