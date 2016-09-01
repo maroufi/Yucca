@@ -38,15 +38,5 @@ namespace Yucca.Areas.Admin.ViewModels.SlideShow
         [DisplayName("جهت محو شدن")]
         [Required(ErrorMessage = " جهت محو شدن را انتخاب کنید")]
         public virtual string HideTransition { get; set; }
-        [DisplayName("فاصله عمودی")]
-        [Required(ErrorMessage = "فاصله عمودی کادر توضیحات را وارد کنید")]
-        [Range(0, 100, ErrorMessage = "درصد تخفیف میبایست 0 تا 100 انتخاب شود")]
-        [Integer(ErrorMessage = "فقط از اعداد صحیح استفاده کنید")]
-        public virtual int DataVertical { get; set; }
-        [DisplayName("فاصله افقی")]
-        [Required(ErrorMessage = "فاصله افقی توضیحات را وارد کنید")]
-        [Range(0, 100, ErrorMessage = "درصد تخفیف میبایست 0 تا 100 انتخاب شود")]
-        [Integer(ErrorMessage = "فقط از اداد صحیح استفاده کنید")]
-        public virtual int DataHorizontal { get; set; }
     }
 }

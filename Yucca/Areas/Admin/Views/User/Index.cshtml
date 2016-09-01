@@ -1,0 +1,90 @@
+﻿@using Yucca.Areas.Admin.ViewModels.User
+@model List<UserViewModel>
+@{
+    ViewBag.Title = "لیست مشتریان";
+    var postUrl = Url.Action("Delete", "User");
+}
+
+<div class="row">
+    <div class="col-lg-10">
+        @using (Html.BeginForm("Index", "User", new { @class = "form-horizontal", id = "userSearchForm" }))
+        {
+
+            <div class="col-md-4">
+                <input name="term" placeholder="جستجو " value="" type="text" class="form-control" />
+            </div>
+            <div class="col-md-3">
+                @Html.DropDownList("userSearchBy", ViewBag.UserSearchByList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+            </div>
+            <div class="col-md-5">
+                <input type="submit" value="جست و جو" class="btn btn-md btn-default" />
+            </div>
+        }
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-12">
+        <div class="table-responsive" id="usersList">
+
+            @Html.AntiForgeryToken()
+            <table class="table table-striped table-hover" id="userTable">
+                <thead>
+                    <tr>
+                        <th>نام کاربری</th>
+                        <th>نام-نام خوانوادگی</th>
+                        <th>شماره همراه</th>
+                        <th>نقش</th>
+                        <th>تعداد خرید</th>
+                        <th>تعداد نظرات</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var user in Model)
+                    {
+                        <tr class="@(user.Baned ? "warning" : "") ">
+                            <td>@user.UserName</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.PhoneNumber</td>
+                            <td>@user.RoleDescritpion</td>
+                            <td class="text-center">@user.OrderCount</td>
+                            <td class="text-center">@user.CommentCount</td>
+
+
+                            <td class="text-left">
+                                @Html.ActionLink("ویرایش", "Edit", "User", new { id = user.Id }, new { @class = "btn btn-sm btn-success" })
+                                <span id="row-@user.Id" class="btn btn-danger btn-sm">حذف</span>
+
+                                @Html.ActionLink("جزئیات", "Details", "User", new { id = user.Id }, new { @class = "btn btn-sm btn-info" })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+
+
+            @using (Html.BeginForm("Index", "User", new { @class = "form-horizontal", id = "userFilterForm" }))
+            {
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="col-md-4">
+                            @Html.DropDownList("userOrderBy", ViewBag.UserOrderByList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-3">
+                            @Html.DropDownList("order", ViewBag.OrderList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+                        <div class="col-md-2">
+                            @Html.DropDownList("pageCount", ViewBag.CountList as IEnumerable<SelectListItem>, new { @class = "form-control" })
+                        </div>
+
+                        <div class="col-md-3"><input type="submit" value="مرتب سازی" class="btn btn-md btn-default" /></div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

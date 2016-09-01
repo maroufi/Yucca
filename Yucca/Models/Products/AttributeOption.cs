@@ -10,8 +10,8 @@ namespace Yucca.Models.Products
 
         #region Properties
 
-        public virtual long Id { get; set; }
-        public virtual string Name { get; set; }
+        public long Id { get; set; }
+        public string Name { get; set; }
 
         #endregion Properties
 

@@ -11,17 +11,17 @@ namespace Yucca.Models.Products
         #endregion
 
         #region Properties
-        public virtual string Name { get; set; }
-        public virtual string MetaDescription { get; set; }
-        public virtual string Description { get; set; }
-        public virtual string MetaKeyWords { get; set; }
-        public virtual bool IsFreeShipping { get; set; }
-        public virtual int Stock { get; set; }
-        public virtual int NotificationStockMinimum { get; set; }
-        public virtual int SellCount { get; set; }
-        public virtual int ViewCount { get; set; }
-        public virtual long Price { get; set; }
-        public virtual bool Deleted { get; set; }
+        public string Name { get; set; }
+        public string MetaDescription { get; set; }
+        public string Description { get; set; }
+        public string MetaKeyWords { get; set; }
+        public bool IsFreeShipping { get; set; }
+        public int Stock { get; set; }
+        public int NotificationStockMinimum { get; set; }
+        public int SellCount { get; set; }
+        public int ViewCount { get; set; }
+        public long Price { get; set; }
+        public bool Deleted { get; set; }
         #endregion Properties
 
         #region Navigation Properties

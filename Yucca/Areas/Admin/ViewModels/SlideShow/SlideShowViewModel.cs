@@ -1,11 +1,16 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Linq;
+using System.Web;
 using DataAnnotationsExtensions;
 
 namespace Yucca.Areas.Admin.ViewModels.SlideShow
 {
-    public class AddSlideShowViewModel
+    public class SlideShowViewModel
     {
+        public long Id { get; set; }
         [DisplayName("عنوان")]
         [MaxLength(30, ErrorMessage = "تعداد حروف عنوان غیر مجاز است")]
         [Required(ErrorMessage = "عنوان نباید خالی باشد")]

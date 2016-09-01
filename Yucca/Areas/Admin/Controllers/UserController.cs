@@ -1,11 +1,17 @@
-﻿/*using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Entity;
 using System.Globalization;
+using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using System.Web.UI;
 using Yucca.Areas.Admin.ViewModels.User;
+using Yucca.Data.DbContext;
 using Yucca.Filter;
+using Yucca.Models.IdentityModels;
 using Yucca.Models.Orders;
 using Yucca.Utility.Security;
 
@@ -14,45 +20,43 @@ namespace Yucca.Areas.Admin.Controllers
     [RouteArea("Admin")]
     [RoutePrefix("Customers")]
     [Route("{action}")]
-    [SiteAuthorize(Roles = "admin")]
+    //[SiteAuthorize(Roles = "admin")]
     public class UserController : Controller
     {
+        private YuccaDbContext _dbContext;
+
+        public UserController()
+        {
+            _dbContext=new YuccaDbContext();
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            _dbContext.Dispose();
+            base.Dispose(disposing);
+        }
 
         #region Index,List
         [HttpGet]
         public virtual ActionResult Index()
         {
-            ViewBag.UserSearchByList = DropDown.GetUserSearchByList(UserSearchBy.PhoneNumber);
-            return View();
-        }
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true)]
-        public virtual ActionResult List(string term = "", int pageNumber = 1, int pageCount = 10,
-            Order order = Order.Descending, UserOrderBy userOrderBy
-            = UserOrderBy.RegisterDate, UserSearchBy userSearchBy = UserSearchBy.PhoneNumber)
-        {
-            #region Retrive Data
-            int totalUsers;
-            var users = _userService.GetDataTable(out totalUsers, term, pageNumber, pageCount, order, userOrderBy, userSearchBy);
-            var model = new UsersListViewModel
+            List<UserViewModel> usersListViewModel=new List<UserViewModel>();
+            var users = _dbContext.Users.ToList();
+            foreach (var user in users)
             {
-                UserOrderBy = userOrderBy,
-                Term = term,
-                PageNumber = pageNumber,
-                Order = order,
-                UsersList = users,
-                TotalUsers = totalUsers,
-                PageCount = pageCount
-            };
-            #endregion
-            ViewBag.UserSearchByList = DropDown.GetUserSearchByList(userSearchBy);
-            ViewBag.UserOrderByList = DropDown.GetUserOrderByList(userOrderBy);
-            ViewBag.CountList = DropDown.GetCountList(pageCount);
-            ViewBag.OrderList = DropDown.GetOrderList(order);
-            ViewBag.UserSearchBy = userSearchBy;
-            return PartialView(MVC.Admin.User.Views._ListPartial, model);
+                usersListViewModel.Add(new UserViewModel
+                {
+                    Id = user.Id,
+                    PhoneNumber = user.PhoneNumber,
+                    UserName = user.UserName,
+                    Baned = user.IsBanned,
+                    FirstName = user.FirstName,
+                    LastName = user.LastName,
+                    RoleDescritpion = _dbContext.Roles.First(a=>a.Id== user.Roles.First().RoleId).Name
+                });
+            }
+            return View(usersListViewModel);
         }
-
-
         #endregion
 
         #region Details
@@ -62,10 +66,31 @@ namespace Yucca.Areas.Admin.Controllers
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var user = _userService.GetUserDetail(id.Value);
+            var user = _dbContext.Users.First(a => a.Id == id);
             if (user == null)
-                return HttpNotFound();
-            return System.Web.UI.WebControls.View(user);
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var userViewModel = new DetailsUserViewModel
+            {
+                Id = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                UserName = user.UserName,
+                RoleName = user.Roles.ToString(),
+                PhoneNumber = user.PhoneNumber,
+                LastLoginDate = user.LastLoginDate,
+                IsBanned = user.IsBanned,
+                BirthDay = user.BirthDay,
+                BannedDate = user.BannedDate,
+                AvatarPath = user.AvatarPath,
+                Ip = user.Ip,
+                PasswordHash = user.PasswordHash,
+                AccessFailedCount = user.AccessFailedCount,
+                Email = user.Email,
+                EmailConfirmed = user.EmailConfirmed,
+                PhoneNumberConfirmed = user.PhoneNumberConfirmed,
+                TwoFactorEnabled = user.TwoFactorEnabled
+            };
+            return View(userViewModel);
         }
 
         #endregion
@@ -77,14 +102,24 @@ namespace Yucca.Areas.Admin.Controllers
         {
             if (id == null)
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var user = _userService.GetUserDataForEdit(id.Value);
+            var user = _dbContext.Users.Include("Roles").Where(a => a.Id == id)
+                .Select(a => new EditUserViewModel
+                {
+                    FirstName = a.FirstName,
+                    LastName = a.LastName,
+                    PhoneNumber = a.PhoneNumber,
+                    UserName = a.UserName,
+                    Id = a.Id,
+                    RoleId = a.Roles.First().RoleId,
+                    IsBaned = a.IsBanned
+                }).FirstOrDefault();
             if (user == null)
             {
                 return HttpNotFound();
             }
 
-            ViewBag.Roles = new SelectList(_roleService.GetAllRoles(), "Id", "Description", user.RoleId);
-            return System.Web.UI.WebControls.View(user);
+            ViewBag.Roles = new SelectList(_dbContext.Roles.ToList(), "Id", "Description", user.RoleId);
+            return View(user);
         }
 
         [HttpPost]
@@ -94,37 +129,30 @@ namespace Yucca.Areas.Admin.Controllers
         {
             if (!ModelState.IsValid)
                 return View(viewModel);
-            var editedUser = new User
-            {
-                LastName = viewModel.LastName,
-                FirstName = viewModel.FirstName,
-                Id = viewModel.Id,
-                Password =
-                    viewModel.Password != null
-                        ? Encryption.EncryptingPassword(viewModel.Password) : null,
-                PhoneNumber = viewModel.PhoneNumber,
-                Role = _roleService.GetRoleByRoleId(viewModel.RoleId),
-                IsBaned = viewModel.IsBaned,
-                UserName = viewModel.UserName
-            };
-            var status = _userService.EditUser(editedUser);
-            if (status == EditedUserStatus.UpdatingUserSuccessfully)
-            {
-                await _unitOfWork.SaveChangesAsync();
-                return RedirectToAction(MVC.Admin.User.ActionNames.Index);
-            }
 
-            switch (status)
+            if (ExistsByPhoneNumberAndUserId(viewModel.PhoneNumber, viewModel.Id))
             {
-                case EditedUserStatus.PhoneNumberExist:
-                    ModelState.AddModelError("PhoneNumber", "این شماره همراه قبلا ثبت شده است");
-                    break;
-                case EditedUserStatus.UserNameExist:
-                    ModelState.AddModelError("UserName", "این نام کاربری  قبلا ثبت شده است");
-                    break;
+                ModelState.AddModelError("PhoneNumber", "این شماره همراه قبلا ثبت شده است");
+                return View(viewModel);
             }
-
-            return View(viewModel);
+            if (ExistsByUserNameAndUserId(viewModel.UserName, viewModel.Id))
+            {
+                ModelState.AddModelError("UserName", "این نام کاربری  قبلا ثبت شده است");
+                return View(viewModel);
+            }
+            var user = _dbContext.Users.First(a => a.Id == viewModel.Id);
+            user.LastName = viewModel.LastName;
+            user.FirstName = viewModel.FirstName;
+            user.Id = viewModel.Id;
+            user.PasswordHash =
+                viewModel.Password != null
+                    ? Encryption.EncryptingPassword(viewModel.Password)
+                    : null;
+            user.PhoneNumber = viewModel.PhoneNumber;
+            user.IsBanned = viewModel.IsBaned;
+            user.UserName = viewModel.UserName;
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index");
         }
         #endregion
 
@@ -135,66 +163,60 @@ namespace Yucca.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Delete(long? id)
         {
-            if (id == null) return Content(null);
-            await _commentService.RemoveUserComments(id.Value);
-            _userService.Remove(id.Value);
-            await _unitOfWork.SaveChangesAsync();
+            var user = _dbContext.Users.First(a => a.Id == id);
+            if (id == null || user == null) return Content(null);
+            _dbContext.MarkAsDeleted(user);
+            await _dbContext.SaveChangesAsync();
             return Content("ok");
         }
         #endregion
 
         #region Add User
         [HttpGet]
-        [Route("Create")]
-        public virtual ActionResult Add()
+        [Route("Add")]
+        public virtual ActionResult Create()
         {
-            var roles = _roleService.GetAllRoles().Select(x =>
-              new SelectListItem { Text = x.Description, Value = x.Id.ToString(CultureInfo.InvariantCulture) });
+            var roles = _dbContext.Roles.Select(x =>
+              new SelectListItem { Text = x.Name, Value = x.Id.ToString(CultureInfo.InvariantCulture) });
             ViewBag.Roles = roles;
             return View();
         }
 
         [ValidateAntiForgeryToken]
         [HttpPost]
-        [Route("Create")]
-        public virtual async Task<ActionResult> Add(AddUserViewModel viewModel)
+        [Route("Add")]
+        public virtual async Task<ActionResult> Create(AddUserViewModel viewModel)
         {
-            var roles = _roleService.GetAllRoles().Select(x =>
-              new SelectListItem { Text = x.Description, Value = x.Id.ToString(CultureInfo.InvariantCulture) });
+            var roles = _dbContext.Roles.Select(x =>
+              new SelectListItem { Text = x.Name, Value = x.Id.ToString(CultureInfo.InvariantCulture) });
             ViewBag.Roles = roles;
 
             if (!ModelState.IsValid)
                 return View(viewModel);
-            var user = new User
+            if (ExistsByPhoneNumber(viewModel.PhoneNumber))
+            {
+                ModelState.AddModelError("PhoneNumber", "این شماره همراه قبلا ثبت شده است");
+                return View(viewModel);
+            }
+            if (ExistsByUserName(viewModel.UserName))
+            {
+                ModelState.AddModelError("UserName", "نام کاربری مورد نظر قبلا ثبت شده است");
+                return View(viewModel);
+            }
+            var user = new YuccaUser
             {
                 FirstName = viewModel.FirstName,
                 LastName = viewModel.LastName,
-                RegisterDate = DateTime.Now,
                 LastLoginDate = DateTime.Now,
                 UserName = viewModel.UserName,
-                Password = Encryption.EncryptingPassword(viewModel.Password),
+                PasswordHash = Encryption.EncryptingPassword(viewModel.Password),
                 PhoneNumber = viewModel.PhoneNumber,
-                Role = _roleService.GetRoleByRoleId(viewModel.RoleId)
+                //Roles=_dbContext.Roles.Where(a=>a.Id==viewModel.RoleId).ToList(),
             };
-
-            var addUserStatus = _userService.Add(user);
-            if (addUserStatus == AddUserStatus.AddingUserSuccessfully)
-            {
-                await _unitOfWork.SaveChangesAsync();
-                return RedirectToAction(MVC.Admin.User.ActionNames.Add);
-            }
-            switch (addUserStatus)
-            {
-                case AddUserStatus.PhoneNumberExist:
-                    ModelState.AddModelError("PhoeNumber", "شماره همراه مورد نظر قبلا ثبت شده است");
-                    break;
-                case AddUserStatus.UserNameExist:
-                    ModelState.AddModelError("UserName", "نام کاربری مورد نظر قبلا ثبت شده است");
-                    break;
-            }
-            return View(viewModel);
+            _dbContext.Users.Add(user);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Create");
         }
-
         #endregion
 
         #region RemoteValidation
@@ -202,7 +224,7 @@ namespace Yucca.Areas.Admin.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0)]
         public virtual JsonResult AdminCheckUserNameIsExistForAdd(string userName)
         {
-            return _userService.ExistsByUserName(userName)
+            return _dbContext.Users.Any(a=>a.UserName==userName)
                 ? Json(false)
                 : Json(true);
         }
@@ -211,7 +233,7 @@ namespace Yucca.Areas.Admin.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0)]
         public virtual JsonResult AdminCheckPhoneNumberIsExistForAdd(string phoneNumber)
         {
-            return _userService.ExistsByPhoneNumber(phoneNumber)
+            return _dbContext.Users.Any(a=>a.PhoneNumber== phoneNumber)
                 ? Json(false)
                 : Json(true);
         }
@@ -220,7 +242,7 @@ namespace Yucca.Areas.Admin.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0)]
         public virtual JsonResult EditCheckUserNameIsExist(string userName, long id)
         {
-            return _userService.ExistsByUserName(userName, id)
+            return _dbContext.Users.Any(a=>a.UserName==userName&&a.Id==id)
                 ? Json(false)
                 : Json(true);
         }
@@ -229,11 +251,28 @@ namespace Yucca.Areas.Admin.Controllers
         [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0)]
         public virtual JsonResult EditCheckPhoneNumberIsExist(string phoneNumber, long id)
         {
-            return _userService.ExistsByPhoneNumber(phoneNumber, id)
+            return _dbContext.Users.Any(a=>a.PhoneNumber== phoneNumber&&a.Id==id)
                 ? Json(false)
                 : Json(true);
         }
         #endregion
+        private bool ExistsByUserNameAndUserId(string userName, long id)
+        {
+            return _dbContext.Users.Any(a => a.UserName == userName && a.Id == id);
+        }
 
+        private bool ExistsByPhoneNumberAndUserId(string phoneNumber, long id)
+        {
+            return _dbContext.Users.Any(a => a.PhoneNumber == phoneNumber && a.Id == id);
+        }
+
+        private bool ExistsByPhoneNumber(string phoneNumber)
+        {
+            return _dbContext.Users.Any(a => a.PhoneNumber == phoneNumber);
+        }
+        private bool ExistsByUserName(string userName)
+        {
+            return _dbContext.Users.Any(a => a.UserName == userName);
+        }
     }
-}*/
+}

@@ -14,15 +14,15 @@ namespace Yucca.Models.IdentityModels
     {
         #region Properties
 
-        public virtual string FirstName { get; set; }
-        public virtual string LastName { get; set; }
-        public virtual string AvatarPath { get; set; }
-        public virtual DateTime? BirthDay { get; set; }
-        public virtual string Ip { get; set; }
-        public virtual bool IsBanned { get; set; }
-        public virtual DateTime? BannedDate { get; set; }
-        public virtual DateTime? LastLoginDate { get; set; }
-        public virtual byte[] RowVersion { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string AvatarPath { get; set; }
+        public DateTime? BirthDay { get; set; }
+        public string Ip { get; set; }
+        public bool IsBanned { get; set; }
+        public DateTime? BannedDate { get; set; }
+        public DateTime? LastLoginDate { get; set; }
+        public byte[] RowVersion { get; set; }
 
 
         #endregion Properties
@@ -31,8 +31,6 @@ namespace Yucca.Models.IdentityModels
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Address> Addresses { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
-        public long RoleId { get; set; }
-        public virtual YuccaRole Role { get; set; }
 
         #endregion
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<YuccaUser,long> manager)

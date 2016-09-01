@@ -3,7 +3,7 @@ using Yucca.Filter;
 
 namespace Yucca.Areas.Admin.Controllers
 {
-     [SiteAuthorize(Roles = "admin")]
+     //[SiteAuthorize(Roles = "admin")]
     public class OrderController : Controller
     {
         // GET: Admin/Order

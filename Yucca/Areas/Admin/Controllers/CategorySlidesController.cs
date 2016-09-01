@@ -15,7 +15,7 @@ using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
 {
-    [SiteAuthorize(Roles = "admin")]
+    //[SiteAuthorize(Roles = "admin")]
     [RouteArea("Admin")]
     [RoutePrefix("CategorySlides")]
     [Route("{action}")]
@@ -38,8 +38,24 @@ namespace Yucca.Areas.Admin.Controllers
         [Route("Index")]
         public virtual ActionResult Index(long? categoryId)
         {
+            var slidesViewModel=new List<SlideShowViewModel>();
             var slides = _dbContext.CategorySlides.ToList();
-            return View(slides);
+            foreach (var slide in slides)
+            {
+                slidesViewModel.Add(new SlideShowViewModel
+                {
+                    Id = slide.Id,
+                    ImagePath = slide.ImagePath,
+                    Position = slide.Position,
+                    Description = slide.Description,
+                    Title = slide.Title,
+                    ImageAltText = slide.ImageAltText,
+                    ShowTransition = slide.ShowTransition,
+                    Link = slide.Link,
+                    HideTransition = slide.HideTransition
+                });
+            }
+            return View(slidesViewModel);
         }
         [HttpGet]
         [Route("Add")]
@@ -63,11 +79,9 @@ namespace Yucca.Areas.Admin.Controllers
                     ImagePath = viewModel.ImagePath,
                     Title = viewModel.Title,
                     Description = viewModel.Description,
-                    DataHorizontal = viewModel.DataHorizontal,
                     HideTransition = viewModel.HideTransition,
                     Position = viewModel.Position,
-                    ShowTransition = viewModel.ShowTransition,
-                    DataVertical = viewModel.DataVertical
+                    ShowTransition = viewModel.ShowTransition
 
                 };
                 _dbContext.CategorySlides.Add(slide);
@@ -92,11 +106,9 @@ namespace Yucca.Areas.Admin.Controllers
                 Title = a.Title,
                 Link = a.Link,
                 Description = a.Description,
-                DataHorizontal = a.DataHorizontal,
                 HideTransition = a.HideTransition,
                 Position = a.Position,
-                ShowTransition = a.ShowTransition,
-                DataVertical = a.DataVertical
+                ShowTransition = a.ShowTransition
 
             }).FirstOrDefault();
             if (slide == null)
@@ -119,11 +131,9 @@ namespace Yucca.Areas.Admin.Controllers
                     ImagePath = viewModel.ImagePath,
                     Title = viewModel.Title,
                     Description = viewModel.Description,
-                    DataHorizontal = viewModel.DataHorizontal,
                     HideTransition = viewModel.HideTransition,
                     Position = viewModel.Position,
-                    ShowTransition = viewModel.ShowTransition,
-                    DataVertical = viewModel.DataVertical
+                    ShowTransition = viewModel.ShowTransition
 
                 };
                 _dbContext.MarkAsChanged(slide);

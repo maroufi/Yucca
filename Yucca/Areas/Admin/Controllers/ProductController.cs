@@ -17,7 +17,7 @@ using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
 {
-    [SiteAuthorize(Roles = "admin")]
+    //[SiteAuthorize(Roles = "admin")]
     [RoutePrefix("Product")]
     [RouteArea("Admin")]
     [Route("{action}")]

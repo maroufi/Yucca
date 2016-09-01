@@ -3,10 +3,11 @@
     public class AddProductPicturesViewModel
     {
         public long ProductId { get; set; }
-        public string Image1 { get; set; }
-        public string Image2 { get; set; }
-        public string Image3 { get; set; }
-        public string Image4 { get; set; }
-        public string Image5 { get; set; }
+        public string ImagePath { get; set; }
+        public bool IsMainPicture { get; set; }
+        public string Title { get; set; }
+        public string Description { get; set; }
+        public string ImageAltText { get; set; }
+        public string Position { get; set; }
     }
 }

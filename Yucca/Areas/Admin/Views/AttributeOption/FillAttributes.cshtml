@@ -1,1 +1,33 @@
-﻿
+﻿@model List<Yucca.Areas.Admin.ViewModels.ProductAttribute.FillProductAttributesViewModel>
+<div class="modal-dialog animated bounceInDown">
+    <div class="modal-content">
+        <div class="modal-header alert alert-info text-center">
+            <h5>مشخصات محصول را ویرایش کنید</h5>
+        </div>
+        <div class="modal-body">
+            @using (Html.BeginForm("FillAttributes", "AttributeOption", new { @class = "form-horizontal", id = "fillAttributeForm" }))
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    @for (int i = 0; i < Model.Count(); i++)
+                    {
+                        <input type="hidden" name="[@i].Id" value="@Model.ElementAt(i).Id" />
+                        <div class="form-group">
+                            <label class="control-label col-md-2" for="[@i].Value">@Model.ElementAt(i).Name</label>
+                            <div class="col-md-8">
+                                <input type="text" value="@Model.ElementAt(i).Value" class="form-control" name="[@i].Value" id="[@i].Value" />
+                            </div>
+                        </div>
+                    }
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-7">
+                            <input type="submit" value="ذخیره تغییرات" class="btn btn-success" />
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>

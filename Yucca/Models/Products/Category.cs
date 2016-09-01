@@ -9,12 +9,12 @@ namespace Yucca.Models.Products
         #endregion
 
         #region Properties
-        public virtual long Id { get; set; }
-        public virtual string Name { get; set; }
-        public virtual int DisplayOrder { get; set; }
-        public virtual string Description { get; set; }
-        public virtual string KeyWords { get; set; }
-        public virtual bool IsDeleted { get; set; } = false;
+        public long Id { get; set; }
+        public string Name { get; set; }
+        public int DisplayOrder { get; set; }
+        public string Description { get; set; }
+        public string KeyWords { get; set; }
+        public bool IsDeleted { get; set; } = false;
 
         #endregion Properties
 

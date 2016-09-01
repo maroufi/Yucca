@@ -18,13 +18,5 @@ namespace Yucca.Models.IdentityModels
         {
             this.Name = name;
         }
-
-        public YuccaRole(string name, string description) : this(name)
-        {
-            this.Description = description;
-        }
-        public string Description { get; set; }
-        public new ICollection<YuccaUser> Users { get; set; } 
-
     }
 }

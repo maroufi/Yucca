@@ -13,7 +13,7 @@ namespace Yucca.Areas.Admin.Controllers
     [RouteArea("Admin")]
     [RoutePrefix("Setting")]
     [Route("{action}")]
-    [SiteAuthorize(Roles = "admin")]
+    //[SiteAuthorize(Roles = "admin")]
     public partial class SettingController : Controller
     {
         private readonly YuccaDbContext _dbContext;

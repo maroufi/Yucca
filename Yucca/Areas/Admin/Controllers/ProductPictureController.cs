@@ -8,10 +8,11 @@ using System.Web.Mvc;
 using Yucca.Areas.Admin.ViewModels.ProductPicture;
 using Yucca.Data.DbContext;
 using Yucca.Filter;
+using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
-{/*
-    [SiteAuthorize(Roles = "admin")]
+{
+    //[SiteAuthorize(Roles = "admin")]
     [RoutePrefix("ProductPicture")]
     [RouteArea("Admin")]
     [Route("{action}")]
@@ -39,39 +40,78 @@ namespace Yucca.Areas.Admin.Controllers
             if (product == null) return HttpNotFound();
             var productPicture = new AddProductPicturesViewModel
             {
-                ProductId = product.Id,
+                ProductId = product.Id
             };
             return View(productPicture);
         }
         [HttpPost]
         [Route("Add/{productId}")]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> Add(AddProductPicturesViewModel viewModel)
+        public virtual async Task<ActionResult> Create(AddProductPicturesViewModel viewModel)
         {
-            _productImageService.Insert(viewModel);
-            await _unitOfWork.SaveChangesAsync();
-            return RedirectToAction(MVC.Admin.Product.ActionNames.Index, MVC.Admin.Product.Name);
+            var productPicture = new ProductPicture
+            {
+                Id = viewModel.ProductId,
+                ImagePath = viewModel.ImagePath,
+                Description = viewModel.Description,
+                ImageAltText = viewModel.ImageAltText,
+                IsMainPicture = viewModel.IsMainPicture,
+                Title = viewModel.Title,
+                Position = viewModel.Position,
+                ProductId = viewModel.ProductId
+            };
+            _dbContext.ProductPictures.Add(productPicture);
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index", "Product");
         }
 
         [HttpGet]
         [Route("Edit/{productId}")]
-        public virtual ActionResult EditPictures(long? productId)
+        public virtual ActionResult Edit(long? productId)
         {
             if (productId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var product = _productService.GetById(productId.Value);
+            var product = _dbContext.Products.First(a => a.Id == productId);
             if (product == null) return HttpNotFound();
-            var images = _productImageService.GetImages(productId.Value);
-            return System.Web.UI.WebControls.View(images);
+            var editViewModel=new List<EditProductPicturesViewModel>();
+            var images = _dbContext.ProductPictures.Where(a=>a.ProductId==productId.Value);
+            foreach (var image in images)
+            {
+                editViewModel.Add(new EditProductPicturesViewModel
+                {
+                    Id = image.Id,
+                    Description = image.Description,
+                    ImageAltText = image.ImageAltText,
+                    ImagePath = image.ImagePath,
+                    IsMainPicture = image.IsMainPicture,
+                    Title = image.Title,
+                    Position = image.Position,
+                    ProductId = image.ProductId
+                });
+            }
+            return View(editViewModel);
         }
         [HttpPost]
         [Route("Edit/{productId}")]
         [ValidateAntiForgeryToken]
-        public virtual async Task<ActionResult> EditPictures(IEnumerable<ProductImage> images)
+        public virtual async Task<ActionResult> Edit(List<EditProductPicturesViewModel> editViewModel)
         {
-            _productImageService.Edit(images);
-            await _unitOfWork.SaveChangesAsync();
-            return RedirectToAction(MVC.Admin.Product.ActionNames.Index, MVC.Admin.Product.Name);
+            foreach (var item in editViewModel)
+            {
+                var productPicture = _dbContext.ProductPictures.First(a => a.Id == item.Id);
+                if (productPicture != null)
+                {
+                    productPicture.Description = item.Description;
+                    productPicture.ImageAltText = item.ImageAltText;
+                    productPicture.ImagePath = item.ImagePath;
+                    productPicture.IsMainPicture = item.IsMainPicture;
+                    productPicture.Position = item.Position;
+                    productPicture.Title = item.Title;
+                    productPicture.ProductId = item.ProductId;
+                }
+            }
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index", "Product");
         }
         #endregion
-    }*/
+    }
 }
