@@ -8,12 +8,12 @@ namespace Yucca.Models.IdentityModels
 
         #region Properties
 
-        public virtual long Id { get; set; }
-        public virtual string State { get; set; }
-        public virtual string City { get; set; }
-        public virtual string Street { get; set; }
-        public virtual string RemnantAddress { get; set; }
-        public virtual string PostCode { get; set; }
+        public long Id { get; set; }
+        public string State { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public string RemnantAddress { get; set; }
+        public string PostCode { get; set; }
 
         #endregion Properties
 

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="DataAnnotationsExtensions, Version=5.0.1.16, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\DataAnnotationsExtensions.5.0.1.16\lib\NETFramework40\DataAnnotationsExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="EFSecondLevelCache, Version=1.1.5.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\EFSecondLevelCache.1.1.5.0\lib\net45\EFSecondLevelCache.dll</HintPath>
       <Private>True</Private>
@@ -177,9 +181,38 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AttributeController.cs" />
+    <Compile Include="Areas\Admin\Controllers\AttributeOptionController.cs" />
     <Compile Include="Areas\Admin\Controllers\HomeController.cs" />
     <Compile Include="Areas\Admin\Controllers\CategoryController.cs" />
+    <Compile Include="Areas\Admin\Controllers\OrderController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ProductPictureController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SettingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CategorySlidesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\Admin\ViewModels\Attribute\AttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Order\OrderShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\AddProductAttributesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\AppendAttributeViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\AttributeValueViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductAttribute\FillProductAttributesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductPicture\AddProductPicturesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\ProductPicture\EditProductPicturesViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\AddProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\EditProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\ProductDetailsViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\ProductListViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Product\ProductViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Setting\EditSettingViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\Setting\SettingViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SlideShow\AddSlideShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SlideShow\EditSlideShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\SlideShow\SlideShowViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\AddUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\DetailsUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\EditUserViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\UsersListViewModel.cs" />
+    <Compile Include="Areas\Admin\ViewModels\User\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -197,16 +230,19 @@
     <Compile Include="Data\Configuration\Identity\AddressConfig.cs" />
     <Compile Include="Data\Configuration\Identity\UserConfig.cs" />
     <Compile Include="Data\DbContext\YuccaDbContext.cs" />
+    <Compile Include="Filter\AjaxOnlyAttribute.cs" />
+    <Compile Include="Filter\SiteAuthorizeAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201608131637175_Initial.cs" />
-    <Compile Include="Migrations\201608131637175_Initial.Designer.cs">
-      <DependentUpon>201608131637175_Initial.cs</DependentUpon>
+    <Compile Include="Helpers\DropDown.cs" />
+    <Compile Include="Migrations\201608271544345_InitialMigration.cs" />
+    <Compile Include="Migrations\201608271544345_InitialMigration.Designer.cs">
+      <DependentUpon>201608271544345_InitialMigration.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Common\BaseEntity.cs" />
-    <Compile Include="Models\Common\Setting.cs" />
+    <Compile Include="Models\Common\YuccaSetting.cs" />
     <Compile Include="Models\Orders\Order.cs" />
     <Compile Include="Models\Orders\OrderItem.cs" />
     <Compile Include="Models\Orders\OrderNote.cs" />
@@ -246,6 +282,40 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\css\bootstrap-rtl.css" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Images\-.jpg" />
+    <Content Include="Content\Images\1.jpg" />
+    <Content Include="Content\Images\3aea8971.jpg" />
+    <Content Include="Content\Images\6ab52b2e.jpg" />
+    <Content Include="Content\Images\869c7b85.jpg" />
+    <Content Include="Content\Images\Book-Bishori4b6c48.jpg" />
+    <Content Include="Content\Images\Book-Shadan-Raze-Shabe-Yaldafe5b46.jpg" />
+    <Content Include="Content\Images\dd06cd8e.jpg" />
+    <Content Include="Content\Images\Mobile-Phone-LG-K10d67ec6.jpg" />
+    <Content Include="Content\Images\Mobile-Phone-Samsung-Galaxy-A5-20160df13e.jpg" />
+    <Content Include="Content\Images\Mobile-Phone-Samsung-Galaxy-J7-Daul-SIM-SM-J700F-DSddd10d.jpg" />
+    <Content Include="Content\Images\Mobile-Phone-Samsung-Galaxy-S7-Edge-SM-G935FD-Dual-SIM3cff09.jpg" />
+    <Content Include="Content\Images\thumbnail\36445617997797351625.jpg" />
+    <Content Include="Content\Images\thumbnail\my.png" />
+    <Content Include="Content\Images\thumbnail\Yucca.jpg" />
+    <Content Include="Content\Images\Untitled-1.png" />
+    <Content Include="Content\mahsoolat\derakhtche ha\1-500x500.jpg" />
+    <Content Include="Content\mahsoolat\derakhtche ha\FORSYTHIA SPRING GLORY-500x500.jpg" />
+    <Content Include="Content\mahsoolat\derakhtche ha\gol kaghazi %282%29-500x500.jpg" />
+    <Content Include="Content\mahsoolat\derakhtche ha\LAGERSTROEMIA INDICA %286%29-500x500.jpg" />
+    <Content Include="Content\mahsoolat\golhaye apartemani\barg angiri-500x500.png" />
+    <Content Include="Content\mahsoolat\golhaye apartemani\barg ghashoooghi-500x500.jpg" />
+    <Content Include="Content\mahsoolat\golhaye apartemani\fit1 %284%29-500x500.jpg" />
+    <Content Include="Content\mahsoolat\golhaye apartemani\mosa gahvare-500x500.jpg" />
+    <Content Include="Content\mahsoolat\sakolent\d-1339-600x600.jpg" />
+    <Content Include="Content\mahsoolat\sakolent\d-1347-600x600.jpg" />
+    <Content Include="Content\mahsoolat\sakolent\d1-5735-600x600.jpg" />
+    <Content Include="Content\mahsoolat\sakolent\photostudio_1451668789526-600x600.jpg" />
+    <Content Include="Content\new\apartment-exterior-balcony-garden-design-with-potted-flower-and-plant-also-black-iron-railing-also-brown-tile-flooring-also-modern-balcony-garden.jpg" />
+    <Content Include="Content\new\apartment-flower-12.jpg" />
+    <Content Include="Content\new\Contemporary-Small-Balcony-Garden-Design-with-vase-plants-and-flowers.jpg" />
+    <Content Include="Content\new\gallery-1452185788-group-of-potted-cactus-1024x673.jpg" />
+    <Content Include="Content\new\mai_vang_bonsai_2__HHJR.jpg" />
+    <Content Include="Content\new\The-Most-Beautiful-And-Unique-Bonsai-Trees-In-The-World-homesthetics-27.jpg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -266,11 +336,29 @@
     <Content Include="Areas\Admin\Views\Attribute\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Attribute\Edit.cshtml" />
     <Content Include="Areas\Admin\Views\Attribute\Add.cshtml" />
-    <Content Include="Areas\Admin\Views\AdminHome\Index.cshtml" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.woff" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.ttf" />
     <Content Include="Content\fonts\glyphicons-halflings-regular.eot" />
-    <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Areas\Admin\Views\Product\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\AttributeOption\FillAttributes.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Product\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Setting\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\CategorySlides\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\CategorySlides\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Order\Delete.cshtml" />
+    <Content Include="Areas\Admin\Views\CategorySlides\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductPicture\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Details.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\User\Create.cshtml" />
+    <Content Include="Areas\Admin\Views\ProductPicture\Edit.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\button.js" />
     <Content Include="Scripts\carousel-rtl.js" />
@@ -330,7 +418,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\ViewModels\Product\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />
@@ -341,8 +428,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608131637175_Initial.resx">
-      <DependentUpon>201608131637175_Initial.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201608271544345_InitialMigration.resx">
+      <DependentUpon>201608271544345_InitialMigration.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace Yucca.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class Initial : DbMigration
+    public partial class InitialMigration : DbMigration
     {
         public override void Up()
         {
@@ -143,7 +143,7 @@ namespace Yucca.Migrations
                         NotificationStockMinimum = c.Int(nullable: false),
                         SellCount = c.Int(nullable: false),
                         ViewCount = c.Int(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Price = c.Long(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CategoryId = c.Long(nullable: false),
                         ManufacturerId = c.Long(nullable: false),
@@ -202,7 +202,14 @@ namespace Yucca.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Path = c.String(),
+                        Title = c.String(maxLength: 30),
+                        Description = c.String(maxLength: 300),
+                        ImagePath = c.String(maxLength: 300),
+                        ImageAltText = c.String(maxLength: 30),
+                        Link = c.String(maxLength: 300),
+                        Position = c.String(maxLength: 30),
+                        ShowTransition = c.String(maxLength: 30),
+                        HideTransition = c.String(maxLength: 30),
                         CategoryId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -231,8 +238,12 @@ namespace Yucca.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Path = c.String(),
                         IsMainPicture = c.Boolean(nullable: false),
+                        Title = c.String(),
+                        Description = c.String(),
+                        ImagePath = c.String(),
+                        ImageAltText = c.String(),
+                        Position = c.String(),
                         ProductId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)
@@ -261,19 +272,18 @@ namespace Yucca.Migrations
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
-                        Description = c.String(),
                         Name = c.String(nullable: false, maxLength: 256),
                     })
                 .PrimaryKey(t => t.Id)
                 .Index(t => t.Name, unique: true, name: "RoleNameIndex");
             
             CreateTable(
-                "dbo.Settings",
+                "dbo.YuccaSettings",
                 c => new
                     {
                         Id = c.Long(nullable: false, identity: true),
                         Name = c.String(nullable: false, maxLength: 100),
-                        Value = c.String(nullable: false, maxLength: 100),
+                        Value = c.String(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
@@ -341,7 +351,7 @@ namespace Yucca.Migrations
             DropIndex("dbo.Orders", new[] { "BuyerId" });
             DropIndex("dbo.Addresses", new[] { "UserId" });
             DropTable("dbo.Product_AttributeOption");
-            DropTable("dbo.Settings");
+            DropTable("dbo.YuccaSettings");
             DropTable("dbo.AspNetRoles");
             DropTable("dbo.OrderNotes");
             DropTable("dbo.ProductPictures");

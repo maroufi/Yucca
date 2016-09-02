@@ -4,11 +4,11 @@ namespace Yucca.Models.Common
 {
     public class BaseEntity
     {
-        public virtual long Id { get; set; }
-        public virtual DateTime CreatedOn { get; set; }
-        public virtual DateTime ModifiedOn { get; set; }
-        public virtual string CreatedBy { get; set; }
-        public virtual string ModifiedBy { get; set; }
+        public long Id { get; set; }
+        public DateTime CreatedOn { get; set; }
+        public DateTime ModifiedOn { get; set; }
+        public string CreatedBy { get; set; }
+        public string ModifiedBy { get; set; }
 
     }
 }

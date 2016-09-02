@@ -13,12 +13,12 @@ namespace Yucca.Models.Orders
 
         #region Properties
         
-        public virtual DateTime? PostedDate { get; set; }
-        public virtual OrderStatus Status { get; set; }
-        public virtual string TransactionCode { get; set; }
-        public virtual PaymentType PaymentType { get; set; }
-        public virtual decimal Price { get; set; }
-        public virtual byte[] RowVersion { get; set; }
+        public DateTime? PostedDate { get; set; }
+        public OrderStatus Status { get; set; }
+        public string TransactionCode { get; set; }
+        public PaymentType PaymentType { get; set; }
+        public decimal Price { get; set; }
+        public byte[] RowVersion { get; set; }
 
         #endregion Properties
 

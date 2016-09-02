@@ -21,7 +21,7 @@
                 </button>
                 <div id="AdminBrand">
                    
-                        @Html.ActionLink("صفحه اصلی پنل", "Index", "AdminHome", new { area = "Admin" })
+                        @Html.ActionLink("صفحه اصلی پنل", "Index", "Home",new { @class = "Tes" },new { area = "Admin" })
                     
                 </div>
                 
@@ -63,7 +63,7 @@
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category",new  {@class="Tes" })</li>
+                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category",new  {@class="Tes"},new {area="Admin"})</li>
                                 <li>اسلایدشو گروه کالا</li>
                             </ul>
                         </div>

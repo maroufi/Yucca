@@ -23,6 +23,7 @@ namespace Yucca.Data.Configuration.Identity
             Property(a => a.UserName).HasMaxLength(50).IsRequired();
             Property(a => a.BannedDate).IsOptional();
             Property(a => a.BirthDay).IsOptional();
+
         }
     }
 }

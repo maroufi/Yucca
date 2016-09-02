@@ -10,10 +10,10 @@ namespace Yucca.Models.Orders
 
         #region Properties
 
-        public virtual long Id { get; set; }
-        public virtual int Quantity { get; set; }
-        public virtual decimal UnitPrice { get; set; }
-        public virtual byte[] RowVersion { get; set; }
+        public long Id { get; set; }
+        public int Quantity { get; set; }
+        public decimal UnitPrice { get; set; }
+        public byte[] RowVersion { get; set; }
 
         #endregion Properties
 

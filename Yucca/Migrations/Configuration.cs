@@ -1,6 +1,7 @@
-using System.Web;
+﻿using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
+using Yucca.Models.Common;
 using Yucca.Models.IdentityModels;
 using Yucca.Utility.Security;
 
@@ -28,24 +29,38 @@ namespace Yucca.Migrations
 
         private static void InitializeIdentityForEf(YuccaDbContext context)
         {
-            var userManager = HttpContext.Current.GetOwinContext().GetUserManager<YuccaUserManager>();
-            var roleManager = HttpContext.Current.GetOwinContext().Get<YuccaRoleManager>();
-            const string username = "SalmanMaroufi";
+            const string firstName = "Salman";
+            const string lastName = "Maroufi";
             const string email = "salman.maroufi@gmail.com";
             const string password = "Salman@09136861439";
-            const string roleName = "Admin";
 
-            //Create Role Admin if it does not exist
+            #region Create All Roles
+            const string adminRoleName = "Admin";
+            const string operatorRoleName = "Operator";
+            const string customerRoleName = "Customer";
 
-            var role = roleManager.FindByName(roleName);
-            if (role == null)
+            var adminRole = context.Roles.FirstOrDefault(a => a.Name == adminRoleName);
+            var operatorRole = context.Roles.FirstOrDefault(a => a.Name == operatorRoleName);
+            var customerRole = context.Roles.FirstOrDefault(a => a.Name == customerRoleName);
+            if (adminRole == null)
             {
-                // *** INITIALIZE WITH CUSTOM APPLICATION ROLE CLASS:
-                role = new YuccaRole(roleName);
-                var roleresult = roleManager.Create(role);
+                adminRole = new YuccaRole(adminRoleName);
+                context.Roles.Add(adminRole);
             }
 
-            var user = userManager.FindByName(username);
+            if (operatorRole == null)
+            {
+                operatorRole = new YuccaRole(operatorRoleName);
+                context.Roles.Add(operatorRole);
+
+            }
+            if (customerRole == null)
+            {
+                customerRole = new YuccaRole(customerRoleName);
+                context.Roles.Add(customerRole);
+            }
+            #endregion
+            var user = context.Users.FirstOrDefault(a => a.UserName == email);
             if (user == null)
             {
                 user = new YuccaUser
@@ -55,19 +70,23 @@ namespace Yucca.Migrations
                     AccessFailedCount = 0,
                     PasswordHash = Encryption.EncryptingPassword(password),
                     EmailConfirmed = true,
-                    FirstName = "Maroufi",
-                    LastName = "Salman"
+                    FirstName = firstName,
+                    LastName = lastName,
+                    PhoneNumber = "09136861439"
                 };
-                userManager.Create(user, password);
-                userManager.SetLockoutEnabled(user.Id, false);
+                context.Users.Add(user);
             }
-
-            // Add user admin to Role Admin if not already added
-            var rolesForUser = userManager.GetRoles(user.Id);
-            if (!rolesForUser.Contains(role.Name))
+            var firstOrDefault = context.Users.FirstOrDefault(a => a.Id == user.Id);
+            if (firstOrDefault != null)
             {
-                var result = userManager.AddToRole(user.Id, role.Name);
+                var rolesForUser = firstOrDefault.Roles.ToList();
+                if (rolesForUser.First().RoleId!=adminRole.Id)
+                {
+                    var userRole = new YuccaUserRole {UserId = user.Id, RoleId = adminRole.Id};
+                    context.Users.Find(user.Id).Roles.Add(userRole);
+                }
             }
+            context.SaveChanges();
         }
     }
 }

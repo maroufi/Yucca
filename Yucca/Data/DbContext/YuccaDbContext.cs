@@ -28,7 +28,7 @@ namespace Yucca.Data.DbContext
         }
 
         #region DbSets
-        public DbSet<Setting> Settings { get; set; }
+        public DbSet<YuccaSetting> Settings { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
         public DbSet<OrderNote> OrderNotes { get; set; }
@@ -61,6 +61,10 @@ namespace Yucca.Data.DbContext
 
         #region UnitOfWorkMethod
 
+        public static void Init()
+        {
+            Create().Database.Initialize(true);
+        }
         public void AutoDetectChangesEnabled(bool flag = true)
         {
             Configuration.AutoDetectChangesEnabled = flag;

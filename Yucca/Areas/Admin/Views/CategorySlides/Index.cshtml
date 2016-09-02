@@ -1,0 +1,50 @@
+﻿@model List<Yucca.Areas.Admin.ViewModels.SlideShow.SlideShowViewModel>
+
+@{
+    ViewBag.Title = "لیست تصاویر اسلاید شو";
+    var postUrl = Url.Action("Delete", "CategorySlides");
+}
+@Html.AntiForgeryToken()
+<div class="table-responsive">
+    <table class="table table-hover table-striped">
+        <tr>
+            <th>
+                عنوان
+            </th>
+            <th class="text-center">
+                تصویر
+            </th>
+            <th>
+                متن جایگزین تصویر
+            </th>
+            <th>
+                آدرس
+            </th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Title)
+                </td>
+                <td class="text-center">
+                    <img src="@item.ImagePath" class="img-circle" alt="@item.ImageAltText" width="60" height="60">
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ImageAltText)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Link)
+                </td>
+                <td class="text-left">
+                    @Html.ActionLink("ویرایش", "Edit", "CategorySlides", new { id = item.Id }, new { @class = "btn btn-success btn-sm" })
+                    <span id="row-@item.Id" class="btn btn-danger btn-sm">حذف</span>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+</div>

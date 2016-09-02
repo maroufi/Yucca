@@ -10,8 +10,8 @@ namespace Yucca.Models.Orders
         #endregion
 
         #region Properties
-        public virtual long Id { get; set; }
-        public virtual int Quantity { get; set; }
+        public long Id { get; set; }
+        public int Quantity { get; set; }
 
         #endregion Properties
 
