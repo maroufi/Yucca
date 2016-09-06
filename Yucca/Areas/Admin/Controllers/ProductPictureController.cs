@@ -57,7 +57,6 @@ namespace Yucca.Areas.Admin.Controllers
                 ImageAltText = viewModel.ImageAltText,
                 IsMainPicture = viewModel.IsMainPicture,
                 Title = viewModel.Title,
-                Position = viewModel.Position,
                 ProductId = viewModel.ProductId
             };
             _dbContext.ProductPictures.Add(productPicture);
@@ -84,7 +83,6 @@ namespace Yucca.Areas.Admin.Controllers
                     ImagePath = image.ImagePath,
                     IsMainPicture = image.IsMainPicture,
                     Title = image.Title,
-                    Position = image.Position,
                     ProductId = image.ProductId
                 });
             }
@@ -104,7 +102,6 @@ namespace Yucca.Areas.Admin.Controllers
                     productPicture.ImageAltText = item.ImageAltText;
                     productPicture.ImagePath = item.ImagePath;
                     productPicture.IsMainPicture = item.IsMainPicture;
-                    productPicture.Position = item.Position;
                     productPicture.Title = item.Title;
                     productPicture.ProductId = item.ProductId;
                 }

@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title</title>
 
     @Styles.Render("~/Content/Site.css")
     @Styles.Render("~/Content/bootstrap.css")
@@ -64,7 +64,7 @@
                         <div class="panel-body">
                             <ul>
                                 <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category",new  {@class="Tes"},new {area="Admin"})</li>
-                                <li>اسلایدشو گروه کالا</li>
+                                <li>@Html.ActionLink("اسلایدشو گروه کالا", "Index", "CategorySlides", new { @class = "Tes" }, new { area = "Admin" })</li>
                             </ul>
                         </div>
                     </div>
@@ -80,8 +80,8 @@
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
                             <ul >
-                                <li>مدیریت کالا</li>
-                                <li>عکس های کالا</li>
+                                <li>@Html.ActionLink("مدیریت کالا", "Index", "Product", new { @class = "Tes" }, new { area = "Admin" })</li>
+                                <li>@Html.ActionLink("تصاویر کالا", "Create", "ProductPicture", new { @class = "Tes" }, new { area = "Admin" })</li>
                                 <li>@Html.ActionLink("ویژگی کالا", "Index", "Attribute")</li>
                             </ul>
                         </div>
@@ -98,9 +98,9 @@
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
                             <ul>
-                                <li>درج کاربر</li>
-                                <li>حذف کاربر</li>
-                                <li>تغییر کاربر</li>
+                                <li>@Html.ActionLink("درج کاربر", "Create", "User", new { @class = "Tes" }, new { area = "Admin" })</li>
+                                <li>@Html.ActionLink("حذف کاربر", "Delete", "User", new { @class = "Tes" }, new { area = "Admin" })</li>
+                                <li>@Html.ActionLink("تغییر کاربر", "Edit", "User", new { @class = "Tes" }, new { area = "Admin" })</li>
                             </ul>
                         </div>
                     </div>
@@ -166,7 +166,7 @@
 
    
     <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <p>&copy; @DateTime.Now.Year - Yucca</p>
     </footer>
 
 

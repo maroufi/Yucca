@@ -7,13 +7,13 @@ namespace Yucca.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.1.3-40302")]
-    public sealed partial class InitialMigration : IMigrationMetadata
+    public sealed partial class DbComplete : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(InitialMigration));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(DbComplete));
         
         string IMigrationMetadata.Id
         {
-            get { return "201608271544345_InitialMigration"; }
+            get { return "201609031321132_DbComplete"; }
         }
         
         string IMigrationMetadata.Source

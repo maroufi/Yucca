@@ -159,44 +159,25 @@
                     <ul class="nav navbar-nav" id="nav">
                         @*<li>@Html.ActionLink("Index", "Index", "Home")</li>*@
 
+                        @foreach (var category in ViewBag.Categories)
+                        {
+                            if (category.ParentId == null)
+                            {
+                                <li class="dropdown">
+                                    <a href="#" data-toggle="dropdown">@category.Name<span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        @foreach (var subCategory in ViewBag.Categories)
+                                        {
+                                            if (subCategory.ParentId == category.Id)
+                                            {
+                                                <li><a href="#">@subCategory.Name</a></li>
+                                            }
 
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown">محصولات   <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">گل های آپارتمانی</a></li>
-                                <li><a href="#">کاکتوس</a></li>
-                                <li><a href="#">سایکولنت</a></li>
-                                <li><a href="#">درختچه های زینتی</a></li>
-                                <li><a href="#">بن سای</a></li>
-
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown">بذرها     <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">بذر گل</a></li>
-                                <li><a href="#">بذر گیاه</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown">خاک و کود  <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li></li>
-                                <li><a href="#">تبلت</a></li>
-                                <li><a href="#">لب تاپ</a></li>
-                            </ul>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" data-toggle="dropdown">  آموزش <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">آموزش پیوند کاکتوس</a></li>
-                                <li><a href="#">آموزش تعویض خاک گلدان</a></li>
-                                <li><a href="#">نور مناسب برای کاکتوس</a></li>
-                                <li><a href="#">بیماری های گل ها</a></li>
-                                <li><a href="#">طریقه ایجاد بن سای</a></li>
-                            </ul>
-                        </li>
-
+                                        }
+                                    </ul>
+                                </li>
+                            }
+                        }
                     </ul>
 
                     @*@Html.Partial("_LoginPartial")*@

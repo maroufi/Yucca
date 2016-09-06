@@ -1,4 +1,5 @@
-﻿@{
+﻿@model Yucca.ViewModels.Home.MainPageViewModel
+@{
     ViewBag.Title = "Home Page";
 }
 
@@ -62,253 +63,50 @@
     <br />
     <br />
     <br />
-
-    <div class="row">
-        <div class="panel-group" id="accordion0">
-            <div class="panel panel-success">
-                <div class="panel-heading" id="Paneldefault1">
-                    <a href="#myacc0" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion0">انواع گل های آپارتمانی</a>
-                </div>
-                <div class="panel-collapse collapse in" id="myacc0">
-                    <div class="panel-body">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/golhaye apartemani/barg angiri-500x500.png" />
-                                <div class="caption">
-                                    <p>نام : گل برگ انجیری</p>
-                                    <p>قیمت : 15000 تومان</p>
-
-                                    <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-
-                                </div>
-                            </div>
+    @foreach (var cat in Model.Categories)
+    {
+        if (cat.ParentId != null)
+        {
+            <div class="row">
+                <div class="panel-group" id="accordion0">
+                    <div class="panel panel-success">
+                        <div class="panel-heading" id="Paneldefault1">
+                            <a href="#myacc0" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion0">@cat.Name</a>
                         </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/golhaye apartemani/barg ghashoooghi-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : گل برگ قاشقی</p>
-                                    <p>قیمت : 15000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/golhaye apartemani/mosa gahvare-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : گل گهواره موسی</p>
-                                    <p>قیمت : 15000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/golhaye apartemani/fit1 (4)-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : گل فیتونیا</p>
-                                    <p>قیمت : 13000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
+                        <div class="panel-collapse collapse in" id="myacc0">
+                            <div class="panel-body">
+                                @foreach (var prod in Model.Products)
+                                {
+                                    if (prod.CategoryId == cat.Id)
+                                    {
+                                        <div class="col-md-3">
+                                            <div class="thumbnail">
+                                                @foreach (var pic in Model.ProductPictures)
+                                                {
+                                                    if (pic.ProductId == prod.Id)
+                                                    {
+                                                        <img src=@pic.ImagePath/>
+                                                    }
+                                                }
+                                                <div class="caption">
+                                                    <p>نام : @prod.Name</p>
+                                                    <p>قیمت : @prod.Price تومان</p>
+
+                                                    <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
+                                                        <button type="button" class="btn btn-success">@Html.ActionLink("افزودن به سبد خرید","ShowShoppingCart","ShoppingCart",new {productId=prod.Id},null)</button>
+                                                        <button type="button" class="btn btn-success">@Html.ActionLink("اطلاعات بیشتر","Index","Product",new {productId=prod.Id},null) </button>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                }
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="panel-group" id="accordion1">
-            <div class="panel panel-success">
-                <div class="panel-heading" id="Paneldefault1">
-                    <a href="#myacc1" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">انواع درختچه ها</a>
-                </div>
-                <div class="panel-collapse collapse in" id="myacc1">
-                    <div class="panel-body">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/derakhtche ha/1-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : درختچه گل کاملیا</p>
-                                    <p>قیمت : 11000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/derakhtche ha/FORSYTHIA SPRING GLORY-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : درختچه گل یاس زرد</p>
-                                    <p>قیمت : 15000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/derakhtche ha/gol kaghazi (2)-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : درختچه گل کاغذی</p>
-                                    <p>قیمت : 25000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/derakhtche ha/LAGERSTROEMIA INDICA (6)-500x500.jpg" />
-                                <div class="caption">
-                                    <p>نام : درختچه گل توری</p>
-                                    <p>قیمت : 25000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-        <div class="panel-group" id="accordion2">
-            <div class="panel panel-success">
-                <div class="panel-heading" id="Paneldefault2">
-                    <a href="#myacc2" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">انواع ساکیولنت</a>
-                </div>
-                <div class="panel-collapse collapse in" id="myacc2">
-                    <div class="panel-body">
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/sakolent/d-1339-600x600.jpg" />
-                                <div class="caption">
-                                    <p>نام :آلوئه</p>
-                                    <p>قیمت : 5000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/sakolent/d-1347-600x600.jpg" />
-                                <div class="caption">
-                                    <p>نام : سانسوریا</p>
-                                    <p>قیمت : 5000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/sakolent/d1-5735-600x600.jpg" />
-                                <div class="caption">
-                                    <p>نام : هاورتیا گورخری</p>
-                                    <p>قیمت : 8000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="thumbnail">
-                                <img src="~/Content/mahsoolat/sakolent/photostudio_1451668789526-600x600.jpg" />
-                                <div class="caption">
-                                    <p>نام : گاستریا</p>
-                                    <p>قیمت : 4000 تومان</p>
-                                    <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                        <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                        <button type="button" class="btn btn-success">
-                                            اطلاعات بیشتر
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>
+        }
+    }
 </div>

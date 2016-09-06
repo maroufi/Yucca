@@ -1,8 +1,10 @@
-﻿using System.Web;
+﻿using System.Collections.Generic;
+using System.Web;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Yucca.Models.Common;
 using Yucca.Models.IdentityModels;
+using Yucca.Models.Products;
 using Yucca.Utility.Security;
 
 namespace Yucca.Migrations
@@ -23,11 +25,541 @@ namespace Yucca.Migrations
 
         protected override void Seed(Yucca.Data.DbContext.YuccaDbContext context)
         {
-            InitializeIdentityForEf(context);
+            InitializeUserAndRoleIdentityForEf(context);
+            InitializeCategoryIdentityForEf(context);
+            InitializeProductIdentityForEf(context);
+            InitializePictureIdentityForEf(context);
             base.Seed(context);
         }
 
-        private static void InitializeIdentityForEf(YuccaDbContext context)
+        private void InitializePictureIdentityForEf(YuccaDbContext context)
+        {
+            var pictures = new List<ProductPicture>
+            {
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/barg-angiri-500x500.png",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 1
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/barg-ghashoooghi-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 2
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/fit1-(4)-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 3
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/mosa-gahvare-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 4
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/1-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 5
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/FORSYTHIA-SPRING-GLORY-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 6
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/gol-kaghazi-(2)-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 7
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/LAGERSTROEMIA-INDICA-(6)-500x500.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 8
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/sakolent/d-1339-600x600.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 9
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/sakolent/d-1347-600x600.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 10
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/sakolent/d1-5735-600x600.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 11
+                },
+                new ProductPicture
+                {
+                    Description = "",
+                    ImageAltText = "",
+                    ImagePath = "~/Content/mahsoolat/sakolent/photostudio_1451668789526-600x600.jpg",
+                    IsMainPicture = true,
+                    Title = "",
+                    ProductId = 12
+                }
+
+            };
+            context.ProductPictures.AddRange(pictures);
+            context.SaveAllChanges();
+        }
+
+        private void InitializeProductIdentityForEf(YuccaDbContext context)
+        {
+            var products = new List<Product>
+            {
+                new Product
+                {
+                    Id = 1,
+                    CategoryId = 5,
+                    Description = "",
+                    Name = "گل برگ انجیری",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 30000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 2,
+                    CategoryId = 5,
+                    Description = "",
+                    Name = "گل برگ قاشقی",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 35000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 3,
+                    CategoryId = 5,
+                    Description = "",
+                    Name = "گل فیتونیا",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 40000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 4,
+                    CategoryId = 5,
+                    Description = "",
+                    Name = "گل گهواره موسی",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 45000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 5,
+                    CategoryId = 8,
+                    Description = "",
+                    Name = "درختچه گل کاملیا",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 30000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 6,
+                    CategoryId = 8,
+                    Description = "",
+                    Name = "درختچه گل یاس زرد",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 35000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 7,
+                    CategoryId = 8,
+                    Description = "",
+                    Name = "درختچه گل کاغذی",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 40000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 8,
+                    CategoryId = 8,
+                    Description = "",
+                    Name = "درختچه گل توری",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 45000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 9,
+                    CategoryId = 7,
+                    Description = "",
+                    Name = "آلوئه",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 30000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 10,
+                    CategoryId = 7,
+                    Description = "",
+                    Name = "سانسوریا",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 35000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 11,
+                    CategoryId = 7,
+                    Description = "",
+                    Name = "هاورتیا گورخری",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 40000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                },
+                new Product
+                {
+                    Id = 12,
+                    CategoryId = 7,
+                    Description = "",
+                    Name = "گاستریا",
+                    IsFreeShipping = true,
+                    NotificationStockMinimum = 3,
+                    ViewCount = 0,
+                    Stock = 10,
+                    SellCount = 0,
+                    Price = 45000,
+                    MetaDescription = "",
+                    MetaKeyWords = "",
+                    Deleted = false,
+                    CreatedBy = "Salman",
+                    ModifiedBy = "Salman",
+                    CreatedOn = DateTime.Now,
+                    ModifiedOn = DateTime.Now
+                }
+            };
+
+            context.Products.AddRange(products);
+            context.SaveChanges();
+        }
+
+        private static void InitializeCategoryIdentityForEf(YuccaDbContext context)
+        {
+            var categoryList = new List<Category>
+            {
+                new Category
+                {
+                    Id = 1,
+                    Name = "گل ها",
+                    Description = "گل های زینتی متنوع",
+                    DisplayOrder = 1,
+                    KeyWords = "فروش گل زینتی",
+                    IsDeleted = false,
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 2,
+                    Name = "بذر های گیاهی",
+                    Description = "بذر های انواع گیاهان و گل ها",
+                    DisplayOrder = 2,
+                    KeyWords = "فروش بذر کشاورزی",
+                    IsDeleted = false,
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 3,
+                    Name = "خاک و کود",
+                    Description = "خاک و کود متناسب با انواع گیاهان و گل ها",
+                    DisplayOrder = 3,
+                    KeyWords = "فروش خاک و کود های طبیعی و شیمیایی",
+                    IsDeleted = false,
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 4,
+                    Name = "آموزش ها",
+                    Description = "آموزش های مربوط به گل داری و گیاه داری",
+                    DisplayOrder = 4,
+                    KeyWords = "آموزش گلداری گیاهداری",
+                    IsDeleted = false,
+                    ParentId = null
+                },
+                new Category
+                {
+                    Id = 5,
+                    Name = "گل های آپارتمانی",
+                    Description = "انواع گل های آپارتمانی",
+                    DisplayOrder = 1,
+                    KeyWords = "آپارتمانی درختچه گل",
+                    IsDeleted = false,
+                    ParentId = 1
+                },
+                new Category
+                {
+                    Id = 6,
+                    Name = "کاکتوس",
+                    Description = "انواع گل های کاکتوس",
+                    DisplayOrder = 2,
+                    KeyWords = "کاکتوس زبون خارسو گل",
+                    IsDeleted = false,
+                    ParentId = 1
+                },
+                new Category
+                {
+                    Id = 7,
+                    Name = "سایکولنت",
+                    Description = "انواع گل های سایکلونت",
+                    DisplayOrder = 3,
+                    KeyWords = "سایکولنت درختچه گل",
+                    IsDeleted = false,
+                    ParentId = 1
+                },
+                new Category
+                {
+                    Id = 8,
+                    Name = "درختچه های زینتی",
+                    Description = "انواع درختچه های زینتی",
+                    DisplayOrder = 4,
+                    KeyWords = " زینتی درخت درختچه گل",
+                    IsDeleted = false,
+                    ParentId = 1
+                },
+                new Category
+                {
+                    Id = 9,
+                    Name = "بن سای",
+                    Description = "انواع گل های بن سای",
+                    DisplayOrder = 5,
+                    KeyWords = "بن سای درختچه گل",
+                    IsDeleted = false,
+                    ParentId = 1
+                },
+                new Category
+                {
+                    Id = 10,
+                    Name = "بذر گل",
+                    Description = "انواع بذر های گل ",
+                    DisplayOrder = 1,
+                    KeyWords = "بذر دانه گل",
+                    IsDeleted = false,
+                    ParentId = 2
+                },
+                new Category
+                {
+                    Id = 11,
+                    Name = "بذر گیاه",
+                    Description = "انواع بذر های گیاه",
+                    DisplayOrder = 2,
+                    KeyWords = "بذر درختچه گل گیاه",
+                    IsDeleted = false,
+                    ParentId = 2
+                },
+                new Category
+                {
+                    Id = 12,
+                    Name = " خاک و کود طبیعی",
+                    Description = "انواع خاک و کود های طبیعی",
+                    DisplayOrder = 1,
+                    KeyWords = "خاک کود طبیعی",
+                    IsDeleted = false,
+                    ParentId = 3
+                },
+                new Category
+                {
+                    Id = 13,
+                    Name = " خاک و کود شیمیایی",
+                    Description = "انواع خاک و کود های شیمیایی",
+                    DisplayOrder = 2,
+                    KeyWords = "خاک کود شیمیایی فسفات کودکشاورزی",
+                    IsDeleted = false,
+                    ParentId = 3
+                },
+                new Category
+                {
+                    Id = 14,
+                    Name = "آموزش پیوند",
+                    Description = "آموزش پیوند گل ها و درختان و گیاهان",
+                    DisplayOrder = 1,
+                    KeyWords = "پیوندگل پیونددرخت",
+                    IsDeleted = false,
+                    ParentId = 4
+                },
+                new Category
+                {
+                    Id = 15,
+                    Name = "تعویض خاک",
+                    Description = "آموزش تعویض خاک گل ها و درختان و گیاهان",
+                    DisplayOrder = 1,
+                    KeyWords = "خاک گل درخت",
+                    IsDeleted = false,
+                    ParentId = 4
+                }
+            };
+            context.Categories.AddRange(categoryList);
+            context.SaveAllChanges();
+        }
+        
+        private static void InitializeUserAndRoleIdentityForEf(YuccaDbContext context)
         {
             const string firstName = "Salman";
             const string lastName = "Maroufi";
@@ -88,5 +620,7 @@ namespace Yucca.Migrations
             }
             context.SaveChanges();
         }
+
+
     }
 }

@@ -89,9 +89,18 @@ namespace Yucca.Data.DbContext
         {
             Entry(entity).State = EntityState.Deleted;
         }
+        public void MarkAsAdded<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Added;
+        }
 
+        public void MarkAsDetached<TEntity>(TEntity entity) where TEntity : class
+        {
+            Entry(entity).State = EntityState.Detached;
+        }
         public int SaveAllChanges(bool invalidateCacheDependencies = true)
         {
+            FillAuditFields(this);
             var changedEntityNames = GetChangedEntityNames();
             var result = base.SaveChanges();
             if (invalidateCacheDependencies)
@@ -112,6 +121,7 @@ namespace Yucca.Data.DbContext
         }
         public Task<int> SaveAllChangesAsync(bool invalidateCacheDependencies = true)
         {
+            FillAuditFields(this);
             var changedEntityNames = GetChangedEntityNames();
             var result = base.SaveChangesAsync();
             if (invalidateCacheDependencies)

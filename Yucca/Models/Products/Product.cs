@@ -22,13 +22,13 @@ namespace Yucca.Models.Products
         public int ViewCount { get; set; }
         public long Price { get; set; }
         public bool Deleted { get; set; }
+
         #endregion Properties
 
         #region Navigation Properties
 
         public virtual long CategoryId { get; set; }
         public virtual Category Category { get; set; }
-        public virtual long ManufacturerId { get; set; }
         public virtual ICollection<AttributeOption> AttributeOptions { get; set; }
         public virtual ICollection<ShoppingCart> ShoppingCarts { get; set; }
         public virtual ICollection<OrderItem> OrderItems { get; set; }
