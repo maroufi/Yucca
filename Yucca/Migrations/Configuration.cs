@@ -23,8 +23,9 @@ namespace Yucca.Migrations
 
         protected override void Seed(Yucca.Data.DbContext.YuccaDbContext context)
         {
-            InitializeIdentityForEf(context);
             base.Seed(context);
+
+            InitializeIdentityForEf(context);
         }
 
         private static void InitializeIdentityForEf(YuccaDbContext context)

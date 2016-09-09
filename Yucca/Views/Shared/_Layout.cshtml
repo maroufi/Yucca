@@ -20,7 +20,7 @@
 
 </head>
 <body>
-
+    <div id="blockid"></div>
 
 
     <div class="row">
@@ -115,7 +115,7 @@
                 <br />
                 <br />
                 <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-success"> سبد خرید </button>
+                    <button type="button" class="btn btn-success"><span class="badge pull-right">42</span> سبد خرید </button>
                     <button type="button" class="btn btn-success">
                         <i class="glyphicon glyphicon-shopping-cart"></i>
                     </button>
@@ -209,6 +209,13 @@
             <hr />
         </div>
 
+
+        <div id="back-top">
+            <a id="back-top-a" href="#blockid" onclick="smoothScroll('blockid'); return false">
+                <span class="glyphicon glyphicon-chevron-up"></span>
+            </a>
+        </div>
+
         <footer>
             <div id="FooterId">
                 <div class="row">
@@ -265,6 +272,52 @@
 
 
 
+    <script type="text/javascript">
+        //<![CDATA[
+        function currentYPosition() {
+            // Firefox, Chrome, Opera, Safari
+            if (self.pageYOffset) return self.pageYOffset;
+            // Internet Explorer 6
+            if (document.documentElement && document.documentElement.scrollTop)
+                return document.documentElement.scrollTop;
+            // Internet Explorer 6, 7 and 8
+            if (document.body.scrollTop) return document.body.scrollTop;
+            return 0;
+        }
+        function elmYPosition(eID) {
+            var elm = document.getElementById(eID);
+            var y = elm.offsetTop;
+            var node = elm;
+            while (node.offsetParent && node.offsetParent != document.body) {
+                node = node.offsetParent;
+                y += node.offsetTop;
+            } return y;
+        }
+        function smoothScroll(eID) {
+            var startY = currentYPosition();
+            var stopY = elmYPosition(eID);
+            var distance = stopY > startY ? stopY - startY : startY - stopY;
+            if (distance < 100) {
+                scrollTo(0, stopY); return;
+            }
+            var speed = Math.round(distance / 100);
+            if (speed >= 20) speed = 20;
+            var step = Math.round(distance / 25);
+            var leapY = stopY > startY ? startY + step : startY - step;
+            var timer = 0;
+            if (stopY > startY) {
+                for (var i = startY; i < stopY; i += step) {
+                    setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                    leapY += step; if (leapY > stopY) leapY = stopY; timer++;
+                } return;
+            }
+            for (var i = startY; i > stopY; i -= step) {
+                setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
+                leapY -= step; if (leapY < stopY) leapY = stopY; timer++;
+            }
+        }
+        //]]>
+    </script>
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

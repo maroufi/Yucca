@@ -20,12 +20,10 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div id="AdminBrand">
-                   
-                        @Html.ActionLink("صفحه اصلی پنل", "Index", "Home",new { @class = "Tes" },new { area = "Admin" })
-                    
+                   <h4>
+                       @Html.ActionLink("صفحه اصلی پنل", "Index", "Home", new { area = "Admin" },new { @class = "BrandStyle" } )
+                   </h4>    
                 </div>
-                
-              
             </div>
 
             <div class="navbar-collapse collapse" id="NavbarLeft">
@@ -63,8 +61,8 @@
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category",new  {@class="Tes"},new {area="Admin"})</li>
-                                <li>اسلایدشو گروه کالا</li>
+                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category", new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("اسلایدشو گروه کالا", "Index", "CategorySlide", new { @class = "LinksClass" })</li>
                             </ul>
                         </div>
                     </div>
@@ -79,14 +77,26 @@
                     </div>
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
-                            <ul >
-                                <li>مدیریت کالا</li>
-                                <li>عکس های کالا</li>
-                                <li>@Html.ActionLink("ویژگی کالا", "Index", "Attribute")</li>
+                            <ul>
+                                <li>@Html.ActionLink("مدیریت کالا", "Index", "Product", new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("تصاویر کالا", "Creat", "ProductPicture", new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("ویژگی کالا", "Index", "Attribute", new { @class = "LinksClass" })</li>
                             </ul>
                         </div>
                     </div>
                 </div>
+
+                <div class="panel panel-default x">
+                    <div class="panel-heading" role="tab" id="headingThree">
+                        <h4 class="panel-title">
+                            @Html.ActionLink("تنظیمات", "Edit","Setting")
+                            <a >
+                                
+                            </a>
+                        </h4>
+                    </div>
+                </div>
+
                 <div class="panel panel-default x">
                     <div class="panel-heading" role="tab" id="headingThree">
                         <h4 class="panel-title">
@@ -98,9 +108,9 @@
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
                             <ul>
-                                <li>درج کاربر</li>
-                                <li>حذف کاربر</li>
-                                <li>تغییر کاربر</li>
+                                <li>@Html.ActionLink("درج کاربر", "Create", "User", new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("اطلاعات کاربر", "Details", "User", new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("ویرایش اطلاعات کاربر", "Edit", "User", new { @class = "LinksClass" })</li>
                             </ul>
                         </div>
                     </div>
@@ -110,65 +120,7 @@
     </aside>
 
 
-    @*<div class="panel-group" id="accordion">
-            <h4>
-                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseone" aria-expanded="true" aria-controls="collapseone" class="AsideLinks collapsed">
-                    مدیریت محصولات
-                </a>
-            </h4>
-
-            <div id="collapseone" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingone">
-                <div class="panel-body">
-                    <ul>
-                        <li><a href="#" class="AsideLinks">افزودن محصول</a></li>
-                        <li><a href="#" class="AsideLinks">حذف محصول</a></li>
-                        <li><a href="#" class="AsideLinks">ویرایش اطلاعات محصول</a></li>
-                    </ul>
-                </div>
-            </div>
-
-            <h4>
-                <a class="collapsed AsideLinks" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsetwo" aria-expanded="false" aria-controls="collapsetwo">
-                    مدیریت کاربران
-                </a>
-            </h4>
-
-            <div id="collapsetwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingtwo">
-                <div class="panel-body">
-                    <ul>
-                        <li><a href="#" class="AsideLinks">افزودن محصول</a></li>
-                        <li><a href="#" class="AsideLinks">حذف محصول</a></li>
-                        <li><a href="#" class="AsideLinks">ویرایش اطلاعات محصول</a></li>
-                    </ul>
-                </div>
-            </div>
-
-
-            <h4>
-                <a class="collapsed AsideLinks" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapsethree" aria-expanded="false" aria-controls="collapsethree">
-                    مدیریت سفارشات
-                </a>
-            </h4>
-
-            <div id="collapsethree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingthree">
-                <div class="panel-body">
-                    <ul>
-                        <li><a href="#" class="AsideLinks">افزودن محصول</a></li>
-                        <li><a href="#" class="AsideLinks">حذف محصول</a></li>
-                        <li><a href="#" class="AsideLinks">ویرایش اطلاعات محصول</a></li>
-                    </ul>
-                </div>
-            </div>
-
-        </div>
-        <h4>@Html.ActionLink("مشاهده صفحه اول وب سایت", "Index", "Home" ,new { area = "" })</h4>
-        <h4 class="AsideLinks">@Html.ActionLink("مشاهده صفحه اول پنل","Index","AdminHome")</h4>*@
-
-   
-    <footer>
-        <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
-    </footer>
-
+    
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
