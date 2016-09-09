@@ -56,6 +56,10 @@
       <HintPath>..\packages\EntityFramework.Extended.6.1.0.168\lib\net45\EntityFramework.Extended.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Extensions.QueryableExtensions, Version=1.0.25.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Extensions.QueryableExtensions.1.0.25\lib\net46\Extensions.QueryableExtensions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -214,8 +218,11 @@
     <Compile Include="Areas\Admin\ViewModels\User\UsersListViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\User\UserViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ShoppingCartController.cs" />
     <Compile Include="Data\Configuration\Common\SettingConfig.cs" />
     <Compile Include="Data\Configuration\Orders\OrderConfig.cs" />
     <Compile Include="Data\Configuration\Orders\OrderItemConfig.cs" />
@@ -236,9 +243,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DropDown.cs" />
-    <Compile Include="Migrations\201608271544345_InitialMigration.cs" />
-    <Compile Include="Migrations\201608271544345_InitialMigration.Designer.cs">
-      <DependentUpon>201608271544345_InitialMigration.cs</DependentUpon>
+    <Compile Include="Migrations\201609031321132_DbComplete.cs" />
+    <Compile Include="Migrations\201609031321132_DbComplete.Designer.cs">
+      <DependentUpon>201609031321132_DbComplete.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Common\BaseEntity.cs" />
@@ -261,6 +268,13 @@
     <Compile Include="Models\IdentityModels\YuccaUserStore.cs" />
     <Compile Include="Utility\Security\Encryption.cs" />
     <Compile Include="Utility\Security\SafePassword.cs" />
+    <Compile Include="ViewModels\Category\ProductsOfCategoryViewModel.cs" />
+    <Compile Include="ViewModels\Category\ProductViewModel.cs" />
+    <Compile Include="ViewModels\Category\SlideShowViewModel.cs" />
+    <Compile Include="ViewModels\Home\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Home\MainPageViewModel.cs" />
+    <Compile Include="ViewModels\Home\ProductPictureViewModel.cs" />
+    <Compile Include="ViewModels\Home\ProductViewModel.cs" />
     <Compile Include="ViewModels\Identity\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels\YuccaUser.cs" />
     <Compile Include="ViewModels\Identity\AdminViewModel.cs" />
@@ -274,6 +288,9 @@
     <Compile Include="Areas\Admin\ViewModels\Category\DeleteCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Category\EditCategoryViewModel.cs" />
     <Compile Include="Areas\Admin\ViewModels\Category\CategoryViewModel.cs" />
+    <Compile Include="ViewModels\Product\ProductDetailsViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCart\ShoppingCartListViewModel.cs" />
+    <Compile Include="ViewModels\ShoppingCart\ShoppingCartViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -430,6 +447,10 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
+    <Content Include="Views\Address\Index.cshtml" />
+    <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\ShoppingCart\ShowShoppingCart.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -443,8 +464,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201608271544345_InitialMigration.resx">
-      <DependentUpon>201608271544345_InitialMigration.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201609031321132_DbComplete.resx">
+      <DependentUpon>201609031321132_DbComplete.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

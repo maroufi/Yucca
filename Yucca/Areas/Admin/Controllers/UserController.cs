@@ -203,6 +203,11 @@ namespace Yucca.Areas.Admin.Controllers
                 ModelState.AddModelError("UserName", "نام کاربری مورد نظر قبلا ثبت شده است");
                 return View(viewModel);
             }
+            var role = _dbContext.Roles.FirstOrDefault(a => a.Id == viewModel.RoleId);
+            if (role == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
             var user = new YuccaUser
             {
                 FirstName = viewModel.FirstName,
@@ -210,9 +215,10 @@ namespace Yucca.Areas.Admin.Controllers
                 LastLoginDate = DateTime.Now,
                 UserName = viewModel.UserName,
                 PasswordHash = Encryption.EncryptingPassword(viewModel.Password),
-                PhoneNumber = viewModel.PhoneNumber,
-                //Roles=_dbContext.Roles.Where(a=>a.Id==viewModel.RoleId).ToList(),
+                PhoneNumber = viewModel.PhoneNumber
             };
+            
+            //var userRole = new YuccaUserRole { RoleId = role.Id, UserId = user.Id };
             _dbContext.Users.Add(user);
             await _dbContext.SaveChangesAsync();
             return RedirectToAction("Create");

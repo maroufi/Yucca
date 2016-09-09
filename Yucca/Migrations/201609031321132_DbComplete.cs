@@ -3,7 +3,7 @@ namespace Yucca.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class InitialMigration : DbMigration
+    public partial class DbComplete : DbMigration
     {
         public override void Up()
         {
@@ -146,7 +146,6 @@ namespace Yucca.Migrations
                         Price = c.Long(nullable: false),
                         Deleted = c.Boolean(nullable: false),
                         CategoryId = c.Long(nullable: false),
-                        ManufacturerId = c.Long(nullable: false),
                         CreatedOn = c.DateTime(nullable: false),
                         ModifiedOn = c.DateTime(nullable: false),
                         CreatedBy = c.String(),
@@ -243,7 +242,6 @@ namespace Yucca.Migrations
                         Description = c.String(),
                         ImagePath = c.String(),
                         ImageAltText = c.String(),
-                        Position = c.String(),
                         ProductId = c.Long(nullable: false),
                     })
                 .PrimaryKey(t => t.Id)

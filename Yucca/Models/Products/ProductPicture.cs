@@ -11,7 +11,6 @@ namespace Yucca.Models.Products
         public string Description { get; set; }
         public string ImagePath { get; set; }
         public string ImageAltText { get; set; }
-        public string Position { get; set; }
         #endregion Properties
 
         #region Navigation Properties
