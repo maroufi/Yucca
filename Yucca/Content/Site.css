@@ -152,8 +152,8 @@ input[type="search"]{
 #AdminBrand{
     background-color:#60867a;
     width:300px;
-    color:white;
- 
+    height:50px;
+    text-align:center;
 }
 #headingOne{
     background:#76caaf;
@@ -219,3 +219,82 @@ input[type="search"]{
     line-height: 1.5;
     border-radius: 0px;
 }
+.LinksClass:hover,
+.LinksClass:focus{
+    color:#434f4b;
+    text-decoration:none;
+}
+.LinksClass:focus{
+    outline: none;
+}
+.LinksClass{
+    color:black;
+    text-decoration:none;
+}
+.BrandStyle:hover,
+.BrandStyle:focus{
+        color:#434f4b;
+    text-decoration:none;
+}
+.BrandStyle:focus{
+outline: none;
+}
+.BrandStyle{
+    color:#b4b4b4;
+    text-decoration:none;
+    text-align:center;
+}
+
+#back-top {
+    position: fixed;
+    bottom: 30px;
+    margin-right: 50px;
+    display: block;
+
+    height: 50px;
+    width:50px;
+    padding: 19px;
+    margin-bottom: 30px;
+    background-color:#303030;
+    border: 1px solid #303030;
+    border-radius: 50px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+    opacity:0.5;
+}
+
+
+#back-top-a{
+     width: 108px;
+
+    text-align: center;
+    font: 11px/100% Arial, Helvetica, sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #fff;
+        /* transition */
+    -webkit-transition: 1s;
+    -moz-transition: 1s;
+    transition: 1s;
+}
+
+#back-top:hover
+#back-top:focus
+{
+    color: #000;
+}
+ 
+.ShoppingPix{
+    height:200px;
+    width:150px;
+}
+
+.tab-pane{
+    min-height:200px;
+    border-left:1px solid #ddd;
+    border-right:1px solid #ddd;
+    border-bottom:1px solid #ddd;
+    padding:0.8em;
+    background-color:white;
+}
+
