@@ -436,6 +436,7 @@
     <Content Include="Views\Address\Index.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\ShoppingCart\ShowShoppingCart.cshtml" />
+    <Content Include="Views\Shared\_MenuPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

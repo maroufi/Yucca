@@ -1,0 +1,37 @@
+﻿<div class="navbar navbar-inverse">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav" id="nav">
+                @*<li>@Html.ActionLink("Index", "Index", "Home")</li>*@
+
+                @foreach (var category in ViewBag.Categories)
+                {
+                    if (category.ParentId == null)
+                    {
+                        <li class="dropdown">
+                            <a href="#" data-toggle="dropdown">@category.Name<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                @foreach (var subCategory in ViewBag.Categories)
+                                {
+                                    if (subCategory.ParentId == category.Id)
+                                    {
+                                        <li><a href="#">@subCategory.Name</a></li>
+                                    }
+
+                                }
+                            </ul>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>
+
