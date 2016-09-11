@@ -66,7 +66,7 @@
     <div class="row">
         <div class="panel panel-success">
             <div class="panel-heading" id="Paneldefault1">
-                <a href="#myacc0" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion0">انواع گل های آپارتمانی</a>
+                @Html.ActionLink("انواع گلهای آپارتمانی", "Index", "Category", new { @class = "LinksClass" })
             </div>
             <div class="panel-body">
                 <div class="col-md-3">
@@ -79,7 +79,7 @@
                             <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class="LinksClass" })
                                 </button>
                             </div>
 
@@ -95,7 +95,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -110,7 +110,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -125,7 +125,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -138,20 +138,21 @@
     <div class="row">
         <div class="panel panel-success">
             <div class="panel-heading" id="Paneldefault1">
-                <a href="#myacc0" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion0">انواع کاکتوس</a>
+                @Html.ActionLink("انواع کاکتوس", "Index","Category",new {@class="LinksClass" })
+                
             </div>
             <div class="panel-body">
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/kaktoos/ashora" />
+                        <img src="~/Content/mahsoolat/kaktoos/doorestia.jpg" />
                         <div class="caption">
-                            <p>نام : گل برگ انجیری</p>
-                            <p>قیمت : 15000 تومان</p>
+                            <p>نام : گل دورستیا</p>
+                            <p>قیمت : 40000 تومان</p>
 
                             <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
 
@@ -160,14 +161,14 @@
                 </div>
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/barg ghashoooghi-500x500.jpg" />
+                        <img src="~/Content/mahsoolat/kaktoos/kerasola.jpg" />
                         <div class="caption">
-                            <p>نام : گل برگ قاشقی</p>
-                            <p>قیمت : 15000 تومان</p>
+                            <p>نام :گل کراسولا</p>
+                            <p>قیمت : 20000 تومان</p>
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -175,14 +176,14 @@
                 </div>
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/mosa gahvare-500x500.jpg" />
+                        <img src="~/Content/mahsoolat/kaktoos/avonia.jpg" />
                         <div class="caption">
-                            <p>نام : گل گهواره موسی</p>
+                            <p>نام :گل آونیا</p>
                             <p>قیمت : 15000 تومان</p>
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -190,14 +191,14 @@
                 </div>
                 <div class="col-md-3">
                     <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/fit1 (4)-500x500.jpg" />
+                        <img src="~/Content/mahsoolat/kaktoos/havertia.jpg" />
                         <div class="caption">
-                            <p>نام : گل فیتونیا</p>
-                            <p>قیمت : 13000 تومان</p>
+                            <p>نام : گل هاورتیا</p>
+                            <p>قیمت : 25000 تومان</p>
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -213,7 +214,7 @@
 
         <div class="panel panel-success">
             <div class="panel-heading" id="Paneldefault1">
-                <a href="#myacc1" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion1">انواع درختچه ها</a>
+                @Html.ActionLink("انواع درختچه ها", "Index", "Category", new { @class = "LinksClass" })
             </div>
             <div class="panel-body">
                 <div class="col-md-3">
@@ -225,7 +226,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -240,7 +241,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -255,7 +256,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -270,7 +271,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -285,7 +286,7 @@
 
         <div class="panel panel-success">
             <div class="panel-heading" id="Paneldefault2">
-                <a href="#myacc2" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2">انواع ساکیولنت</a>
+                @Html.ActionLink("انواع ساکیولنت", "Index", "Category", new { @class = "LinksClass" })
             </div>
 
             <div class="panel-body">
@@ -298,7 +299,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -313,7 +314,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -328,7 +329,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
@@ -343,7 +344,7 @@
                             <div class="btn-group btn-group-xs" role="group" aria-label="...">
                                 <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
                                 <button type="button" class="btn btn-success">
-                                    اطلاعات بیشتر
+                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
                                 </button>
                             </div>
                         </div>
