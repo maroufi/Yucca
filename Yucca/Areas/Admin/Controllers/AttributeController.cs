@@ -198,6 +198,7 @@ namespace Yucca.Areas.Admin.Controllers
             }
         }
         #endregion
+
         #region Validation
         [HttpPost]
         public virtual ActionResult AddCheckExistAttributeForCategory(string name, long categoryId)
@@ -210,7 +211,7 @@ namespace Yucca.Areas.Admin.Controllers
             return ExistByName(name, id, categoryId) ? Json(false) : Json(true);
         }
         #endregion
-        #region Method
+
         #region Methods
         public bool ExistByName(string name, long categoryId)
         {
@@ -231,7 +232,6 @@ namespace Yucca.Areas.Admin.Controllers
             var attribute = _dbContext.SpecificAttributes.Where(a => a.CategoryId == categoryId && a.Name.Equals(oldName));
             attribute.Update(a => new SpecificAttribute { Name = newName });
         }
-        #endregion
         #endregion
     }
 }

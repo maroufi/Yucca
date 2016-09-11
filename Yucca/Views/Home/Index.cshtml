@@ -1,380 +1,122 @@
-﻿@{
+﻿@using System.Diagnostics
+@using Yucca.Models.Products
+
+@{
     ViewBag.Title = "Home Page";
+    var categories = ViewBag.Categories as List<Category>;
+    var products = ViewBag.Products as List<Product>;
+    var pictures = ViewBag.Pictures as List<ProductPicture>;
 }
-
-<div class="container">
-    <br />
-    <br />
-    <div class="row">
-        <div class="col-md-8">
-            <div class="carousel slide" id="carousel-290963">
-                <ol class="carousel-indicators">
-                    <li class="active" data-slide-to="0" data-target="#carousel-290963">
-                    </li>
-                    <li data-slide-to="1" data-target="#carousel-290963">
-                    </li>
-                    <li data-slide-to="2" data-target="#carousel-290963">
-                    </li>
-                    <li data-slide-to="3" data-target="#carousel-290963">
-                    </li>
-                    <li data-slide-to="4" data-target="#carousel-290963">
-                    </li>
-                    <li data-slide-to="5" data-target="#carousel-290963">
-                    </li>
-                </ol>
-                <div class="carousel-inner">
-                    <div class="item active">
-                        <img alt="Carousel Bootstrap First" src="~/Content/new/apartment-exterior-balcony-garden-design-with-potted-flower-and-plant-also-black-iron-railing-also-brown-tile-flooring-also-modern-balcony-garden.jpg" />
+@Html.Partial("_MenuPartial")
+<div class="container body-content">
+    <div class="container">
+        <br/>
+        <br/>
+        <div class="row">
+            <div class="col-md-8">
+                <div class="carousel slide" id="carousel-290963">
+                    <ol class="carousel-indicators">
+                        <li class="active" data-slide-to="0" data-target="#carousel-290963">
+                        </li>
+                        <li data-slide-to="1" data-target="#carousel-290963">
+                        </li>
+                        <li data-slide-to="2" data-target="#carousel-290963">
+                        </li>
+                        <li data-slide-to="3" data-target="#carousel-290963">
+                        </li>
+                        <li data-slide-to="4" data-target="#carousel-290963">
+                        </li>
+                        <li data-slide-to="5" data-target="#carousel-290963">
+                        </li>
+                    </ol>
+                    <div class="carousel-inner">
+                        <div class="item active">
+                            <img alt="Carousel Bootstrap First" src="~/Content/new/apartment-exterior-balcony-garden-design-with-potted-flower-and-plant-also-black-iron-railing-also-brown-tile-flooring-also-modern-balcony-garden.jpg"/>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Second" src="~/Content/new/apartment-flower-12.jpg"/>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Third" src="~/Content/new/Contemporary-Small-Balcony-Garden-Design-with-vase-plants-and-flowers.jpg"/>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/gallery-1452185788-group-of-potted-cactus-1024x673.jpg"/>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/mai_vang_bonsai_2__HHJR.jpg"/>
+                        </div>
+                        <div class="item">
+                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/The-Most-Beautiful-And-Unique-Bonsai-Trees-In-The-World-homesthetics-27.jpg"/>
+                        </div>
                     </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Second" src="~/Content/new/apartment-flower-12.jpg" />
-                    </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Third" src="~/Content/new/Contemporary-Small-Balcony-Garden-Design-with-vase-plants-and-flowers.jpg" />
-                    </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Forth" src="~/Content/new/gallery-1452185788-group-of-potted-cactus-1024x673.jpg" />
-                    </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Forth" src="~/Content/new/mai_vang_bonsai_2__HHJR.jpg" />
-                    </div>
-                    <div class="item">
-                        <img alt="Carousel Bootstrap Forth" src="~/Content/new/The-Most-Beautiful-And-Unique-Bonsai-Trees-In-The-World-homesthetics-27.jpg" />
-                    </div>
-                </div>
-                <a class="left carousel-control" href="#carousel-290963" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-                <a class="right carousel-control" href="#carousel-290963" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <div class="thumbnail">
-                <img src="~/Content/Images/thumbnail/Yucca.jpg" height="500" width="250" />
-                <div class="caption">
-                    <p>یوکا یکی از مشهورترین گیاهان آپارتمانی است، ساقه بلندی دارد که برگهای کشیده و سبزرنگش بر این ساقه استوارند. در نوعی یوکا که به یوکای خنجری معروف است برگها کشیده، بلند و نوک تیز و شبیه خنجرند. یوکاهایی که در خارج از آپارتمان نگهداری می شوند در بعضی از سالها گلهایی سفید و زنگوله ای می دهند.</p>
-
-                    <p class="text-left"><a href="#">اطلاعات بیشتر</a></p>
-
+                    <a class="left carousel-control" href="#carousel-290963" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                    <a class="right carousel-control" href="#carousel-290963" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
                 </div>
             </div>
+            <div class="col-md-4">
+                <div class="thumbnail">
+                    <img src="~/Content/Images/thumbnail/Yucca.jpg" height="500" width="250"/>
+                    <div class="caption">
+                        <p>یوکا یکی از مشهورترین گیاهان آپارتمانی است، ساقه بلندی دارد که برگهای کشیده و سبزرنگش بر این ساقه استوارند. در نوعی یوکا که به یوکای خنجری معروف است برگها کشیده، بلند و نوک تیز و شبیه خنجرند. یوکاهایی که در خارج از آپارتمان نگهداری می شوند در بعضی از سالها گلهایی سفید و زنگوله ای می دهند.</p>
+
+                        <p class="text-left">
+                            <a href="#">اطلاعات بیشتر</a>
+                        </p>
+
+                    </div>
+                </div>
+            </div>
         </div>
+
+        <br/>
+        <br/>
+        <br/>
+        @foreach (var cat in categories)
+        {
+            if (cat.ParentId != null)
+            {
+                <div class="row">
+                    <div class="panel-group" id="accordion0">
+                        <div class="panel panel-success">
+                            <div class="panel-heading" id="Paneldefault1">
+                                <a href="#myacc0" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion0">@cat.Name</a>
+                            </div>
+                            <div class="panel-collapse collapse in" id="myacc0">
+                                <div class="panel-body">
+                                    @foreach (var prod in products)
+                                    {
+                                        if (prod.CategoryId == cat.Id)
+                                        {
+                                            <div class="col-md-3">
+                                                <div class="thumbnail">
+                                                    @foreach (var pic in pictures)
+                                                    {
+                                                        if (pic.ProductId == prod.Id)
+                                                        {
+                                                            <img src=@pic.ImagePath/>
+                                                        }
+                                                    }
+                                                    <div class="caption">
+                                                        <p>نام : @prod.Name</p>
+                                                        <p>قیمت : @prod.Price تومان</p>
+
+                                                        <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
+                                                            <button type="button" class="btn btn-success">@Html.ActionLink("افزودن به سبد خرید", "ShowShoppingCart", "ShoppingCart", new {productId = prod.Id}, null)</button>
+                                                            <button type="button" class="btn btn-success">@Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new {productId = prod.Id}, null) </button>
+                                                        </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
     </div>
-
-    <br />
-    <br />
-    <br />
-
-    <div class="row">
-        <div class="panel panel-success">
-            <div class="panel-heading" id="Paneldefault1">
-                @Html.ActionLink("انواع گلهای آپارتمانی", "Index", "Category", new { @class = "LinksClass" })
-            </div>
-            <div class="panel-body">
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/barg angiri-500x500.png" />
-                        <div class="caption">
-                            <p>نام : گل برگ انجیری</p>
-                            <p>قیمت : 15000 تومان</p>
-
-                            <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class="LinksClass" })
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/barg ghashoooghi-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : گل برگ قاشقی</p>
-                            <p>قیمت : 15000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/mosa gahvare-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : گل گهواره موسی</p>
-                            <p>قیمت : 15000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/golhaye apartemani/fit1 (4)-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : گل فیتونیا</p>
-                            <p>قیمت : 13000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="panel panel-success">
-            <div class="panel-heading" id="Paneldefault1">
-                @Html.ActionLink("انواع کاکتوس", "Index","Category",new {@class="LinksClass" })
-                
-            </div>
-            <div class="panel-body">
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/kaktoos/doorestia.jpg" />
-                        <div class="caption">
-                            <p>نام : گل دورستیا</p>
-                            <p>قیمت : 40000 تومان</p>
-
-                            <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/kaktoos/kerasola.jpg" />
-                        <div class="caption">
-                            <p>نام :گل کراسولا</p>
-                            <p>قیمت : 20000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/kaktoos/avonia.jpg" />
-                        <div class="caption">
-                            <p>نام :گل آونیا</p>
-                            <p>قیمت : 15000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/kaktoos/havertia.jpg" />
-                        <div class="caption">
-                            <p>نام : گل هاورتیا</p>
-                            <p>قیمت : 25000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-
-        <div class="panel panel-success">
-            <div class="panel-heading" id="Paneldefault1">
-                @Html.ActionLink("انواع درختچه ها", "Index", "Category", new { @class = "LinksClass" })
-            </div>
-            <div class="panel-body">
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/derakhtche ha/1-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : درختچه گل کاملیا</p>
-                            <p>قیمت : 11000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/derakhtche ha/FORSYTHIA SPRING GLORY-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : درختچه گل یاس زرد</p>
-                            <p>قیمت : 15000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/derakhtche ha/gol kaghazi (2)-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : درختچه گل کاغذی</p>
-                            <p>قیمت : 25000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/derakhtche ha/LAGERSTROEMIA INDICA (6)-500x500.jpg" />
-                        <div class="caption">
-                            <p>نام : درختچه گل توری</p>
-                            <p>قیمت : 25000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-    <div class="row">
-
-        <div class="panel panel-success">
-            <div class="panel-heading" id="Paneldefault2">
-                @Html.ActionLink("انواع ساکیولنت", "Index", "Category", new { @class = "LinksClass" })
-            </div>
-
-            <div class="panel-body">
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/sakolent/d-1339-600x600.jpg" />
-                        <div class="caption">
-                            <p>نام :آلوئه</p>
-                            <p>قیمت : 5000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/sakolent/d-1347-600x600.jpg" />
-                        <div class="caption">
-                            <p>نام : سانسوریا</p>
-                            <p>قیمت : 5000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/sakolent/d1-5735-600x600.jpg" />
-                        <div class="caption">
-                            <p>نام : هاورتیا گورخری</p>
-                            <p>قیمت : 8000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="thumbnail">
-                        <img src="~/Content/mahsoolat/sakolent/photostudio_1451668789526-600x600.jpg" />
-                        <div class="caption">
-                            <p>نام : گاستریا</p>
-                            <p>قیمت : 4000 تومان</p>
-                            <div class="btn-group btn-group-xs" role="group" aria-label="...">
-                                <button type="button" class="btn btn-success">افزودن به سبد خرید </button>
-                                <button type="button" class="btn btn-success">
-                                    @Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { @class = "LinksClass" })
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="row">
-        <div class="col-md-4">
-            <h2>Getting started</h2>
-            <p>
-                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-                enables a clean separation of concerns and gives you full control over markup
-                for enjoyable, agile development.
-            </p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Get more libraries</h2>
-            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-        </div>
-        <div class="col-md-4">
-            <h2>Web Hosting</h2>
-            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-            <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-        </div>
-    </div>
+    <hr/>
 </div>
