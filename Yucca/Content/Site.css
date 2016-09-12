@@ -1,6 +1,6 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+    /*padding-top: 50px;*/
+    /*padding-bottom: 20px;*/
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -27,6 +27,7 @@ glyphicon{
 }
 #bodybackground{
     background:#eeeff1;
+
 }
 #BorderDiv{
     border-left-style:solid;
@@ -49,10 +50,19 @@ glyphicon{
 }
 #FooterId{
     background:none repeat scroll 0 0 #373737;
-    height:396px;
+    height:400px;
     min-width:1170px;
     overflow:hidden;
     width:100%;
+}
+#GreenFooterId{
+    background:#599d56;
+    padding-top:10px;
+}
+#GreenHeader{
+    background:#599d56;
+    height:5px;
+    width:auto;
 }
 #navigation_search{
     flex:3;
@@ -64,7 +74,14 @@ input[type="search"]{
     line-height:3em;
     display:inline-block;
     padding:0 10px 0 20px;
-    width: calc(100%-30px);
+    /*width: calc(100%-30px);*/
+    width:400px;
+}
+#sh{
+    width:300px;
+    border:1px solid #b4b4b4;
+    border-radius:35px;
+    min-height:30px;
 }
 #searchbtn{
     /*flex:3;*/
@@ -75,9 +92,7 @@ input[type="search"]{
     display:inline-block;*/
 
 }
-.g1{
-    color:#b4b4b4;
-}
+
 /*.tab-pane{
     border-left:1px solid #949090;
     border-right:1px solid #949090;
@@ -130,9 +145,14 @@ input[type="search"]{
 #logo{
     float:left;
 }
-/*#btnscc{
-    float:;
-}*/
+.FooterInput{
+    background-color:#505050;
+    border-color:#303030;
+    float:left;
+}
+.FooterInput:focus{
+    background-color:#ffffff;
+}
 #myModalLabel{
     text-align:center;
 }
@@ -248,15 +268,16 @@ outline: none;
 #back-top {
     position: fixed;
     bottom: 30px;
-    margin-right: 50px;
+    margin-right: 45px;
     display: block;
 
     height: 50px;
     width:50px;
-    padding: 19px;
+    padding-right: 14px;
+    padding-top:8px;
     margin-bottom: 30px;
     background-color:#303030;
-    border: 1px solid #303030;
+    border: 5px solid #599d56;
     border-radius: 50px;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
@@ -282,8 +303,8 @@ outline: none;
 #back-top:focus
 {
     color: #000;
-}
- 
+} 
+
 .ShoppingPix{
     height:200px;
     width:150px;
@@ -298,3 +319,28 @@ outline: none;
     background-color:white;
 }
 
+.LinksClassI:hover,
+.LinksClassI:focus{
+    color:#434f4b;
+    text-decoration:none;
+}
+.LinksClassI:focus{
+    outline: none;
+}
+.LinksClassI{
+    color:#ddd;
+    text-decoration:none;
+}
+
+.glyphB{
+    border:5px solid #599d56;
+    border-radius:50px;
+    height:40px;
+    width:40px;
+    padding-right:7px;
+    padding-top:5px;
+    color:#b4b4b4;
+}
+.g1{
+    color:#b4b4b4;
+}

@@ -59,7 +59,8 @@
                         <p>یوکا یکی از مشهورترین گیاهان آپارتمانی است، ساقه بلندی دارد که برگهای کشیده و سبزرنگش بر این ساقه استوارند. در نوعی یوکا که به یوکای خنجری معروف است برگها کشیده، بلند و نوک تیز و شبیه خنجرند. یوکاهایی که در خارج از آپارتمان نگهداری می شوند در بعضی از سالها گلهایی سفید و زنگوله ای می دهند.</p>
 
                         <p class="text-left">
-                            <a href="#">اطلاعات بیشتر</a>
+                            
+                            <a class="btn btn-success" href="~/Home/About">اطلاعات بیشتر</a>
                         </p>
 
                     </div>
@@ -100,8 +101,8 @@
                                                         <p>قیمت : @prod.Price تومان</p>
 
                                                         <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
-                                                            <button type="button" class="btn btn-success">@Html.ActionLink("افزودن به سبد خرید", "ShowShoppingCart", "ShoppingCart", new {productId = prod.Id}, null)</button>
-                                                            <button type="button" class="btn btn-success">@Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new {productId = prod.Id}, null) </button>
+                                                            <button type="button" class="btn btn-success">@Html.ActionLink("افزودن به سبد خرید", "ShowShoppingCart", "ShoppingCart", null)</button>
+                                                            <button type="button" class="btn btn-success">@Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new {productId = prod.Id},null) </button>
                                                         </div>
 
                                                     </div>
@@ -109,6 +110,8 @@
                                             </div>
                                         }
                                     }
+                                    @Html.ActionLink("مشاهده محصولات این دسته", "Index", "Category", new { @class="LinksClass" })
+                             
                                 </div>
                             </div>
                         </div>
