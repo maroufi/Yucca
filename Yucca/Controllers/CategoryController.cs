@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -27,7 +28,7 @@ namespace Yucca.Controllers
         public ActionResult Index(long? categoryId)
         {
             if (categoryId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var category = _dbContext.Categories.Include("Slides").FirstOrDefault(a => a.Id == categoryId);
+            var category = _dbContext.Categories.Include(a=>a.Products).Include(a=>a.Slides).FirstOrDefault(a => a.Id == categoryId);
             if (category == null) return HttpNotFound();
             var productsAndSlides = new ProductsOfCategoryViewModel();
             foreach (var product in category.Products)
