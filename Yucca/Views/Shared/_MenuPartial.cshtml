@@ -13,14 +13,14 @@
             <ul class="nav navbar-nav" id="nav">
                 @*<li>@Html.ActionLink("Index", "Index", "Home")</li>*@
 
-                @foreach (var category in ViewBag.Categories)
+                @foreach (var category in ViewBag.CategoriesForMenu)
                 {
                     if (category.ParentId == null)
                     {
                         <li class="dropdown">
                             <a href="#" data-toggle="dropdown">@category.Name<span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                                @foreach (var subCategory in ViewBag.Categories)
+                                @foreach (var subCategory in ViewBag.CategoriesForMenu)
                                 {
                                     if (subCategory.ParentId == category.Id)
                                     {

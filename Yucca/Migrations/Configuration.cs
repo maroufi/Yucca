@@ -40,7 +40,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/barg-angiri-500x500.png",
+                    ImagePath = "Content/mahsoolat/golhaye-apartemani/barg-angiri-500x500.png",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 1
@@ -49,7 +49,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/barg-ghashoooghi-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/golhaye-apartemani/barg-ghashoooghi-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 2
@@ -58,7 +58,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/fit1-(4)-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/golhaye-apartemani/fit1-(4)-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 3
@@ -67,7 +67,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/golhaye-apartemani/mosa-gahvare-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/golhaye-apartemani/mosa-gahvare-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 4
@@ -76,7 +76,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/1-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/derakhtche-ha/1-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 5
@@ -85,7 +85,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/FORSYTHIA-SPRING-GLORY-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/derakhtche-ha/FORSYTHIA-SPRING-GLORY-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 6
@@ -94,7 +94,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/gol-kaghazi-(2)-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/derakhtche-ha/gol-kaghazi-(2)-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 7
@@ -103,7 +103,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/derakhtche-ha/LAGERSTROEMIA-INDICA-(6)-500x500.jpg",
+                    ImagePath = "Content/mahsoolat/derakhtche-ha/LAGERSTROEMIA-INDICA-(6)-500x500.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 8
@@ -112,7 +112,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/sakolent/d-1339-600x600.jpg",
+                    ImagePath = "Content/mahsoolat/sakolent/d-1339-600x600.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 9
@@ -121,7 +121,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/sakolent/d-1347-600x600.jpg",
+                    ImagePath = "Content/mahsoolat/sakolent/d-1347-600x600.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 10
@@ -130,7 +130,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/sakolent/d1-5735-600x600.jpg",
+                    ImagePath = "Content/mahsoolat/sakolent/d1-5735-600x600.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 11
@@ -139,7 +139,7 @@ namespace Yucca.Migrations
                 {
                     Description = "",
                     ImageAltText = "",
-                    ImagePath = "~/Content/mahsoolat/sakolent/photostudio_1451668789526-600x600.jpg",
+                    ImagePath = "Content/mahsoolat/sakolent/photostudio_1451668789526-600x600.jpg",
                     IsMainPicture = true,
                     Title = "",
                     ProductId = 12

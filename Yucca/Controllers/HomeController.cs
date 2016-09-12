@@ -34,6 +34,7 @@ namespace Yucca.Controllers
 
         public ActionResult Menu()
         {
+            ViewBag.CategoriesForMenu = _dbContext.Categories.ToList();
             return PartialView("_MenuPartial");
         }
 

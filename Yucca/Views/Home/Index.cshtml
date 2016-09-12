@@ -6,7 +6,7 @@
     var categories = ViewBag.Categories as List<Category>;
     var pictures = ViewBag.Pictures as List<ProductPicture>;
 }
-@Html.Partial("_MenuPartial")
+
 <div class="container body-content">
     <div class="container">
         <br/>
@@ -72,7 +72,7 @@
         <br/>
         @foreach (var cat in categories)
         {
-            if (cat.ParentId != null&&cat.Products!=null)
+            if (cat.ParentId != null)
             {
                 <div class="row">
                     <div class="panel-group" id="accordion0">
@@ -92,7 +92,7 @@
                                                     {
                                                         if (pic.ProductId == prod.Id)
                                                         {
-                                                            <img src=@pic.ImagePath/>
+                                                            <img src="@pic.ImagePath?w=220&h=180&mode=crop" class="lazyload" alt="@pic.ImageAltText"/>
                                                         }
                                                     }
                                                     <div class="caption">
