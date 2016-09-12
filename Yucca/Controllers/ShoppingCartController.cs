@@ -30,7 +30,7 @@ namespace Yucca.Controllers
             base.Dispose(disposing);
         }
         [HttpGet]
-        [SiteAuthorize]
+        //[SiteAuthorize]
         public ActionResult ShowShoppingCart()
         {
             var shoppingCart = _dbContext.ShoppingCarts.Where(a => a.User.UserName == User.Identity.Name).ToList();

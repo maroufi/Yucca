@@ -30,16 +30,16 @@ namespace Yucca.Controllers
             base.Dispose(disposing);
         }
 
-        [Route("{id}")]
-        public virtual ActionResult Index(long? id)
+        [Route("/{productId}")]
+        public ActionResult Index(long? productId)
         {
-            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            if (productId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var product = _dbContext.Products
-                .Where(a => a.Id == id)
-                .Include("ProductImages").Include("Category").FirstOrDefault();
+                .Where(a => a.Id == productId)
+                .Include(a=>a.Pictures).FirstOrDefault();
             if (product == null) return HttpNotFound();
             product.ViewCount++;
-            var productDetails = new ProductDetailsViewModel
+            ViewBag.productDetails = new ProductDetailsViewModel
             {
                 Id = product.Id,
                 IsFreeShipping = product.IsFreeShipping,
@@ -49,9 +49,11 @@ namespace Yucca.Controllers
                 Images = product.Pictures.Select(a => a.ImagePath).ToArray(),
                 SellCount = product.SellCount,
                 ViewCount = product.ViewCount,
-                Description = product.Description
+                Description = product.Description,
+                PrincipleImage = product.Pictures.FirstOrDefault(a => a.IsMainPicture==true).ImagePath,
+                Stock = product.Stock
             };
-            return View(productDetails);
+            return View();
         }
     }
 }

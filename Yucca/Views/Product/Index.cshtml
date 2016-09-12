@@ -1,9 +1,7 @@
-﻿@using Yucca.Helpers;
-@model Yucca.ViewModels.Product.ProductDetailsViewModel
+﻿@using Yucca.ViewModels.Product
 @{
-    ViewBag.Title = "";
+    var productDetails = ViewBag.productDetails as ProductDetailsViewModel;
 }
-
 <section id="product-details">
     <div class="row">
         <div class="col-md-12">
@@ -13,7 +11,7 @@
                         <header class="panel-heading">
                             <span class="bdred">
 
-                                <strong class="panel-title marginRight10">@Model.Name </strong>
+                                <strong class="panel-title marginRight10">@productDetails.Name </strong>
                             </span>
                         </header>
                         <div class="panel-body">
@@ -23,7 +21,7 @@
                                     <div class="row">
                                         <div class="col-md-12">
                                             <span>موجودیت:</span>
-                                            @if (Model.IsInStock)
+                                            @if (productDetails.Stock!=0)
                                             {
                                                 <strong>
                                                     موجود
@@ -38,15 +36,15 @@
                                         </div>
                                         <div class="col-md-12">
                                             <span>کد محصول:</span>
-                                            <strong>@Model.Id</strong>
+                                            <strong>@productDetails.Id</strong>
                                         </div>
                                         <div class="col-md-12">
                                             <span>تعداد فروش:</span>
-                                            <strong>@Html.DisplayFor(a => Model.SellCount)</strong>
+                                            <strong>@productDetails.SellCount</strong>
                                         </div>
                                         <div class="col-md-12">
                                             <span>وضعیت ارسال:</span>
-                                            @if (Model.IsFreeShipping)
+                                            @if (productDetails.IsFreeShipping)
                                             {
                                                 <strong class="text-danger">
                                                     رایگان
@@ -62,7 +60,7 @@
                                         <div class="col-md-12">
                                             <span>قیمت:</span>
                                             <strong>
-                                                @Html.DisplayFor(a => Model.Price) تومان
+                                                @productDetails.Price تومان
                                             </strong>
                                         </div>
                                     </div>
@@ -70,13 +68,13 @@
                                 <div class="col-md-5">
                                     <div class="col-md-12">
                                         <span>توضیحات:</span>
-                                        <p class="text-primary">@Model.Description</p>
+                                        <p class="text-primary">@productDetails.Description</p>
                                     </div>
                                 </div>
 
                                 <div class="col-md-3 pull-right ">
-                                    <a class="thumbnail teaser  lazyload cloud-zoom" data-expand="-20" href="@Model.PrincipleImage" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'300', zoomHeight:'400', adjustY:0, adjustX:30">
-                                        <img src="@Model.PrincipleImage?w=220&h=200&mode=crop" title="@Model.Name" class="lazyload" alt="@Model.Name">
+                                    <a class="thumbnail teaser  lazyload cloud-zoom" data-expand="-20" href="@productDetails.PrincipleImage" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'300', zoomHeight:'400', adjustY:0, adjustX:30">
+                                        <img src="@productDetails.PrincipleImage?w=220&h=200&mode=crop" title="@productDetails.Name" class="lazyload" alt="@productDetails.Name">
                                     </a>
                                 </div>
                             </div>
@@ -91,17 +89,17 @@
                         <div class="panel-footer">
                             <div class="row marginRight10">
                                 <div class="btns btn-group ">
-                                    <button class="btn btn-xs btn-primary" id="toCompare-@Model.Id"
+                                    <button class="btn btn-xs btn-primary" id="toCompare-@productDetails.Id"
                                             data-toggle="tooltip"
                                             title="+ لیست مقایسه">
                                         <i class="glyphicon glyphicon-refresh"></i>
                                     </button>
-                                    <button class="btn btn-xs btn-primary" id="toWish-@Model.Id"
+                                    <button class="btn btn-xs btn-primary" id="toWish-@productDetails.Id"
                                             data-toggle="tooltip"
                                             title="+ لیست مورد علاقه">
                                         <i class="glyphicon glyphicon-heart"></i>
                                     </button>
-                                    <button class="btn btn-xs btn-success" id="toCart-@Model.Id"
+                                    <button class="btn btn-xs btn-success" id="toCart-@productDetails.Id"
                                             data-toggle="tooltip"
                                             title="+ سبد خرید">
                                         <i class="glyphicon glyphicon-shopping-cart"></i>

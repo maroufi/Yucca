@@ -1,4 +1,6 @@
-﻿<div class="navbar navbar-inverse">
+﻿@using EntityFramework.Extensions
+
+<div class="navbar navbar-inverse">
     <div class="container">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -22,7 +24,7 @@
                                 {
                                     if (subCategory.ParentId == category.Id)
                                     {
-                                        <li><a href="#">@subCategory.Name</a></li>
+                                        <li><a href="@Url.Action("Index","Category",new { categoryId=subCategory.Id},null)">@subCategory.Name</a></li>
                                     }
 
                                 }

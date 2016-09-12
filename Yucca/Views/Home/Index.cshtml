@@ -4,7 +4,6 @@
 @{
     ViewBag.Title = "Home Page";
     var categories = ViewBag.Categories as List<Category>;
-    var products = ViewBag.Products as List<Product>;
     var pictures = ViewBag.Pictures as List<ProductPicture>;
 }
 @Html.Partial("_MenuPartial")
@@ -73,7 +72,7 @@
         <br/>
         @foreach (var cat in categories)
         {
-            if (cat.ParentId != null)
+            if (cat.ParentId != null&&cat.Products!=null)
             {
                 <div class="row">
                     <div class="panel-group" id="accordion0">
@@ -83,7 +82,7 @@
                             </div>
                             <div class="panel-collapse collapse in" id="myacc0">
                                 <div class="panel-body">
-                                    @foreach (var prod in products)
+                                    @foreach (var prod in cat.Products)
                                     {
                                         if (prod.CategoryId == cat.Id)
                                         {

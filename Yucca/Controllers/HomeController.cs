@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Yucca.Data.DbContext;
+using Yucca.Models.Products;
 using Yucca.ViewModels.Home;
 
 namespace Yucca.Controllers
@@ -25,8 +27,7 @@ namespace Yucca.Controllers
 
         public ActionResult Index()
         {
-            ViewBag.Categories = _dbContext.Categories.ToList();
-            ViewBag.Products = _dbContext.Products.ToList();
+            ViewBag.Categories = _dbContext.Categories.Include(a => a.Products).ToList();
             ViewBag.Pictures = _dbContext.ProductPictures.ToList();
             return View();
         }
@@ -35,6 +36,7 @@ namespace Yucca.Controllers
         {
             return PartialView("_MenuPartial");
         }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";
