@@ -18,7 +18,7 @@ namespace Yucca
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-           // YuccaDbContext.Init();
+            YuccaDbContext.Init();
         }
     }
 }
