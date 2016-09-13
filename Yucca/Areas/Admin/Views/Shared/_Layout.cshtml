@@ -18,30 +18,31 @@
                     <span class="icon-bar"></span>
                 </button>
                 <div id="AdminBrand">
-                    <br />
-                    @Html.ActionLink("صفحه اصلی پنل", "Index", "Home", new { area = "Admin" }, new { @class = "LinksClass" })
-
+                    <div class="row">
+                        <img src="~/Content/Images/tom-cruise-images-1.jpg" id="Brandimg"/>
+                        Tom Cruise
+                    </div>
                 </div>
-
-
             </div>
             <div class="navbar-collapse collapse" id="NavbarLeft">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("صفحه اصلی پنل", "Index", "Home", new { area = "Admin" }, new { @class = "BrandStyle0" })</li>
                     <li><a href="~/"><span class="glyphicon glyphicon-home"></span> صفحه وب سایت </a></li>
                     <li><a href="#"><span class="glyphicon glyphicon-off"></span> خروج </a></li>
                 </ul>
             </div>
         </div>
     </header>
+    <br />
     <section id="AdminSection">
         <div class="row">
-            <div class="col-md-12">
-                <div class="container body-content">
-                    @RenderBody()
-                </div>
-            </div>
+            <br />
+            <br />
+            @RenderBody()
         </div>
     </section>
+
+
     <aside id="AdminAside">
         <div class="container">
             <br />
@@ -100,11 +101,20 @@
                         </div>
                     </div>
                 </div>
+
+                <div class="panel panel-default x">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                تنظیمات
+                            </a>
+                        </h4>
+                    </div>
+                </div>
             </div>
         </div>
     </aside>
-
-
+    
     <footer>
         <p>&copy; @DateTime.Now.Year - Yucca</p>
     </footer>

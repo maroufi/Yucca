@@ -167,6 +167,8 @@ input[type="search"]{
     background-color:#434f4b;
     width:300px;
     height:700px;
+    position:fixed;
+    padding:0;
 
 }
 #AdminBrand{
@@ -174,6 +176,12 @@ input[type="search"]{
     width:300px;
     height:50px;
     text-align:center;
+}
+#Brandimg{
+    height:45px;
+    width:45px;
+    border:1px solid #b4b4b4;
+    border-radius:50px;
 }
 #headingOne{
     background:#76caaf;
@@ -186,6 +194,11 @@ input[type="search"]{
     border-color:#223223;
 }
 #headingThree{
+    background:#76caaf;
+    color:white;
+    border-color:#223223;
+}
+#headingFour{
     background:#76caaf;
     color:white;
     border-color:#223223;
@@ -212,8 +225,11 @@ input[type="search"]{
     width:270px;
 }
 #AdminSection{
-    width:900px;
     float:left;
+    width:700px;
+    margin-left:300px;
+    margin-bottom:20px;
+
 }
 .AdminNavli{
     float:left;
@@ -251,15 +267,29 @@ input[type="search"]{
     color:black;
     text-decoration:none;
 }
-.BrandStyle:hover,
-.BrandStyle:focus{
+
+.ShoppingLink:hover,
+.ShoppingLink:focus{
+    color:#ddd;
+    text-decoration:none;
+}
+.ShoppingLink:focus{
+    outline: none;
+}
+.ShoppingLink{
+    color:#fff;
+    text-decoration:none;
+}
+
+.BrandStyle0:hover,
+.BrandStyle0:focus{
         color:#434f4b;
     text-decoration:none;
 }
-.BrandStyle:focus{
+.BrandStyle0:focus{
 outline: none;
 }
-.BrandStyle{
+.BrandStyle0{
     color:#b4b4b4;
     text-decoration:none;
     text-align:center;
@@ -343,4 +373,8 @@ outline: none;
 }
 .g1{
     color:#b4b4b4;
+}
+
+#CategoriesList{
+    border:1px solid #b4b4b4;
 }

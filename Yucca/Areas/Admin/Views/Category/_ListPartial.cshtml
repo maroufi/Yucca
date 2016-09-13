@@ -17,10 +17,28 @@
                         @Html.DisplayFor(modelItem => item.Name)
                     </td>
                     <td class="text-left">
-                        @Html.ActionLink("ویرایش", "Edit", "Category", new { id = item.Id }, new { @class = "btn btn-md btn-default" })
-                        @Html.ActionLink("حذف", "Delete", "Category", new { id = item.Id }, new { @class = "btn btn-md btn-default" })
-                        @Html.ActionLink("افزودن خصوصیات", "Add", "Attribute", new { categoryId = item.Id }, new { @class = "btn btn-md btn-default" })
-                        @Html.ActionLink("خصوصیات", "Index", "Attribute", new { categoryId = item.Id }, new { @class = "btn btn-md btn-default" })
+                       
+                        @*<a class="btn btn-warning" href="@Url.Action("Edit","Category", new {id=item.Id })">
+                            <span class="glyphicon glyphicon-edit"></span>
+                            ویرایش
+                        </a>
+                        <a class="btn btn-danger" href="@Url.Action("Delete", "Category", new {id=item.Id })">
+                            <span class="glyphicon glyphicon-remove-sign"></span>
+                            حذف
+                        </a>
+                        <a class="btn btn-success" href="@Url.Action("Add", "Attribute", new {id=item.Id })">
+                            <span class="glyphicon glyphicon-plus-sign"></span>
+                            افزودن خصوصیت
+                        </a>
+                        <a class="btn btn-info" href="@Url.Action("Index", "Attribute", new {id=item.Id })">
+                            <span class="glyphicon glyphicon-info-sign"></span>
+                            خصوصیت های دسته
+                        </a>*@
+
+                        @Html.ActionLink("ویرایش", "Edit", "Category", new { id = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("حذف", "Delete", "Category", new { id = item.Id }, new { @class = "btn btn-danger" })
+                        @Html.ActionLink("افزودن خصوصیات", "Add", "Attribute", new { categoryId = item.Id }, new { @class = "btn btn-success" })
+                        @Html.ActionLink("خصوصیات", "Index", "Attribute", new { categoryId = item.Id }, new { @class = "btn btn-info" })
                     </td>
                 </tr>
             }

@@ -1,29 +1,32 @@
 ﻿@{
     ViewBag.Title = "گروه های محصولات";
 }
-<div class="row">
-    <div class="col-lg-12">
+
+
+<div class="row well">
         @using (Ajax.BeginForm("List", "Category", null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "categoriesList" }, new { @class = "form-horizontal", id = "categoryFilterForm" }))
         {
-            <div class="row">
-                <div class="well-sm col-md-8">
-                    <div class="col-md-5">
-                        <input name="term" value="" placeholder="جستجو با نام" type="text" class="form-control" />
-                    </div>
-                    <div class="col-md-3">
-                        <input type="submit" value="جست و جو" class="btn btn-md btn-default" />
-                    </div>
-                    <div class="col-md-3">
-                        @Html.ActionLink("افزودن", "Create", "Category", new { @class = "btn btn-md btn-default" })
-                    </div>
+
+                <div class="col-md-4">
+                    <input name="term" value="" placeholder="جستجو با نام" type="text" class="form-control" />
                 </div>
-            </div>
+                <div class="col-md-4">
+                    <input type="submit" value="جست و جو" class="btn btn-md btn-default" />
+                </div>
+                <div class="col-md-4">
+                    @*@Html.ActionLink("افزودن دسته محصولات", "Create", "Category", new { @class = "btn btn-success" })*@
+                    <a href="~/Category/Create" class="btn btn-success btn-block"> افزودن دسته محصولات <span class="glyphicon glyphicon-plus"></span></a>
+                </div>
 
         }
-    </div>
+
 </div>
+
+
 <div class="row">
-    <div class="table-responsive col-lg-12" id="categoriesList">
-        @{ Html.RenderAction("List", "Category");}
+    <div class="col-md-12">
+        <div class="table-responsive" id="CategoriesList">
+            @{ Html.RenderAction("List", "Category");}
+        </div>
     </div>
 </div>
