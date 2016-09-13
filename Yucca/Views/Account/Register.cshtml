@@ -4,90 +4,97 @@
 }
 
 <div class="row">
-    <div id="RegisterHeader">
-        <br />
-        <h2><span class="glyphicon glyphicon-user"></span>  <span class="glyphicon glyphicon-plus"></span>  به ما بپیوندید.</h2>
-    </div>
-    <div id="RegisterBody">
-        <br />
-        <br />
-        <br />
-        <br />
-        <div class="col-md-6" id="BorderDiv">
-
-            @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-            {
-                @Html.AntiForgeryToken()
-                
-                <div class="form-group">
-                    @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
-                    
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
-                        
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
-                        
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.BirthDayDate, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.BirthDayDate, new { @class = "form-control" })
-                        
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                        
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                        
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-                    <div class="col-md-10">
-                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-                        
-                    </div>
-                </div>
-                @Html.ValidationSummary("", new { @class = "text-danger" })
-                <div class="form-group">
-                    <div class="col-md-offset-2 col-md-10">
-                        <input type="submit" class="btn btn-success btn-block" value="ثبت" />
-                    </div>
-                </div>
-            }
-
-        </div>
-
-        <div class="col-md-6">
+    <div class="container">
+        <div id="RegisterHeader">
             <br />
-            <br />
-            <br />
-            <br />
-            <h4><span class="glyphicon glyphicon-shopping-cart"></span>   سریع تر و ساده تر خرید کنید.</h4>
-            <h4><span class="glyphicon glyphicon-list-alt"></span>   به سادگی سوابق خرید و فعالیت های خود را مدیریت کنید.</h4>
-            <h4><span class="glyphicon glyphicon-heart"></span>   لیست علاقمندی های خود را بسازید و تغییرات آنها را دنبال کنید.</h4>
-            <h4><span class="glyphicon glyphicon-edit"></span>   نقد، بررسی و نظرات خود را با دیگران به اشتراک گذارید.</h4>
-            <h4><span class="glyphicon glyphicon-ok-sign"></span>   در جریان فروش های ویژه و قیمت روز محصولات قرار بگیرید.</h4>
+            <h2><span class="glyphicon glyphicon-user"></span>  <span class="glyphicon glyphicon-plus"></span>  به ما بپیوندید.</h2>
         </div>
     </div>
-
 
 </div>
 
+<div class="row">
+    <div class="container">
+        <div id="RegisterBody">
+            <br />
+            <br />
+            <br />
+            <br />
+            <div class="col-md-6" id="BorderDiv">
+
+                @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.BirthDayDate, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.BirthDayDate, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
+
+                        </div>
+                    </div>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" class="btn btn-success btn-block" value="ثبت" />
+                        </div>
+                    </div>
+                }
+
+            </div>
+
+            <div class="col-md-6">
+                <br />
+                <br />
+                <br />
+                <br />
+                <h4><span class="glyphicon glyphicon-shopping-cart"></span>   سریع تر و ساده تر خرید کنید.</h4>
+                <h4><span class="glyphicon glyphicon-list-alt"></span>   به سادگی سوابق خرید و فعالیت های خود را مدیریت کنید.</h4>
+                <h4><span class="glyphicon glyphicon-heart"></span>   لیست علاقمندی های خود را بسازید و تغییرات آنها را دنبال کنید.</h4>
+                <h4><span class="glyphicon glyphicon-edit"></span>   نقد، بررسی و نظرات خود را با دیگران به اشتراک گذارید.</h4>
+                <h4><span class="glyphicon glyphicon-ok-sign"></span>   در جریان فروش های ویژه و قیمت روز محصولات قرار بگیرید.</h4>
+            </div>
+        </div>
+
+    </div>
+</div>
+<br />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
