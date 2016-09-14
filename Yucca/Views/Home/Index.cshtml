@@ -9,8 +9,8 @@
 
 <div class="container body-content">
     <div class="container">
-        <br/>
-        <br/>
+        <br />
+        <br />
         <div class="row">
             <div class="col-md-8">
                 <div class="carousel slide" id="carousel-290963">
@@ -30,22 +30,22 @@
                     </ol>
                     <div class="carousel-inner">
                         <div class="item active">
-                            <img alt="Carousel Bootstrap First" src="~/Content/new/apartment-exterior-balcony-garden-design-with-potted-flower-and-plant-also-black-iron-railing-also-brown-tile-flooring-also-modern-balcony-garden.jpg"/>
+                            <img alt="Carousel Bootstrap First" src="~/Content/new/apartment-exterior-balcony-garden-design-with-potted-flower-and-plant-also-black-iron-railing-also-brown-tile-flooring-also-modern-balcony-garden.jpg" />
                         </div>
                         <div class="item">
-                            <img alt="Carousel Bootstrap Second" src="~/Content/new/apartment-flower-12.jpg"/>
+                            <img alt="Carousel Bootstrap Second" src="~/Content/new/apartment-flower-12.jpg" />
                         </div>
                         <div class="item">
-                            <img alt="Carousel Bootstrap Third" src="~/Content/new/Contemporary-Small-Balcony-Garden-Design-with-vase-plants-and-flowers.jpg"/>
+                            <img alt="Carousel Bootstrap Third" src="~/Content/new/Contemporary-Small-Balcony-Garden-Design-with-vase-plants-and-flowers.jpg" />
                         </div>
                         <div class="item">
-                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/gallery-1452185788-group-of-potted-cactus-1024x673.jpg"/>
+                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/gallery-1452185788-group-of-potted-cactus-1024x673.jpg" />
                         </div>
                         <div class="item">
-                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/mai_vang_bonsai_2__HHJR.jpg"/>
+                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/mai_vang_bonsai_2__HHJR.jpg" />
                         </div>
                         <div class="item">
-                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/The-Most-Beautiful-And-Unique-Bonsai-Trees-In-The-World-homesthetics-27.jpg"/>
+                            <img alt="Carousel Bootstrap Forth" src="~/Content/new/The-Most-Beautiful-And-Unique-Bonsai-Trees-In-The-World-homesthetics-27.jpg" />
                         </div>
                     </div>
                     <a class="left carousel-control" href="#carousel-290963" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
@@ -54,12 +54,12 @@
             </div>
             <div class="col-md-4">
                 <div class="thumbnail">
-                    <img src="~/Content/Images/thumbnail/Yucca.jpg" height="500" width="250"/>
+                    <img src="~/Content/Images/thumbnail/Yucca.jpg" height="500" width="250" />
                     <div class="caption">
                         <p>یوکا یکی از مشهورترین گیاهان آپارتمانی است، ساقه بلندی دارد که برگهای کشیده و سبزرنگش بر این ساقه استوارند. در نوعی یوکا که به یوکای خنجری معروف است برگها کشیده، بلند و نوک تیز و شبیه خنجرند. یوکاهایی که در خارج از آپارتمان نگهداری می شوند در بعضی از سالها گلهایی سفید و زنگوله ای می دهند.</p>
 
                         <p class="text-left">
-                            
+
                             <a class="btn btn-success" href="~/Home/About">اطلاعات بیشتر</a>
                         </p>
 
@@ -68,51 +68,48 @@
             </div>
         </div>
 
-        <br/>
-        <br/>
-        <br/>
+        <br />
+        <br />
+        <br />
         @foreach (var cat in categories)
         {
             if (cat.ParentId != null)
             {
                 <div class="row">
-                    <div class="panel-group" id="accordion0">
+                    <div class="panel-group">
                         <div class="panel panel-success">
-                            <div class="panel-heading" id="Paneldefault1">
-                                <a href="#myacc0" class="accordion-toggle" data-toggle="collapse" data-parent="#accordion0">@cat.Name</a>
+                            <div class="panel-heading">
+                                <a href="#">@cat.Name</a>
                             </div>
-                            <div class="panel-collapse collapse in" id="myacc0">
-                                <div class="panel-body">
-                                    @foreach (var prod in cat.Products)
+
+                            <div class="panel-body">
+                                @foreach (var prod in cat.Products)
+                                {
+                                    if (prod.CategoryId == cat.Id)
                                     {
-                                        if (prod.CategoryId == cat.Id)
-                                        {
-                                            <div class="col-md-3">
-                                                <div class="thumbnail">
-                                                    @foreach (var pic in pictures)
+                                        <div class="col-md-3">
+                                            <div class="thumbnail">
+                                                @foreach (var pic in pictures)
+                                                {
+                                                    if (pic.ProductId == prod.Id)
                                                     {
-                                                        if (pic.ProductId == prod.Id)
-                                                        {
-                                                            <img src="@pic.ImagePath?w=220&h=180&mode=crop" class="lazyload" alt="@pic.ImageAltText"/>
-                                                        }
+                                                        <img src="@pic.ImagePath?w=220&h=180&mode=crop" class="lazyload" alt="@pic.ImageAltText" />
                                                     }
-                                                    <div class="caption">
-                                                        <p>نام : @prod.Name</p>
-                                                        <p>قیمت : @prod.Price تومان</p>
+                                                }
+                                                <div class="caption">
+                                                    <p>نام : @prod.Name</p>
+                                                    <p>قیمت : @prod.Price تومان</p>
 
-                                                        <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
-                                                            <button type="button" class="btn btn-success">@Html.ActionLink("افزودن به سبد خرید", "ShowShoppingCart", "ShoppingCart", new { @class = "LinksClass" })</button>
-                                                            <button type="button" class="btn btn-success">@Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new {productId = prod.Id},new { @class = "LinksClass" }) </button>
-                                                        </div>
-
+                                                    <div class="btn-group btn-group-xs btn-block" role="group" aria-label="...">
+                                                        <button type="button" class="btn btn-success">@Html.ActionLink("افزودن به سبد خرید", "ShowShoppingCart", "ShoppingCart", new { @class = "LinksClass" })</button>
+                                                        <button type="button" class="btn btn-success">@Html.ActionLink("اطلاعات بیشتر", "Index", "Product", new { productId = prod.Id }, new { @class = "LinksClass" }) </button>
                                                     </div>
+
                                                 </div>
                                             </div>
-                                        }
+                                        </div>
                                     }
-                                    @Html.ActionLink("مشاهده محصولات این دسته", "Index", "Category", new { @class="LinksClass" })
-                             
-                                </div>
+                                }
                             </div>
                         </div>
                     </div>
@@ -120,5 +117,5 @@
             }
         }
     </div>
-    <hr/>
+    <hr />
 </div>

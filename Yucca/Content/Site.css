@@ -375,6 +375,34 @@ outline: none;
     color:#b4b4b4;
 }
 
-#CategoriesList{
+.ListS{
     border:1px solid #b4b4b4;
+}
+#Product-Panel{
+    float:left;
+}
+#Aboutimg{
+    height:450px;
+    width:300px;
+}
+.PanelHeading{
+    text-align:center;
+}
+.AdminPanel {
+    width: 500px;
+    margin-right: 250px;
+    margin-top: 50px;
+}
+#EditPanel{
+    color:#fff;
+    background-color:#f0ad4e;
+    border-color:#eea236;
+}
+#CreatPanel{
+    color: #fff;
+    background-color: #5cb85c;
+    border-color: #4cae4c;
+}
+.AdminRow{
+    margin-top: 50px;
 }

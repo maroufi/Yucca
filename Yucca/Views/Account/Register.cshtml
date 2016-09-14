@@ -80,15 +80,43 @@
             </div>
 
             <div class="col-md-6">
+
+                <section id="loginForm">
+                    @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                        @Html.AntiForgeryToken()
+
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                            <div class="col-md-10">
+                                @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
+                                @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="ورود" class="btn btn-primary btn-block" />
+                            </div>
+                        </div>
+                      <br />
+                    }
+                </section>
+                <hr />
                 <br />
-                <br />
-                <br />
-                <br />
-                <h4><span class="glyphicon glyphicon-shopping-cart"></span>   سریع تر و ساده تر خرید کنید.</h4>
-                <h4><span class="glyphicon glyphicon-list-alt"></span>   به سادگی سوابق خرید و فعالیت های خود را مدیریت کنید.</h4>
-                <h4><span class="glyphicon glyphicon-heart"></span>   لیست علاقمندی های خود را بسازید و تغییرات آنها را دنبال کنید.</h4>
-                <h4><span class="glyphicon glyphicon-edit"></span>   نقد، بررسی و نظرات خود را با دیگران به اشتراک گذارید.</h4>
-                <h4><span class="glyphicon glyphicon-ok-sign"></span>   در جریان فروش های ویژه و قیمت روز محصولات قرار بگیرید.</h4>
+                <h5><span class="glyphicon glyphicon-shopping-cart"></span>   سریع تر و ساده تر خرید کنید.</h5>
+                <h5><span class="glyphicon glyphicon-list-alt"></span>   به سادگی سوابق خرید و فعالیت های خود را مدیریت کنید.</h5>
+                <h5><span class="glyphicon glyphicon-heart"></span>   لیست علاقمندی های خود را بسازید و تغییرات آنها را دنبال کنید.</h5>
+                <h5><span class="glyphicon glyphicon-edit"></span>   نقد، بررسی و نظرات خود را با دیگران به اشتراک گذارید.</h5>
+                <h5><span class="glyphicon glyphicon-ok-sign"></span>   در جریان فروش های ویژه و قیمت روز محصولات قرار بگیرید.</h5>
             </div>
         </div>
 

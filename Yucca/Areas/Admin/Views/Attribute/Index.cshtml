@@ -5,15 +5,20 @@
 
 }
 @Html.AntiForgeryToken()
+<br />
+<br />
 <div class="row">
-    <div class="well-sm col-md-8">
-        @Html.ActionLink("افزودن خصوسیات", "Add", "Attribute", new { categoryId = ViewBag.CategoryId }, new { @class = "btn  btn-success" })
-        <a class="btn btn-info" href="@Url.Action("Index","Category")"> لیست گروه ها</a>
+    <div class="well">
+        @Html.ActionLink("افزودن خصوصیات", "Add", "Attribute", new { categoryId = ViewBag.CategoryId }, new { @class = "btn  btn-success" })
+        <a href="@Url.Action("Index","Category",null)" class="btn btn-primary">
+            بازگشت
+            <span class="glyphicon glyphicon-remove"></span>
+        </a>
     </div>
 </div>
 <div class="row">
     <div class="table-responsive col-lg-12">
-        <table class="table table-striped table-hover">
+        <table class="table table-striped table-hover ListS">
             <tr>
                 <th>
                     نام خصوصیت
@@ -28,8 +33,8 @@
                     </td>
                     <td class="text-left">
 
-                        @Html.ActionLink("ویرایش", "Edit", "Attribute", new { id = item.Id }, new { @class = "btn btn-sm btn-success" })
-                        @Html.ActionLink("حذف", "Delete", "Attribute", new { id = item.Id }, new { @class = "btn btn-danger btn-sm" })
+                        @Html.ActionLink("ویرایش", "Edit", "Attribute", new { id = item.Id }, new { @class = "btn btn-warning" })
+                        @Html.ActionLink("حذف", "Delete", "Attribute", new { id = item.Id }, new { @class = "btn btn-danger" })
                     </td>
                 </tr>
             }

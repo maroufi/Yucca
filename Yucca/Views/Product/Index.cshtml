@@ -2,118 +2,113 @@
 @{
     var productDetails = ViewBag.productDetails as ProductDetailsViewModel;
 }
-<section id="product-details">
+
+<br />
+<br />
+<div class="container">
     <div class="row">
         <div class="col-md-12">
-            <div class="row">
-                <div class="col-md-9">
-                    <div class="panel panel-default">
-                        <header class="panel-heading">
-                            <span class="bdred">
+            <div class="panel panel-default">
+                <header class="panel-heading">
+                    
 
-                                <strong class="panel-title marginRight10">@productDetails.Name </strong>
-                            </span>
-                        </header>
-                        <div class="panel-body">
+                        <strong class="panel-title marginRight10">@productDetails.Name </strong>
 
-                            <div class="row">
-                                <div class="col-md-3">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <span>موجودیت:</span>
-                                            @if (productDetails.Stock!=0)
-                                            {
-                                                <strong>
-                                                    موجود
-                                                </strong>
-                                            }
-                                            else
-                                            {
-                                                <strong class="text-danger">
-                                                    تمام شده
-                                                </strong>
-                                            }
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span>کد محصول:</span>
-                                            <strong>@productDetails.Id</strong>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span>تعداد فروش:</span>
-                                            <strong>@productDetails.SellCount</strong>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span>وضعیت ارسال:</span>
-                                            @if (productDetails.IsFreeShipping)
-                                            {
-                                                <strong class="text-danger">
-                                                    رایگان
-                                                </strong>
-                                            }
-                                            else
-                                            {
-                                                <strong>
-                                                    هزینه دار
-                                                </strong>
-                                            }
-                                        </div>
-                                        <div class="col-md-12">
-                                            <span>قیمت:</span>
-                                            <strong>
-                                                @productDetails.Price تومان
-                                            </strong>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-md-5">
-                                    <div class="col-md-12">
-                                        <span>توضیحات:</span>
-                                        <p class="text-primary">@productDetails.Description</p>
-                                    </div>
-                                </div>
+                        <div class="btns btn-group " id="Product-Panel">
+                            <button class="btn btn-sm btn-warning" id="toCompare-@productDetails.Id"
+                                    data-toggle="tooltip"
+                                    title="+ لیست مقایسه">
+                                <i class="glyphicon glyphicon-refresh"></i>
+                            </button>
+                            <button class="btn btn-sm btn-danger" id="toWish-@productDetails.Id"
+                                    data-toggle="tooltip"
+                                    title="+ لیست مورد علاقه">
+                                <i class="glyphicon glyphicon-heart"></i>
+                            </button>
+                            <button class="btn btn-sm btn-success" id="toCart-@productDetails.Id"
+                                    data-toggle="tooltip"
+                                    title="+ سبد خرید">
+                                <i class="glyphicon glyphicon-shopping-cart"></i>
+                            </button>
+                        </div>
+                    
+                </header>
+                <div class="panel-body">
 
-                                <div class="col-md-3 pull-right ">
-                                    <a class="thumbnail teaser  lazyload cloud-zoom" data-expand="-20" href="@productDetails.PrincipleImage" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'300', zoomHeight:'400', adjustY:0, adjustX:30">
-                                        <img src="@productDetails.PrincipleImage?w=220&h=200&mode=crop" title="@productDetails.Name" class="lazyload" alt="@productDetails.Name">
-                                    </a>
-                                </div>
-                            </div>
-
+                    <div class="row">
+                        <div class="col-md-3">
                             <div class="row">
                                 <div class="col-md-12">
-                                    @*@{Html.RenderAction(MVC.Product.ActionNames.GetProperties, MVC.Product.Name, new { id = Model.Id });}*@
+                                    <span>موجودیت:</span>
+                                    @if (productDetails.Stock != 0)
+                                    {
+                                        <strong>
+                                            موجود
+                                        </strong>
+                                    }
+                                    else
+                                    {
+                                        <strong class="text-danger">
+                                            تمام شده
+                                        </strong>
+                                    }
+                                </div>
+                                <div class="col-md-12">
+                                    <span>کد محصول:</span>
+                                    <strong>@productDetails.Id</strong>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>تعداد فروش:</span>
+                                    <strong>@productDetails.SellCount</strong>
+                                </div>
+                                <div class="col-md-12">
+                                    <span>وضعیت ارسال:</span>
+                                    @if (productDetails.IsFreeShipping)
+                                    {
+                                        <strong class="text-danger">
+                                            رایگان
+                                        </strong>
+                                    }
+                                    else
+                                    {
+                                        <strong>
+                                            هزینه دار
+                                        </strong>
+                                    }
+                                </div>
+                                <div class="col-md-12">
+                                    <span>قیمت:</span>
+                                    <strong>
+                                        @productDetails.Price تومان
+                                    </strong>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="panel-footer">
-                            <div class="row marginRight10">
-                                <div class="btns btn-group ">
-                                    <button class="btn btn-xs btn-primary" id="toCompare-@productDetails.Id"
-                                            data-toggle="tooltip"
-                                            title="+ لیست مقایسه">
-                                        <i class="glyphicon glyphicon-refresh"></i>
-                                    </button>
-                                    <button class="btn btn-xs btn-primary" id="toWish-@productDetails.Id"
-                                            data-toggle="tooltip"
-                                            title="+ لیست مورد علاقه">
-                                        <i class="glyphicon glyphicon-heart"></i>
-                                    </button>
-                                    <button class="btn btn-xs btn-success" id="toCart-@productDetails.Id"
-                                            data-toggle="tooltip"
-                                            title="+ سبد خرید">
-                                        <i class="glyphicon glyphicon-shopping-cart"></i>
-
-                                    </button>
-
-                                </div>
+                        <div class="col-md-5">
+                            <div class="col-md-12">
+                                <span>توضیحات:</span>
+                                <p class="text-primary">@productDetails.Description</p>
                             </div>
+                        </div>
 
+                        <div class="col-md-3 pull-right ">
+                            <a class="thumbnail teaser  lazyload cloud-zoom" data-expand="-20" href="@productDetails.PrincipleImage" rel="transparentImage: 'data:image/gif;base64,R0lGODlhAQABAID/AMDAwAAAACH5BAEAAAAALAAAAAABAAEAAAICRAEAOw==', useWrapper: false, showTitle: true, zoomWidth:'300', zoomHeight:'400', adjustY:0, adjustX:30">
+                                <img src="@productDetails.PrincipleImage?w=220&h=200&mode=crop" title="@productDetails.Name" class="lazyload" alt="@productDetails.Name">
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            @*@{Html.RenderAction(MVC.Product.ActionNames.GetProperties, MVC.Product.Name, new { id = Model.Id });}*@
                         </div>
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-</section>
+
+</div>
+
+<br />
+<br />

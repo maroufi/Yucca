@@ -414,6 +414,7 @@
     <Content Include="Scripts\tooltip.js" />
     <Content Include="Scripts\transition.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Content\Images\Yucca_filamentosa.jpg" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
