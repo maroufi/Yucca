@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Globalization;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -12,7 +11,6 @@ using Yucca.Areas.Admin.ViewModels.User;
 using Yucca.Data.DbContext;
 using Yucca.Filter;
 using Yucca.Models.IdentityModels;
-using Yucca.Models.Orders;
 using Yucca.Utility.Security;
 
 namespace Yucca.Areas.Admin.Controllers

@@ -29,7 +29,96 @@ namespace Yucca.Migrations
             InitializeCategoryIdentityForEf(context);
             InitializeProductIdentityForEf(context);
             InitializePictureIdentityForEf(context);
+            InitializeSettingIdentityForEf(context);
             base.Seed(context);
+        }
+
+        private void InitializeSettingIdentityForEf(YuccaDbContext context)
+        {
+            context.Settings.AddRange(new List<YuccaSetting>
+            {
+                new YuccaSetting
+                {
+                    Id = 1,
+                    Name = "StoreName",
+                    Value = "Yucca",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 2,
+                    Name = "StoreKeyWords",
+                    Value = "Yucca یوکا",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 3,
+                    Name = "StoreDescription",
+                    Value = "فروشگاه اینترنتی گل وگیاه",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 4,
+                    Name = "Tel1",
+                    Value = "09136861439",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 5,
+                    Name = "Tel2",
+                    Value = "09136861439",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 6,
+                    Name = "Address",
+                    Value = "تهران خیابان اول ساختمان یوکا",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 7,
+                    Name = "PhoneNumber1",
+                    Value = "09136861439",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                },
+                new YuccaSetting
+                {
+                    Id = 8,
+                    Name = "PhoneNumber2",
+                    Value = "09136861439",
+                    ModifiedBy = "Salman",
+                    ModifiedOn = DateTime.Now,
+                    CreatedBy = "Salman",
+                    CreatedOn = DateTime.Now
+                }
+            }
+                );
         }
 
         private void InitializePictureIdentityForEf(YuccaDbContext context)
@@ -558,7 +647,7 @@ namespace Yucca.Migrations
             context.Categories.AddRange(categoryList);
             context.SaveAllChanges();
         }
-        
+
         private static void InitializeUserAndRoleIdentityForEf(YuccaDbContext context)
         {
             const string firstName = "Salman";
@@ -600,7 +689,7 @@ namespace Yucca.Migrations
                     UserName = email,
                     Email = email,
                     AccessFailedCount = 0,
-                    PasswordHash = Encryption.EncryptingPassword(password),
+                    PasswordHash = Encryption.HashPassword(password),
                     EmailConfirmed = true,
                     FirstName = firstName,
                     LastName = lastName,
@@ -620,7 +709,5 @@ namespace Yucca.Migrations
             }
             context.SaveChanges();
         }
-
-
     }
 }

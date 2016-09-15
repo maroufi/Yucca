@@ -40,14 +40,14 @@ namespace Yucca.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            ViewBag.Message = "یوکا یکی از مشهورترین گیاهان آپارتمانی است، ساقه بلندی دارد که برگهای کشیده و سبزرنگش بر این ساقه استوارند. در نوعی یوکا که به یوکای خنجری معروف است برگها کشیده، بلند و نوک تیز و شبیه خنجرند. یوکاهایی که در خارج از آپارتمان نگهداری می شوند در بعضی از سالها گلهایی سفید و زنگوله ای می دهند.";
 
             return View();
         }
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            ViewBag.Message = "";
 
             return View();
         }
