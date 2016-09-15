@@ -1,0 +1,24 @@
+﻿@model List<Yucca.Models.Products.Category>
+@{
+    ViewBag.Title = "SelectCategory";
+}
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<li class="dropdown">
+    <a href="#" data-toggle="dropdown">انتخاب گروه کالای مربوطه<span class="caret"></span></a>
+    <ul class="dropdown-menu">
+        @foreach (var category in Model)
+        {
+            <li><a href="@Url.Action("Index", "Product", new {categoryId = category.Id}, null)">@category.Name</a></li>
+        }
+    </ul>
+</li>
+
+
+
+
+

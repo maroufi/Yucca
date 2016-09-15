@@ -1,18 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
-using System.Linq.Dynamic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
-using System.Web.UI;
 using EntityFramework.Extensions;
 using Yucca.Areas.Admin.ViewModels.Product;
-using Yucca.Areas.Admin.ViewModels.ProductAttribute;
-using Yucca.Areas.Admin.ViewModels.ProductPicture;
 using Yucca.Data.DbContext;
-using Yucca.Filter;
-using Yucca.Models.Orders;
 using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
@@ -23,6 +18,7 @@ namespace Yucca.Areas.Admin.Controllers
     [Route("{action}")]
     public class ProductController : Controller
     {
+        #region Ctor and Dispose 
         private readonly YuccaDbContext _dbContext;
 
         public ProductController()
@@ -35,13 +31,39 @@ namespace Yucca.Areas.Admin.Controllers
             _dbContext.Dispose();
             base.Dispose(disposing);
         }
+        #endregion
 
         #region Index
+        public virtual ActionResult SelectCategory(long? categoryId)
+        {
+            return View(_dbContext.Categories.Where(a => a.ParentId != null && a.IsDeleted == false).ToList());
+        }
         [HttpGet]
         [Route("Index/{categoryId}")]
         public virtual ActionResult Index(long? categoryId)
         {
-            return View();
+            if(categoryId==null)
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var category = _dbContext.Categories.FirstOrDefault(a => a.Id == categoryId.Value);
+            if (category == null) return HttpNotFound();
+            var products = _dbContext.Products.Where(a => a.CategoryId == categoryId.Value&&a.Deleted==false).Include(a=>a.Category).ToList();
+            List<ProductViewModel> productViewModels = products.Select(product => new ProductViewModel
+            {
+                Id = product.Id,
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                Stock = product.Stock,
+                Deleted = product.Deleted,
+                NotificationStockMinimum = product.NotificationStockMinimum,
+                MetaDescription = product.MetaDescription,
+                ViewCount = product.ViewCount,
+                SellCount = product.SellCount,
+                MetaKeyWords = product.MetaKeyWords,
+                IsFreeShipping = product.IsFreeShipping,
+                CategoryName = product.Category.Name
+            }).ToList();
+            return View(productViewModels);
         }
         #endregion
 
@@ -101,15 +123,12 @@ namespace Yucca.Areas.Admin.Controllers
 
         #region Delete
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        [AjaxOnly]
-        [OutputCache(Location = OutputCacheLocation.None, NoStore = true, Duration = 0)]
         public virtual async Task<ActionResult> Delete(long? id)
         {
             if (id == null) return Content(null);
             _dbContext.Products.Where(a=>a.Id==id).Delete();
             await _dbContext.SaveChangesAsync();
-            return Content("ok");
+            return RedirectToAction("Index");
         }
 
 
@@ -121,26 +140,26 @@ namespace Yucca.Areas.Admin.Controllers
         public virtual ActionResult Edit(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var product = _dbContext.Products.Where(a => a.Id.Equals(id)).Select(a => new EditProductViewModel
-            {
-                CategoryId = a.CategoryId,
-                Deleted = a.Deleted,
-                Description = a.Description,
-                Id = a.Id,
-                IsFreeShipping = a.IsFreeShipping,
-                Name = a.Name,
-                MetaKeyWords = a.MetaKeyWords,
-                NotificationStockMinimum = a.NotificationStockMinimum,
-                Price = a.Price,
-                //PrincipleImagePath = a.PrincipleImagePath,
-                Stock = a.Stock,
-                MetaDescription = a.MetaDescription,
-                OldCategoryId = a.CategoryId
-
-            }).FirstOrDefault();
+            var product = _dbContext.Products.FirstOrDefault(a => a.Id==id.Value);
             if (product == null) return HttpNotFound();
+            var productViewModel = new EditProductViewModel
+            {
+                CategoryId = product.CategoryId,
+                Deleted = product.Deleted,
+                Description = product.Description,
+                Id = product.Id,
+                IsFreeShipping = product.IsFreeShipping,
+                Name = product.Name,
+                MetaKeyWords = product.MetaKeyWords,
+                NotificationStockMinimum = product.NotificationStockMinimum,
+                Price = product.Price,
+                Stock = product.Stock,
+                MetaDescription = product.MetaDescription,
+                OldCategoryId = product.CategoryId
+
+            };
             PopulateCategoriesDropDownList(product.CategoryId);
-            return View(product);
+            return View(productViewModel);
         }
 
         [HttpPost]
@@ -186,6 +205,7 @@ namespace Yucca.Areas.Admin.Controllers
             return View(viewModel);
         }
         #endregion
+
         void PopulateCategoriesDropDownList(long? selectedId)
         {
             var categories = _dbContext.Categories.AsNoTracking().Where(a => a.ParentId != null).ToList();

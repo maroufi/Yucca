@@ -6,14 +6,14 @@
     ViewBag.Title = "ورود";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <div class="row">
     <div class="col-md-8">
         <section id="loginForm">
             @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
             {
                 @Html.AntiForgeryToken()
-                <h4>Use a local account to log in.</h4>
+                <h4>از حساب کاربری خود در این سایت برای ورود استفاده کنید</h4>
                 <hr />
                 @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                 <div class="form-group">
@@ -44,12 +44,11 @@
                     </div>
                 </div>
                 <p>
-                    @Html.ActionLink("Register as a new user", "Register")
+                    @Html.ActionLink("ثبت نام به عنوان کاربر جدید", "Register")
                 </p>
-                @* Enable this once you have account confirmation enabled for password reset functionality
                     <p>
-                        @Html.ActionLink("Forgot your password?", "ForgotPassword")
-                    </p>*@
+                        @Html.ActionLink("بازیابی کلمه عبور", "ForgotPassword")
+                    </p>
             }
         </section>
     </div>

@@ -76,21 +76,6 @@
                         @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
                     </div>
                 </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Ratio, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6">
-                        @Html.EditorFor(model => model.Ratio, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.Ratio, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.DiscountPercent, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6">
-                        @Html.EditorFor(model => model.DiscountPercent, new { htmlAttributes = new { @class = "form-control" } })
-                        @Html.ValidationMessageFor(model => model.DiscountPercent, "", new { @class = "text-danger" })
-                    </div>
-                </div>
                 <div class="form-group">
                     @Html.LabelFor(model => model.CategoryId, htmlAttributes: new { @class = "control-label col-md-2" })
                     <div class="col-md-4">
@@ -103,15 +88,6 @@
                         <div class="checkbox">
                             @Html.EditorFor(model => model.IsFreeShipping)
                             @Html.ValidationMessageFor(model => model.IsFreeShipping, "", new { @class = "text-danger" })
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    @Html.LabelFor(model => model.ApplyCategoryDiscount, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-6">
-                        <div class="checkbox">
-                            @Html.EditorFor(model => model.ApplyCategoryDiscount)
-                            @Html.ValidationMessageFor(model => model.ApplyCategoryDiscount, "", new { @class = "text-danger" })
                         </div>
                     </div>
                 </div>
