@@ -27,10 +27,174 @@ namespace Yucca.Migrations
         {
             InitializeUserAndRoleIdentityForEf(context);
             InitializeCategoryIdentityForEf(context);
+            InitializeCategorySlideIdentityForEf(context);
             InitializeProductIdentityForEf(context);
             InitializePictureIdentityForEf(context);
             InitializeSettingIdentityForEf(context);
             base.Seed(context);
+        }
+
+        private void InitializeCategorySlideIdentityForEf(YuccaDbContext context)
+        {
+            var slides = new List<CategorySlide>
+            {
+                new CategorySlide
+                {
+                    Id = 1,
+                    CategoryId =5,
+                    Title = "",
+                    ImagePath = "Content/Slides/golhaye-apartemani/Orchid-Flower-30.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 2,
+                    CategoryId =5,
+                    Title = "",
+                    ImagePath ="Content/Slides/golhaye-apartemani/Orchid-Flower-30.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 3,
+                    CategoryId =5,
+                    Title = "",
+                    ImagePath ="Content/Slides/golhaye-apartemani/Orchid-Flower-30.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 4,
+                    CategoryId =5,
+                    Title = "",
+                    ImagePath = "Content/Slides/golhaye-apartemani/Orchid-Flower-30.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 5,
+                    CategoryId =6,
+                    Title = "",
+                    ImagePath ="Content/Slides/kaktoos/kaktuskbh_shop.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 6,
+                    CategoryId =6,
+                    Title = "",
+                    ImagePath ="Content/Slides/kaktoos/Cactus-Meaning.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 7,
+                    CategoryId =6,
+                    Title = "",
+                    ImagePath ="Content/Slides/kaktoos/Cactus-Flower-14.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 8,
+                    CategoryId =6,
+                    Title = "",
+                    ImagePath ="Content/Slides/kaktoos/61667.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 9,
+                    CategoryId =7,
+                    Title = "",
+                    ImagePath ="Content/Slides/sakolent/108202.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 10,
+                    CategoryId =7,
+                    Title = "",
+                    ImagePath ="Content/Slides/sakolent/Frithia-Pulchra1.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 11,
+                    CategoryId =8,
+                    Title = "",
+                    ImagePath ="Content/Slides/daratche/blossoms_twigs_spring_nature.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 12,
+                    CategoryId =8,
+                    Title = "",
+                    ImagePath ="Content/Slides/daratche/red-bougainvilleas.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 13,
+                    CategoryId =8,
+                    Title = "",
+                    ImagePath ="Content/Slides/daratche/roses_shrub_wall_flowering_green_needles.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 14,
+                    CategoryId =9,
+                    Title = "",
+                    ImagePath ="Content/Slides/bonsai/Bonsai-Wallpaper-11.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 15,
+                    CategoryId =9,
+                    Title = "",
+                    ImagePath ="Content/Slides/bonsai/cherry-bonsai-tree.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 16,
+                    CategoryId =9,
+                    Title = "",
+                    ImagePath ="Content/Slides/bonsai/tree_bonsai_black_background.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 17,
+                    CategoryId =10,
+                    Title = "",
+                    ImagePath ="Content/Slides/bazra/planting-seeds.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 18,
+                    CategoryId =10,
+                    Title = "",
+                    ImagePath ="Content/Slides/bazra/planting-the-seeds-of-our-dreams-1.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 19,
+                    CategoryId =10,
+                    Title = "",
+                    ImagePath ="Content/Slides/bazra/Seeds-You-Can-Eat.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 20,
+                    CategoryId =11,
+                    Title = "",
+                    ImagePath ="Content/Slides/bazra/planting-seeds.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 21,
+                    CategoryId =11,
+                    Title = "",
+                    ImagePath ="Content/Slides/bazra/planting-the-seeds-of-our-dreams-1.jpg"
+                },
+                new CategorySlide
+                {
+                    Id = 22,
+                    CategoryId =11,
+                    Title = "",
+                    ImagePath ="Content/Slides/bazra/Seeds-You-Can-Eat.jpg"
+                }
+
+            };
+            context.CategorySlides.AddRange(slides);
         }
 
         private void InitializeSettingIdentityForEf(YuccaDbContext context)

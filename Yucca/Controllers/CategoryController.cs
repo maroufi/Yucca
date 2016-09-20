@@ -30,6 +30,9 @@ namespace Yucca.Controllers
             if (categoryId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             ViewBag.Categories = _dbContext.Categories.Include(a=>a.Products).Include(a=>a.Slides).FirstOrDefault(a => a.Id == categoryId);
             if (ViewBag.Categories == null) return HttpNotFound();
+            var slide = _dbContext.CategorySlides.Where(a => a.CategoryId == categoryId.Value).ToList();
+            ViewBag.Slide = slide;
+            ViewBag.SlideCount = slide.Count();
             ViewBag.Pictures = _dbContext.ProductPictures.ToList();
             return View();
         }

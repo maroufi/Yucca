@@ -19,7 +19,7 @@
                 </button>
                 <div id="AdminBrand">
                     <div class="row">
-                        <img src="~/Content/Images/tom-cruise-images-1.jpg" id="Brandimg"/>
+                        @*<img src="~/Content/Images/tom-cruise-images-1.jpg" id="Branding"/>*@
                         Tom Cruise
                     </div>
                 </div>
@@ -33,18 +33,20 @@
             </div>
         </div>
     </header>
-    <br />
     <section id="AdminSection">
         <div class="row">
-            <br />
-            <br />
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
             @RenderBody()
         </div>
     </section>
 
 
     <aside id="AdminAside">
-        <div class="container">
+        <div>
             <br />
             <br />
             <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
@@ -59,8 +61,8 @@
                     <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category", new { area = "Admin" }, new { @class = "LinksClass" })</li>
-                                <li>@Html.ActionLink("اسلایدشو گروه کالا", "Index", "CategorySlides", new { area = "Admin" }, new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("مدیریت گروه کالا", "Index", "Category", new {area = "Admin"}, new {@class = "LinksClass"})</li>
+                                <li>@Html.ActionLink("اسلایدشو گروه کالا", "Index", "CategorySlides", new {area = "Admin"}, new {@class = "LinksClass"})</li>
                             </ul>
                         </div>
                     </div>
@@ -76,9 +78,7 @@
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("مدیریت کالا", "Index", "Product", new { area = "Admin" }, new { @class = "LinksClass" })</li>
-                                <li>@Html.ActionLink("تصاویر کالا", "Create", "ProductPicture", new { area = "Admin" }, new { @class = "LinksClass" })</li>
-                                <li>@Html.ActionLink("ویژگی کالا", "Index", "Attribute", new { area = "Admin" }, new { @class = "LinksClass" })</li>
+                                @Html.Action("SelectCategory", "Product" , new { selectType=1 })
                             </ul>
                         </div>
                     </div>
@@ -87,31 +87,47 @@
                     <div class="panel-heading" role="tab" id="headingThree">
                         <h4 class="panel-title">
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                مدیریت کاربران
+                                ویژگی کالا
                             </a>
                         </h4>
                     </div>
                     <div id="collapseThree" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingThree">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("درج کاربر", "Create", "User", new { area = "Admin" }, new { @class = "LinksClass" })</li>
-                                <li>@Html.ActionLink("حذف کاربر", "Delete", "User", new { area = "Admin" }, new { @class = "LinksClass" })</li>
-                                <li>@Html.ActionLink("تغییر کاربر", "Edit", "User", new { area = "Admin" }, new { @class = "LinksClass" })</li>
+                                @Html.Action("SelectCategory", "Product", new { selectType=2})
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel panel-default x">
+                    <div class="panel-heading" role="tab" id="headingFour">
+                        <h4 class="panel-title">
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                مدیریت کاربران
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="collapseFour" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingFour">
+                        <div class="panel-body">
+                            <ul>
+                                <li>@Html.ActionLink("نمایش کاربران", "Index", "User", new {area = "Admin"}, new {@class = "LinksClass"})</li>
+                                <li>@Html.ActionLink("افزودن کاربر جدید", "Create", "User", new {area = "Admin"}, new {@class = "LinksClass"})</li>
                             </ul>
                         </div>
                     </div>
                 </div>
 
                 <div class="panel panel-default x">
-                    <div class="panel-heading" role="tab" id="headingFour">
+                    <div class="panel-heading" role="tab" id="headingFive">
                         <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
-                                تنظیمات
+                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" aria-expanded="false" aria-controls="collapseFive">
+                                @Html.ActionLink("تنظیمات","Edit","Setting")
                             </a>
                         </h4>
                     </div>
                 </div>
             </div>
+
         </div>
     </aside>
     

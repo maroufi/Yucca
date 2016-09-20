@@ -1,9 +1,6 @@
 ﻿@{
     ViewBag.Title = "گروه های محصولات";
 }
-<br />
-<br />
-
 <div class="row well">
     @using (Ajax.BeginForm("List", "Category", null, new AjaxOptions { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, UpdateTargetId = "categoriesList" }, new { @class = "form-horizontal", id = "categoryFilterForm" }))
             {
@@ -15,8 +12,7 @@
                 <input type="submit" value="جست و جو" class="btn btn-md btn-default" />
             </div>
             <div class="col-md-4">
-                @*@Html.ActionLink("افزودن دسته محصولات", "Create", "Category", new { @class = "btn btn-success" })*@
-                <a href="~/Category/Create" class="btn btn-success btn-block"> افزودن دسته محصولات <span class="glyphicon glyphicon-plus"></span></a>
+                <a href="@Url.Action("Create","Category")" class="btn btn-success "> افزودن دسته محصولات <span class="glyphicon glyphicon-plus"></span></a>
             </div>
 
     }

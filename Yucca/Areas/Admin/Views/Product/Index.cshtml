@@ -3,15 +3,9 @@
     ViewBag.Title = "لیست محصولات";
     var postUrl = Url.Action("Delete", "Product");
 }
-<br/>
-<br/>
-<br />
-<br/>
-<br />
-<br />
 <div class="row">
     <div class="col-lg-12">
-        @using (Html.BeginForm("Index", "Product", new { @class = "form-horizontal", id = "productSearchForm" }))
+        @using (Html.BeginForm("Index", "Product", new { @class = "form-horizontal" }))
         {
 
             <div class="col-md-3">
@@ -98,11 +92,11 @@
                 </tbody>
 
             </table>
-            @using (Html.BeginForm("Create", "Product", new {@class = "form-horizontal", id = "productFilterForm"}))
+            @using (Html.BeginForm("Create", "Product", new {@class = "form-horizontal"}))
             {
                 <div class="row">
                     <div class="col-md-7">
-                        <div class="col-md-3"><input type="submit" value="افزودن کالا" class="btn btn-md btn-default"/>
+                        <div class="col-md-3"><input type="submit" value="افزودن کالا" class="btn btn-md btn-success"/>
                         </div>
                     </div>
                 </div>

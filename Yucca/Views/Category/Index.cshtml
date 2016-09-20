@@ -1,8 +1,47 @@
 ﻿@{
     ViewBag.Title = "Index";
+    int j = 0;
 }
 <br />
-<br />
+<br/>
+@if (ViewBag.Slide != null)
+{
+    <div class="row">
+        <div class="col-md-8">
+            <div class="carousel slide" id="carousel-290963">
+                <ol class="carousel-indicators">
+                    @for (int i = 0; i < ViewBag.SlideCount; i++)
+                    {
+                        if (i == 0)
+                        {
+                            <li class="active" data-slide-to=@i.ToString() data-target="#carousel-290963">
+                            </li>
+                        }
+                        <li data-slide-to=@i.ToString() data-target="#carousel-290963">
+                        </li>
+                    }
+                </ol>
+                <div class="carousel-inner">
+                    @foreach (var pic in ViewBag.Slide)
+                    {
+                        if (j == 0)
+                        {
+                            <div class="item active">
+                                <img alt="@pic.ImageAltText" src="@pic.ImagePath"/>
+                            </div>
+                            j++;
+                        }
+                        <div class="item">
+                            <img alt="@pic.ImageAltText" src="@pic.ImagePath" />
+                        </div>
+                    }
+                </div>
+                <a class="left carousel-control" href="#carousel-290963" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+                <a class="right carousel-control" href="#carousel-290963" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+            </div>
+        </div>
+    </div>
+}
 <div class="container body-content">
     <div class="container">
         <div class="row">
