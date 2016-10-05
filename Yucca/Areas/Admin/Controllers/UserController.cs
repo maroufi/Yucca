@@ -42,16 +42,18 @@ namespace Yucca.Areas.Admin.Controllers
             var users = _dbContext.Users.ToList();
             foreach (var user in users)
             {
-                usersListViewModel.Add(new UserViewModel
-                {
-                    Id = user.Id,
-                    PhoneNumber = user.PhoneNumber,
-                    UserName = user.UserName,
-                    Baned = user.IsBanned,
-                    FirstName = user.FirstName,
-                    LastName = user.LastName,
-                    RoleDescritpion = _dbContext.Roles.First(a=>a.Id== user.Roles.First().RoleId).Name
-                });
+                var firstOrDefault = _dbContext.Roles.FirstOrDefault(a=>a.Id== user.Roles.FirstOrDefault().RoleId);
+                if (firstOrDefault != null)
+                    usersListViewModel.Add(new UserViewModel
+                    {
+                        Id = user.Id,
+                        PhoneNumber = user.PhoneNumber,
+                        UserName = user.UserName,
+                        Baned = user.IsBanned,
+                        FirstName = user.FirstName,
+                        LastName = user.LastName,
+                        RoleDescritpion = firstOrDefault.Name
+                    });
             }
             return View(usersListViewModel);
         }

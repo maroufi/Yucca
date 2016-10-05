@@ -34,9 +34,10 @@ namespace Yucca.Areas.Admin.Controllers
         #endregion
 
         #region Index
-        public virtual ActionResult SelectCategory(long? categoryId)
+        public ActionResult SelectCategory(int selectType)
         {
-            return View(_dbContext.Categories.Where(a => a.ParentId != null && a.IsDeleted == false).ToList());
+            ViewBag.SelectType = selectType;
+            return PartialView("_SelectCategory",_dbContext.Categories.Where(a => a.ParentId != null && a.IsDeleted == false).ToList());
         }
         [HttpGet]
         [Route("Index/{categoryId}")]
@@ -77,7 +78,6 @@ namespace Yucca.Areas.Admin.Controllers
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         [Route("Add")]
         public virtual async Task<ActionResult> Create(AddProductViewModel viewModel)
         {

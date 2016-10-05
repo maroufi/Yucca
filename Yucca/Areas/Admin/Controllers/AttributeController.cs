@@ -36,6 +36,8 @@ namespace Yucca.Areas.Admin.Controllers
             if (categoryId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var category = _dbContext.Categories.First(a => a.Id == categoryId);
             if (category == null) return HttpNotFound();
+            ViewBag.CategoryName = category.Name;
+            ViewBag.CategoryId = category.Id;
             var attributes = _dbContext.SpecificAttributes.AsNoTracking()
                 .Where(a => a.CategoryId == categoryId).ToList();
             List<AttributeViewModel> attributeViewModels= attributes.Select(attribute => new AttributeViewModel
