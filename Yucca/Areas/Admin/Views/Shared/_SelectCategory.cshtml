@@ -1,0 +1,12 @@
+﻿@model List<Yucca.Models.Products.Category>
+@foreach (var category in Model)
+{
+    if (ViewBag.SelectType == 1)
+    {
+        <li>@Html.ActionLink(category.Name, "Index", "Product", new {area = "Admin", categoryId = category.Id}, new {@class = "LinksClass"})</li>
+    }
+    if (ViewBag.SelectType == 2)
+    {
+        <li>@Html.ActionLink(category.Name, "Index", "Attribute", new { area = "Admin", categoryId = category.Id }, new { @class = "LinksClass" })</li>
+    }
+}

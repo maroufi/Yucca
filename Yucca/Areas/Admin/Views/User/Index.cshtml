@@ -13,12 +13,6 @@
             <div class="col-md-4">
                 <input name="term" placeholder="جستجو " value="" type="text" class="form-control" />
             </div>
-            <div class="col-md-3">
-                @Html.DropDownList("userSearchBy", ViewBag.UserSearchByList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-            </div>
-            <div class="col-md-5">
-                <input type="submit" value="جست و جو" class="btn btn-md btn-default" />
-            </div>
         }
     </div>
 </div>
@@ -64,27 +58,6 @@
                 </tbody>
 
             </table>
-
-
-
-            @using (Html.BeginForm("Index", "User", new { @class = "form-horizontal", id = "userFilterForm" }))
-            {
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="col-md-4">
-                            @Html.DropDownList("userOrderBy", ViewBag.UserOrderByList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-3">
-                            @Html.DropDownList("order", ViewBag.OrderList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                        </div>
-                        <div class="col-md-2">
-                            @Html.DropDownList("pageCount", ViewBag.CountList as IEnumerable<SelectListItem>, new { @class = "form-control" })
-                        </div>
-
-                        <div class="col-md-3"><input type="submit" value="مرتب سازی" class="btn btn-md btn-default" /></div>
-                    </div>
-                </div>
-            }
         </div>
     </div>
 </div>
