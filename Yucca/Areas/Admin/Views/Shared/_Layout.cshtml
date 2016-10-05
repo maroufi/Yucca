@@ -76,7 +76,7 @@
                     <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
                         <div class="panel-body">
                             <ul>
-                                <li>@Html.ActionLink("مدیریت کالا", "Index", "Product", new { area = "Admin" }, new { @class = "LinksClass" })</li>
+                                <li>@Html.ActionLink("مدیریت کالا", "SelectCategory", "Product", new { area = "Admin" }, new { @class = "LinksClass" })</li>
                                 <li>@Html.ActionLink("تصاویر کالا", "Create", "ProductPicture", new { area = "Admin" }, new { @class = "LinksClass" })</li>
                                 <li>@Html.ActionLink("ویژگی کالا", "Index", "Attribute", new { area = "Admin" }, new { @class = "LinksClass" })</li>
                             </ul>
@@ -105,7 +105,7 @@
                 <div class="panel panel-default x">
                     <div class="panel-heading" role="tab" id="headingFour">
                         <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                            <a href="@Url.Action("Edit","Setting", new { area = "Admin" })">
                                 تنظیمات
                             </a>
                         </h4>

@@ -231,11 +231,7 @@ input[type="search"]{
     margin-bottom:20px;
 
 }
-.AdminNavli{
-    float:left;
-    color:white;
-    
-}
+
 .HeadingOne{
     background:#76caaf;
 }
@@ -405,4 +401,17 @@ outline: none;
 }
 .AdminRow{
     margin-top: 50px;
+}
+#SettingPanel{
+   background-color:#5bc0de;
+   border-color: #46b8da;
+   color:#fff;
+}
+.AdminNavli:focus
+.AdminNavli:hover{
+    border:1px solid #434f4b;
+    background-color:#434f4b;
+    color:white;
+
+    
 }
