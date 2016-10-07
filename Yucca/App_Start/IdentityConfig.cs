@@ -35,18 +35,27 @@ namespace Yucca
     }
 
     // Configure the application user manager used in this application. UserManager is defined in ASP.NET Identity and is used by the application.
-    public class YuccaUserManager : UserManager<YuccaUser,long>
+    public class YuccaUserManager : UserManager<YuccaUser, long>
     {
-        public YuccaUserManager(IUserStore<YuccaUser,long> store)
+        private YuccaDbContext _dbContext;
+        public YuccaUserManager(IUserStore<YuccaUser, long> store)
             : base(store)
         {
+            _dbContext = new YuccaDbContext();
         }
 
-        public static YuccaUserManager Create(IdentityFactoryOptions<YuccaUserManager> options, IOwinContext context) 
+        protected override void Dispose(bool disposing)
+        {
+            _dbContext.Dispose();
+            base.Dispose(disposing);
+        }
+
+
+        public static YuccaUserManager Create(IdentityFactoryOptions<YuccaUserManager> options, IOwinContext context)
         {
             var manager = new YuccaUserManager(new YuccaUserStore(context.Get<YuccaDbContext>()));
             // Configure validation logic for usernames
-            manager.UserValidator = new UserValidator<YuccaUser,long>(manager)
+            manager.UserValidator = new UserValidator<YuccaUser, long>(manager)
             {
                 AllowOnlyAlphanumericUserNames = false,
                 RequireUniqueEmail = true
@@ -69,11 +78,11 @@ namespace Yucca
 
             // Register two factor authentication providers. This application uses Phone and Emails as a step of receiving a code for verifying the user
             // You can write your own provider and plug it in here.
-            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<YuccaUser,long>
+            manager.RegisterTwoFactorProvider("Phone Code", new PhoneNumberTokenProvider<YuccaUser, long>
             {
                 MessageFormat = "Your security code is {0}"
             });
-            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<YuccaUser,long>
+            manager.RegisterTwoFactorProvider("Email Code", new EmailTokenProvider<YuccaUser, long>
             {
                 Subject = "Security Code",
                 BodyFormat = "Your security code is {0}"
@@ -83,8 +92,8 @@ namespace Yucca
             var dataProtectionProvider = options.DataProtectionProvider;
             if (dataProtectionProvider != null)
             {
-                manager.UserTokenProvider = 
-                    new DataProtectorTokenProvider<YuccaUser,long>(dataProtectionProvider.Create("ASP.NET Identity"));
+                manager.UserTokenProvider =
+                    new DataProtectorTokenProvider<YuccaUser, long>(dataProtectionProvider.Create("ASP.NET Identity"));
             }
             return manager;
         }
@@ -108,7 +117,7 @@ namespace Yucca
     }
 
     // Configure the application sign-in manager which is used in this application.
-    public class YuccaSignInManager : SignInManager<YuccaUser,long>
+    public class YuccaSignInManager : SignInManager<YuccaUser, long>
     {
         public YuccaSignInManager(YuccaUserManager userManager, IAuthenticationManager authenticationManager)
             : base(userManager, authenticationManager)

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(Yucca.Startup))]
+[assembly: OwinStartup(typeof(Yucca.Startup))]
 namespace Yucca
 {
     public partial class Startup
