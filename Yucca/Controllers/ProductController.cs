@@ -30,7 +30,7 @@ namespace Yucca.Controllers
             base.Dispose(disposing);
         }
 
-        [Route("/{productId}")]
+        [Route("{productId}")]
         public ActionResult Index(long? productId)
         {
             if (productId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);

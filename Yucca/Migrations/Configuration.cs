@@ -1,12 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Web;
 using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
 using Microsoft.AspNet.Identity.Owin;
 using Yucca.Models.Common;
 using Yucca.Models.IdentityModels;
 using Yucca.Models.Products;
 using Yucca.Utility.Security;
-
 namespace Yucca.Migrations
 {
     using System;
@@ -15,7 +15,7 @@ namespace Yucca.Migrations
     using System.Linq;
     using Data.DbContext;
 
-    internal sealed class Configuration 
+    internal sealed class Configuration
         : DbMigrationsConfiguration<Yucca.Data.DbContext.YuccaDbContext>
     {
         public Configuration()
@@ -1093,33 +1093,26 @@ namespace Yucca.Migrations
                 context.Roles.Add(customerRole);
             }
             #endregion
-            var user = context.Users.FirstOrDefault(a => a.UserName == email);
-            if (user == null)
+
+
+            var userStore = new UserStore<YuccaUser,YuccaRole,long,YuccaUserLogin,YuccaUserRole,YuccaUserClaim>(context);
+            using (var userManager = new UserManager<YuccaUser, long>(userStore))
             {
-                user = new YuccaUser
+                var user = userManager.FindByName(email);
+                if (user == null)
                 {
-                    UserName = email,
-                    Email = email,
-                    AccessFailedCount = 0,
-                    PasswordHash = Encryption.HashPassword(password),
-                    EmailConfirmed = true,
-                    FirstName = firstName,
-                    LastName = lastName,
-                    PhoneNumber = "09136861439"
-                };
-                context.Users.Add(user);
-            }
-            var firstOrDefault = context.Users.FirstOrDefault(a => a.Id == user.Id);
-            if (firstOrDefault != null)
-            {
-                var rolesForUser = firstOrDefault.Roles.ToList();
-                if (rolesForUser.First().RoleId!=adminRole.Id)
+                    user = new YuccaUser { UserName = email, Email = email, FirstName = firstName, LastName = lastName };
+                    userManager.Create(user, password);
+                    userManager.SetLockoutEnabled(user.Id, false);
+                }
+
+                var rolesForUser = userManager.GetRoles(user.Id);
+                if (!rolesForUser.Contains(adminRoleName))
                 {
-                    var userRole = new YuccaUserRole {UserId = user.Id, RoleId = adminRole.Id};
-                    context.Users.Find(user.Id).Roles.Add(userRole);
+                    userManager.AddToRole(user.Id, adminRoleName);
                 }
             }
-            context.SaveChanges();
+
         }
     }
 }
