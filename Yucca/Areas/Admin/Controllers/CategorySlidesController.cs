@@ -15,7 +15,7 @@ using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
 {
-    //[SiteAuthorize(Roles = "admin")]
+    [SiteAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("CategorySlides")]
     [Route("{action}")]
@@ -121,28 +121,25 @@ namespace Yucca.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Edit(EditSlideShowViewModel viewModel)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
-                var slide = _dbContext.CategorySlides.Where(a => a.Id == viewModel.Id).Select(a =>
-                    new EditSlideShowViewModel
-                    {
-                        Id = viewModel.Id,
-                        ImageAltText = viewModel.ImageAltText,
-                        Link = viewModel.Link,
-                        ImagePath = viewModel.ImagePath,
-                        Title = viewModel.Title,
-                        Description = viewModel.Description,
-                        HideTransition = viewModel.HideTransition,
-                        Position = viewModel.Position,
-                        ShowTransition = viewModel.ShowTransition
-
-                    }).FirstOrDefault();
-                if (slide == null) return HttpNotFound();
-                await _dbContext.SaveChangesAsync();
-                return RedirectToAction("Index", "CategorySlides");
+                PopulateCategoriesDropDownList(viewModel.ShowTransition, viewModel.HideTransition, viewModel.Position);
+                return View(viewModel);
             }
-            PopulateCategoriesDropDownList(viewModel.ShowTransition, viewModel.HideTransition, viewModel.Position);
-            return View(viewModel);
+            var slide = _dbContext.CategorySlides.First(a => a.Id == viewModel.Id);
+            slide.Id = viewModel.Id;
+            slide.ImageAltText = viewModel.ImageAltText;
+            slide.Link = viewModel.Link;
+            slide.ImagePath = viewModel.ImagePath;
+            slide.Title = viewModel.Title;
+            slide.Description = viewModel.Description;
+            slide.HideTransition = viewModel.HideTransition;
+            slide.Position = viewModel.Position;
+            slide.ShowTransition = viewModel.ShowTransition;
+            await _dbContext.SaveChangesAsync();
+            return RedirectToAction("Index", "CategorySlides");
+
+
         }
 
         [AjaxOnly]

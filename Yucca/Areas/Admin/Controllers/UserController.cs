@@ -18,7 +18,7 @@ namespace Yucca.Areas.Admin.Controllers
     [RouteArea("Admin")]
     [RoutePrefix("Customers")]
     [Route("{action}")]
-    //[SiteAuthorize(Roles = "admin")]
+    [SiteAuthorize(Roles = "Admin")]
     public class UserController : Controller
     {
         private YuccaDbContext _dbContext;
@@ -38,24 +38,8 @@ namespace Yucca.Areas.Admin.Controllers
         [HttpGet]
         public virtual ActionResult Index()
         {
-            List<UserViewModel> usersListViewModel=new List<UserViewModel>();
-            var users = _dbContext.Users.ToList();
-            foreach (var user in users)
-            {
-                var firstOrDefault = _dbContext.Roles.FirstOrDefault(a=>a.Id== user.Roles.FirstOrDefault().RoleId);
-                if (firstOrDefault != null)
-                    usersListViewModel.Add(new UserViewModel
-                    {
-                        Id = user.Id,
-                        PhoneNumber = user.PhoneNumber,
-                        UserName = user.UserName,
-                        Baned = user.IsBanned,
-                        FirstName = user.FirstName,
-                        LastName = user.LastName,
-                        RoleDescritpion = firstOrDefault.Name
-                    });
-            }
-            return View(usersListViewModel);
+            var users = _dbContext.Users.Include(a=>a.Roles).ToList();
+            return View(users);
         }
         #endregion
 
@@ -110,7 +94,7 @@ namespace Yucca.Areas.Admin.Controllers
                     PhoneNumber = a.PhoneNumber,
                     UserName = a.UserName,
                     Id = a.Id,
-                    RoleId = a.Roles.First().RoleId,
+                    //RoleId = a.Roles.First().RoleId,
                     IsBaned = a.IsBanned
                 }).FirstOrDefault();
             if (user == null)

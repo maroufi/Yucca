@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.UI;
 using EntityFramework.Extensions;
+using Yucca.Areas.Admin.ViewModels.Product;
 using Yucca.Data.DbContext;
 using Yucca.Filter;
 using Yucca.Models.Orders;
@@ -30,19 +31,15 @@ namespace Yucca.Controllers
             base.Dispose(disposing);
         }
         [HttpGet]
-        //[SiteAuthorize]
+        [SiteAuthorize]
         public ActionResult ShowShoppingCart()
         {
             var shoppingCart = _dbContext.ShoppingCarts.Where(a => a.User.UserName == User.Identity.Name).ToList();
-            var shoppingCartViewModel = new ShoppingCartListViewModel();
-            foreach (var item in shoppingCart)
+            List<ShoppingCartViewModel> shoppingCartViewModel = shoppingCart.Select(cart => new ShoppingCartViewModel
             {
-                shoppingCartViewModel.ShoppingCarts.Add(new ShoppingCartViewModel
-                {
-                    ProductName = item.Product.Name,
-                    Quantity = item.Quantity
-                });
-            }
+                Quantity = cart.Quantity,
+                ProductName = cart.Product.Name
+            }).ToList();
             return View(shoppingCartViewModel);
         }
         [HttpPost]

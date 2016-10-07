@@ -1,5 +1,5 @@
 ﻿@using Yucca.Areas.Admin.ViewModels.User
-@model List<UserViewModel>
+@model List<Yucca.Models.IdentityModels.YuccaUser>
 @{
     ViewBag.Title = "لیست مشتریان";
     var postUrl = Url.Action("Delete", "User");
@@ -29,22 +29,25 @@
                         <th>نام-نام خوانوادگی</th>
                         <th>شماره همراه</th>
                         <th>نقش</th>
-                        <th>تعداد خرید</th>
-                        <th>تعداد نظرات</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach (var user in Model)
                     {
-                        <tr class="@(user.Baned ? "warning" : "") ">
+                        <tr >
                             <td>@user.UserName</td>
-                            <td>@user.FirstName</td>
-                            <td>@user.LastName</td>
+                            <td>@user.FirstName @user.LastName</td>
                             <td>@user.PhoneNumber</td>
-                            <td>@user.RoleDescritpion</td>
-                            <td class="text-center">@user.OrderCount</td>
-                            <td class="text-center">@user.CommentCount</td>
+                            <td>@user.PhoneNumber</td>
+                            @if (user.Roles.First().RoleId == 1)
+                            {
+                                <td>Admin</td>
+                            }
+                            else
+                            {
+                                <td>Customer</td>
+                            }
 
 
                             <td class="text-left">

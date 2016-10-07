@@ -12,6 +12,7 @@ using Yucca.Filter;
 
 namespace Yucca.Areas.Admin.Controllers
 {
+    [SiteAuthorize(Roles = "Admin")]
     public class AttributeOptionController : Controller
     {
         private readonly YuccaDbContext _dbContext;

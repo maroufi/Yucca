@@ -7,10 +7,12 @@ using System.Web.UI;
 using EntityFramework.Extensions;
 using Yucca.Areas.Admin.ViewModels.Category;
 using Yucca.Data.DbContext;
+using Yucca.Filter;
 using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
 {
+    [SiteAuthorize(Roles = "Admin")]
     [RouteArea("Admin")]
     [RoutePrefix("Category")]
     [Route("{action}")]
@@ -74,7 +76,7 @@ namespace Yucca.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                if (!_dbContext.Categories.Any(category => category.Name == viewModel.Name))
+                if (_dbContext.Categories.Any(category => category.Name == viewModel.Name))
                 {
                     ModelState.AddModelError("Name", "این نام قبلا ثبت شده است");
                     return View(viewModel);

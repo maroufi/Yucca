@@ -8,11 +8,12 @@ using System.Web.Mvc;
 using EntityFramework.Extensions;
 using Yucca.Areas.Admin.ViewModels.Product;
 using Yucca.Data.DbContext;
+using Yucca.Filter;
 using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
 {
-    //[SiteAuthorize(Roles = "admin")]
+    [SiteAuthorize(Roles = "Admin")]
     [RoutePrefix("Product")]
     [RouteArea("Admin")]
     [Route("{action}")]

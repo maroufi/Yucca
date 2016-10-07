@@ -34,87 +34,89 @@
 
             <div class="container">
                 @Html.ActionLink("خانه", "Index", "Home") <span class="glyphicon glyphicon-home"></span>
+                @if (!Request.IsAuthenticated)
+                {
+                    <a id="modal-904960" href="#modal-container-904960" @*role="button" class="btn"*@ data-toggle="modal">
+                        وارد شوید
+                    </a>
+                    <span class="glyphicon glyphicon-ok"></span>
 
-                <a id="modal-904960" href="#modal-container-904960" @*role="button" class="btn"*@ data-toggle="modal">
-                    وارد شوید
-                </a><span class="glyphicon glyphicon-ok"></span>
+                    <div class="modal fade" id="modal-container-493528" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
 
-                <div class="modal fade" id="modal-container-493528" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                        ×
+                                    </button>
+                                    <h4 class="modal-title" id="myModalLabel">
+                                        Modal title
+                                    </h4>
+                                </div>
+                                <div class="modal-body">
+                                    ...
+                                </div>
+                                <div class="modal-footer">
 
-                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                    ×
-                                </button>
-                                <h4 class="modal-title" id="myModalLabel">
-                                    Modal title
-                                </h4>
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                                        Close
+                                    </button>
+                                    <button type="button" class="btn btn-primary">
+                                        Save changes
+                                    </button>
+                                </div>
                             </div>
-                            <div class="modal-body">
-                                ...
-                            </div>
-                            <div class="modal-footer">
 
-                                <button type="button" class="btn btn-default" data-dismiss="modal">
-                                    Close
-                                </button>
-                                <button type="button" class="btn btn-primary">
-                                    Save changes
-                                </button>
-                            </div>
                         </div>
 
                     </div>
 
-                </div>
 
 
+                    <div class="modal fade" id="modal-container-904960" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 
-                <div class="modal fade" id="modal-container-904960" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
 
-                    <div class="modal-dialog">
-                        
-                        <div class="modal-content">
-                            <div class="container">
+                            <div class="modal-content">
+                                <div class="container">
 
-                                <div class="modal-header">
-                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
-                                        <span class="glyphicon glyphicon-remove-circle"></span>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
 
-                                    </button>
+                                        </button>
 
-                                    <h4 class="modal-title" id="myModalLabel">
-                                        ورود  <span class="glyphicon glyphicon-user"></span>
-                                    </h4>
-                                </div>
-                                <div class="modal-body">
-                                    <div class="row">
+                                        <h4 class="modal-title" id="myModalLabel">
+                                            ورود <span class="glyphicon glyphicon-user"></span>
+                                        </h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="row">
 
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <br />
-                                        <section id="loginForm">
-                                            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                                            {
-                                                @Html.AntiForgeryToken()
-                                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-                                                <div class="form-group">
-                                                    @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-                                                    <div class="col-md-10">
-                                                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-                                                        @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <br/>
+                                            <section id="loginForm">
+                                                @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.Email, new {@class = "col-md-2 control-label"})
+                                                        <div class="col-md-10">
+                                                            @Html.TextBoxFor(m => m.Email, new {@class = "form-control"})
+                                                            @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+                                                        </div>
                                                     </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
+                                                    <div class="form-group">
+                                                        @Html.LabelFor(m => m.Password, new {@class = "col-md-2 control-label"})
 
-                                                    <div class="col-md-10">
-                                                        @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                                                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                                                        <div class="col-md-10">
+                                                            @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                                                            @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                                                        </div>
                                                     </div>
-                                                </div>
                                                     <div class="form-group">
                                                         <div class="col-md-offset-2 col-md-10">
                                                             <div class="checkbox">
@@ -125,43 +127,55 @@
                                                     </div>
                                                     <div class="form-group">
                                                         <div class="col-md-offset-2 col-md-10">
-                                                            <input type="submit" value="ورود" class="btn btn-block btn-success" />
+                                                            <input type="submit" value="ورود" class="btn btn-block btn-success"/>
                                                             @*<button type="button" class="btn btn-default" data-dismiss="modal">*@
                                                             @*خروج
                                                                 </button>*@
-                                                    
-                                                       </div>
+
+                                                        </div>
                                                     </div>
                                                     <p>
                                                         تاکنون ثبت نام نکرده اید؟
                                                         @Html.ActionLink(" ثبت نام کنید.", "Register", "Account")
                                                     </p>
-                                            }
+                                                }
 
-                                        </section>
-                                        <section id="socialLoginForm">
-                                            @Html.Partial("_LoginPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
-                                        </section>
+                                            </section>
+                                            <section id="socialLoginForm">
+                                                @Html.Partial("_LoginPartial", new ExternalLoginListViewModel {ReturnUrl = ViewBag.ReturnUrl})
+                                            </section>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                @Html.ActionLink("ثبت نام کنید", "Register", "Account") <span class="glyphicon glyphicon-user"></span>
+                    @Html.ActionLink("ثبت نام کنید", "Register", "Account")
+                    <span class="glyphicon glyphicon-user"></span>
+                }
+                @if (Request.IsAuthenticated && User.IsInRole("Admin"))
+                {
+                    <text>|</text>
+                    <a href="/Admin/Home/Index">
+                        <i class="fa fa-cog"></i>
+                        <strong>
+                            پنل مدیریت
+                        </strong>
+                    </a>
+                }
                 <br />
-                <br />
+                <br/>
+                @if (Request.IsAuthenticated)
+                {
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-success">@Html.ActionLink("سبد خرید", "ShowShoppingCart", "ShoppingCart", new {@class = "ShoppingLink"}, null)</button>
+                        <button type="button" class="btn btn-success">
+                            <i class="glyphicon glyphicon-shopping-cart"></i>
+                        </button>
 
-
-
-                <div class="btn-group" role="group" aria-label="...">
-                    <button type="button" class="btn btn-success">@Html.ActionLink("سبد خرید", "ShowShoppingCart", "ShoppingCart", new { @class = "ShoppingLink" },null)</button>
-                    <button type="button" class="btn btn-success">
-                        <i class="glyphicon glyphicon-shopping-cart"></i>
-                    </button>
-
-                </div>
+                    </div>
+                }
             </div>
         </div>
 

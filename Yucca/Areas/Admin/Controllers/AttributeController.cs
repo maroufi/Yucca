@@ -8,10 +8,12 @@ using System.Web.Mvc;
 using EntityFramework.Extensions;
 using Yucca.Areas.Admin.ViewModels.Attribute;
 using Yucca.Data.DbContext;
+using Yucca.Filter;
 using Yucca.Models.Products;
 
 namespace Yucca.Areas.Admin.Controllers
 {
+    [SiteAuthorize(Roles = "Admin")]
     public class AttributeController : Controller
     {
         private YuccaDbContext _dbContext;
@@ -28,9 +30,7 @@ namespace Yucca.Areas.Admin.Controllers
         }
 
         #region Index
-        // GET: Admin/Attribute
         [HttpGet]
-        [Route("{categoryId}/Attributes")]
         public ActionResult Index(long? categoryId)
         {
             if (categoryId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -49,7 +49,6 @@ namespace Yucca.Areas.Admin.Controllers
         #endregion
 
         #region Edit
-        [Route("Attribute/Edit/{id}")]
         [HttpGet]
         public virtual ActionResult Edit(long? id)
         {
@@ -59,7 +58,6 @@ namespace Yucca.Areas.Admin.Controllers
 
             return View(new EditAttributeViewModel { Name = attribute.Name, CategoryId = attribute.CategoryId, Id = attribute.Id });
         }
-        [Route("Attribute/Edit/{id}")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Edit(EditAttributeViewModel viewModel)
@@ -102,7 +100,6 @@ namespace Yucca.Areas.Admin.Controllers
         #endregion
 
         #region Add
-        [Route("{categoryId}/Attribute/Add")]
         [HttpGet]
         public virtual ActionResult Add(long? categoryId)
         {
@@ -114,8 +111,6 @@ namespace Yucca.Areas.Admin.Controllers
             ViewBag.CategoryName = category.Name;
             return View(new AddAttributeViewModel { CategoryId = category.Id });
         }
-
-        [Route("{categoryId}/Attribute/Add")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Add(AddAttributeViewModel viewModel)
@@ -172,7 +167,6 @@ namespace Yucca.Areas.Admin.Controllers
         #endregion
 
         #region Delete
-        [Route("Delete/{id}")]
         public virtual ActionResult Delete(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
