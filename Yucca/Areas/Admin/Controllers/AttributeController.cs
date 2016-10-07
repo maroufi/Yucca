@@ -137,7 +137,7 @@ namespace Yucca.Areas.Admin.Controllers
                 if (viewModel.CascadeAddForChildren)
                 {
                     var category =
-                        _dbContext.Categories.Include("SpecificAttribute").FirstOrDefault(a => a.Id == viewModel.CategoryId);
+                        _dbContext.Categories.Include("Attributes").FirstOrDefault(a => a.Id == viewModel.CategoryId);
                     AddAttributeToChildrenCascade(viewModel, category);
                 }
                 await _dbContext.SaveChangesAsync();
@@ -172,17 +172,16 @@ namespace Yucca.Areas.Admin.Controllers
         #endregion
 
         #region Delete
-        [HttpPost]
         [Route("Delete/{id}")]
-        [ValidateAntiForgeryToken]
         public virtual ActionResult Delete(long? id)
         {
             if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             var attribute = _dbContext.SpecificAttributes.Find(id);
             if (attribute == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            var category = _dbContext.Categories.Include("SpecificAttribute").FirstOrDefault(a => a.Id == id);
-            _dbContext.MarkAsDeleted(attribute);
+            var category = _dbContext.Categories.Include("Attributes").FirstOrDefault(a => a.Id == id);
+            _dbContext.SpecificAttributes.Remove(attribute);
             DeleteAttributeFromChildrenOfCategory(category, attribute.Name);
+            _dbContext.SaveChanges();
             return RedirectToAction("Index", "Category");
         }
 

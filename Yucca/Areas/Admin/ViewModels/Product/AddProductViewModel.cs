@@ -41,20 +41,9 @@ namespace Yucca.Areas.Admin.ViewModels.Product
         [Required(ErrorMessage = "لطفا قیمت  را مشخص کنید ")]
         [Integer(ErrorMessage = "فقط از اعداد صحیح استفاده کنید")]
         public int Price { get; set; }
-        [DisplayName("ضریبی برای خرید")]
-        [Required(ErrorMessage = "لطفا ضریب خرید  را مشخص کنید ")]
-        [RegularExpression(@"^\$?\d+(\.(\d{1}))?$", ErrorMessage = "لطفا ضریب  را درست وارد کنید")]
-        public decimal Ratio { get; set; }
-        [DisplayName("استفاده از تخفیف گروه")]
-        public bool ApplyCategoryDiscount { get; set; }
         [DisplayName("گروه")]
         [Required(ErrorMessage = "لطفا گروه کالا را مشخص کنید ")]
         public long CategoryId { get; set; }
-        [DisplayName("تخفیف")]
-        [Required(ErrorMessage = "درصد تخفیف را مشخص کنید")]
-        [Range(0, 100, ErrorMessage = "درصد تخفیف میبایست 0 تا 100 انتخاب شود")]
-        [Integer(ErrorMessage = "فقط از اعداد صحیح استفاده کنید")]
-        public int DiscountPercent { get; set; }
         [DisplayName("عدم نمایش")]
         public bool Deleted { get; set; }
     }

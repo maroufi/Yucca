@@ -35,11 +35,13 @@ namespace Yucca.Areas.Admin.Controllers
         [HttpGet]
         public virtual ActionResult Create()
         {
-            ViewBag.CategoriesForSelect = new SelectList
+            /*ViewBag.CategoriesForSelect = new SelectList
                 (_dbContext.Categories.AsNoTracking()
                 .Where(a => a.ParentId == null)
-                    .ToList(), "Id", "Name");
-            
+                    .ToList(), "ParentId", "Name");*/
+            PopulateCategoriesDropDownList(_dbContext.Categories.AsNoTracking()
+                .Where(a => a.ParentId == null)
+                .ToList());
             return View();
         }
         // POST: Admin/Category/Create
@@ -59,7 +61,8 @@ namespace Yucca.Areas.Admin.Controllers
                     ParentId = viewModel.ParentId == 0 ? null : viewModel.ParentId,
                     KeyWords = viewModel.KeyWords,
                     Name = viewModel.Name,
-                    DisplayOrder = viewModel.DisplayOrder
+                    DisplayOrder = viewModel.DisplayOrder,
+                    IsDeleted = false
                 });
                 await _dbContext.SaveChangesAsync();
                 return RedirectToAction("Create", "Category");
@@ -116,7 +119,7 @@ namespace Yucca.Areas.Admin.Controllers
         {
 
             if (!ModelState.IsValid) return View(viewModel);
-            if (!_dbContext.Categories.Any(category => category.Id != viewModel.Id
+            if (_dbContext.Categories.Any(category => category.Id != viewModel.Id
                                                && category.Name == viewModel.Name))
             {
                 ModelState.AddModelError("Name", "این نام قبلا ثبت شده است");
@@ -202,5 +205,10 @@ namespace Yucca.Areas.Admin.Controllers
                                                && category.Name == name);
         }
         #endregion
+        void PopulateCategoriesDropDownList(IEnumerable<Category> categories, long? selectedId = null)
+        {
+            ViewBag.CategoriesForSelect = new SelectList(categories, "Id", "Name",
+                selectedId);
+        }
     }
 }

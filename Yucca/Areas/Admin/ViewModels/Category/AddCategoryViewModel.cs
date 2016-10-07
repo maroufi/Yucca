@@ -6,7 +6,6 @@ namespace Yucca.Areas.Admin.ViewModels.Category
 {
     public class AddCategoryViewModel
     {
-        public int Level { get; set; }
         public long Id { get; set; }
         [Remote("CheckExistCategoryforAdd", "Category", "Admin", ErrorMessage = "این گروه قبلا ثبت شده است", HttpMethod = "POST")]
         [DisplayName("نام")]

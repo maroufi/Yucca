@@ -123,20 +123,21 @@ namespace Yucca.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                var slide = new CategorySlide
-                {
-                    Id = viewModel.Id,
-                    ImageAltText = viewModel.ImageAltText,
-                    Link = viewModel.Link,
-                    ImagePath = viewModel.ImagePath,
-                    Title = viewModel.Title,
-                    Description = viewModel.Description,
-                    HideTransition = viewModel.HideTransition,
-                    Position = viewModel.Position,
-                    ShowTransition = viewModel.ShowTransition
+                var slide = _dbContext.CategorySlides.Where(a => a.Id == viewModel.Id).Select(a =>
+                    new EditSlideShowViewModel
+                    {
+                        Id = viewModel.Id,
+                        ImageAltText = viewModel.ImageAltText,
+                        Link = viewModel.Link,
+                        ImagePath = viewModel.ImagePath,
+                        Title = viewModel.Title,
+                        Description = viewModel.Description,
+                        HideTransition = viewModel.HideTransition,
+                        Position = viewModel.Position,
+                        ShowTransition = viewModel.ShowTransition
 
-                };
-                _dbContext.MarkAsChanged(slide);
+                    }).FirstOrDefault();
+                if (slide == null) return HttpNotFound();
                 await _dbContext.SaveChangesAsync();
                 return RedirectToAction("Index", "CategorySlides");
             }
