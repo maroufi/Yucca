@@ -406,7 +406,12 @@ namespace Yucca.Controllers
             AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
             return RedirectToAction("Index", "Home");
         }
-
+        [HttpGet]
+        public ActionResult LogOff2()
+        {
+            AuthenticationManager.SignOut(DefaultAuthenticationTypes.ApplicationCookie);
+            return RedirectToAction("Index", "Home");
+        }
         //
         // GET: /Account/ExternalLoginFailure
         [AllowAnonymous]

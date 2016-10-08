@@ -58,7 +58,6 @@ namespace Yucca.Areas.Admin.Controllers
             return View(slidesViewModel);
         }
         [HttpGet]
-        [Route("Add")]
         public virtual ActionResult Create()
         {
             PopulateCategoriesDropDownList(null, null, null);
@@ -66,7 +65,6 @@ namespace Yucca.Areas.Admin.Controllers
 
         }
         [HttpPost]
-        [Route("Add")]
         [ValidateAntiForgeryToken]
         public virtual async Task<ActionResult> Create(AddSlideShowViewModel viewModel)
         {

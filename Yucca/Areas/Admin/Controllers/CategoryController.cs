@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Dynamic;
 using System.Net;
 using System.Threading.Tasks;
 using System.Web.Mvc;
@@ -61,11 +62,9 @@ namespace Yucca.Areas.Admin.Controllers
         [HttpGet]
         public virtual ActionResult Create()
         {
-            ViewBag.CategoriesForSelect = new SelectList
-                (_dbContext.Categories.AsNoTracking()
-                    .Where(a => a.ParentId == null)
-                    .ToList(), "Id", "Name");
-
+            PopulateCategoriesDropDownList(_dbContext.Categories.AsNoTracking()
+                .Where(a => a.ParentId == null)
+                .ToList());
             return View();
         }
 
@@ -217,5 +216,10 @@ namespace Yucca.Areas.Admin.Controllers
         }
 
         #endregion
+        void PopulateCategoriesDropDownList(IEnumerable<Category> categories, long? selectedId = null)
+        {
+            ViewBag.CategoriesForSelect = new SelectList(categories, "Id", "Name",
+                selectedId);
+        }
     }
 }

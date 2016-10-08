@@ -34,12 +34,13 @@ namespace Yucca.Controllers
         [SiteAuthorize]
         public ActionResult ShowShoppingCart()
         {
-            var shoppingCart = _dbContext.ShoppingCarts.Where(a => a.User.UserName == User.Identity.Name).ToList();
-            List<ShoppingCartViewModel> shoppingCartViewModel = shoppingCart.Select(cart => new ShoppingCartViewModel
-            {
-                Quantity = cart.Quantity,
-                ProductName = cart.Product.Name
-            }).ToList();
+            var shoppingCartViewModel = _dbContext.ShoppingCarts.Include("Product")
+                .Where(a => a.User.UserName == User.Identity.Name)
+                .Select(cart => new ShoppingCartViewModel
+                {
+                    Quantity = cart.Quantity,
+                    ProductName = cart.Product.Name
+                }).ToList();
             return View(shoppingCartViewModel);
         }
         [HttpPost]

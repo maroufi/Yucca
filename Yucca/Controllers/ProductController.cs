@@ -29,8 +29,6 @@ namespace Yucca.Controllers
             _dbContext.Dispose();
             base.Dispose(disposing);
         }
-
-        [Route("{productId}")]
         public ActionResult Index(long? productId)
         {
             if (productId == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
